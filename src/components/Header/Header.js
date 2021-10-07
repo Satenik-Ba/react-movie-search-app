@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -13,7 +14,7 @@ import CategoryFilms from "./CategoryFilms";
 const useStyles = makeStyles(() => {
   return {
     root: {
-      cursor: "pointer",
+      cursor: 'pointer',
     },
   };
 });
