@@ -6,7 +6,7 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles({
     root: {
         'background-color': 'white', 
-        'color': 'black'
+        'color': 'grey'
     }, // a style rule 
     label: {}, // a nested style rule
   })
