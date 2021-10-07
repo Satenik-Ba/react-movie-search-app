@@ -5,10 +5,10 @@ import { makeStyles } from "@mui/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import AcordionCountryCategories from "./Header/AcordionCountryCategories";
-import logo from "./filmLogo.jpg";
-import SearchFilms from "./Header/SearchFilms";
-import CategoryFilms from "./Header/CategoryFilms";
+import AcordionCountryCategories from "./AcordionCountryCategories";
+import logo from "../images/filmLogo.jpg";
+import SearchFilms from "./SearchFilms";
+import CategoryFilms from "./CategoryFilms";
 
 const useStyles = makeStyles(() => {
   return {
