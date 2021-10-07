@@ -1,13 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import Movie from './Movie';
+import Search from './Search';
 
 function MainPage() {
-    return (
-        <div>
-            <h1>Main Page!</h1>
-            <h1>Main Page!</h1>
-
-        </div>
+  const [globalData, setGlobalData] = useState([]);
+  useEffect(() => {
+    fetch(
+      'https://api.themoviedb.org/3/movie/6/similar?api_key=6241e31f828487ad21497bc364be7041&language=en-US&page=1'
     )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result.results, 'Movie RESULT');
+        setGlobalData(result.results);
+      });
+  }, []);
+
+
+  return (
+    <div>
+      <h1>Main Page!</h1>
+      <Search />
+      {globalData.map(movie => (
+      <Movie
+
+        key={movie.id}
+        title={movie.title}
+        popularity={movie.popularity}
+        release_date={movie.release_date}
+        image={movie.poster_path}
+      />
+    ))}
+    </div>
+  );
 }
 
-export default MainPage
+export default MainPage;
