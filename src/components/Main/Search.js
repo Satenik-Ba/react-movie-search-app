@@ -4,18 +4,18 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
-    root: {
-        'background-color': 'white', 
-        'color': 'grey'
-    }, // a style rule 
-    label: {}, // a nested style rule
-  })
+  root: {
+    'background-color': 'white',
+    color: 'black',
+  }, // a style rule
+  label: {}, // a nested style rule
+});
 function Search() {
-    const classes = useStyles();
+  const classes = useStyles();
   return (
     <div>
       <Box
-      className={classes.root}
+        className={classes.root}
         component="form"
         sx={{
           '& > :not(style)': { m: 1, width: '25ch' },
