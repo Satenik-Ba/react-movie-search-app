@@ -1,19 +1,19 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import { makeStyles } from "@mui/styles";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import AcordionCountryCategories from "./Header/AcordionCountryCategories";
-import logo from "./filmLogo.jpg";
-import SearchFilms from "./Header/SearchFilms";
-import CategoryFilms from "./Header/CategoryFilms";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import { makeStyles } from '@mui/styles';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import AcordionCountryCategories from './AcordionCountryCategories';
+import logo from './filmLogo.jpg';
+import SearchFilms from './SearchFilms';
+import CategoryFilms from './CategoryFilms';
 
 const useStyles = makeStyles(() => {
   return {
     root: {
-      cursor: "pointer",
+      cursor: 'pointer',
     },
   };
 });
