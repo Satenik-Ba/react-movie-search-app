@@ -1,32 +1,3 @@
-#demo-simple-select-label,
-#demo-simple-select {
-  color: #d1d2d6;
-  font-size: 20px;
-}
-#FilmsAppBar {
-  background-color: #171c2c;
-  color: #d1d2d6;
-}
-#logoDiv {
-  width: 250px;
-  display: flex;
-  text-align: center;
-  font-size: 23px;
-  font-weight: bold;
-}
-#logoDiv p {
-  margin-left: 25px;
-  color: white;
-}
-#logodivSpanOne {
-  color: red;
-}
-#logodivSpanTwo {
-  color: blue;
-}
-#logodivSpanThree {
-  color: orange;
-}
 #caruselFilmsParent {
   width: 80%;
   margin: auto;
