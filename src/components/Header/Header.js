@@ -46,12 +46,14 @@ function Header() {
           </Typography>
 
           <SearchFilms />
+          
           <Button component={Link} to={SIGNIN_ROUTE} color="inherit">
             Login
           </Button>
           <Button component={Link} to={REGISTER_ROUTE} color="inherit">
             Register
           </Button>
+          
         </Toolbar>
       </AppBar>
     </Box>

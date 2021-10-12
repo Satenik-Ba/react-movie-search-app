@@ -4,10 +4,10 @@ import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
-import {REGISTER_ROUTE} from '../../constants/routes'
- 
+import { REGISTER_ROUTE } from '../../constants/routes';
+
 const useStyles = makeStyles({
   root: {
     display: 'flex',
@@ -28,8 +28,13 @@ const Login = () => {
     <div className={classes.root}>
       <Box component="form">
         <h1>Sign In</h1>
-        <TextField label="Email" type="email" variant="outlined" required/>
-        <TextField label="Password" type="password" variant="outlined" required/>
+        <TextField label="Email" type="email" variant="outlined" required />
+        <TextField
+          label="Password"
+          type="password"
+          variant="outlined"
+          required
+        />
         <div>
           <button className={classes.button}>Log In</button>
         </div>
