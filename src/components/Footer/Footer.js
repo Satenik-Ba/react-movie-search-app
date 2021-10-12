@@ -6,7 +6,6 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system"; //
-import Button from "@mui/material/Button";
 import { Grid, Link } from "@mui/material";
 
 const useStyles = makeStyles(() => {
