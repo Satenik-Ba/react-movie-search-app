@@ -1648,7 +1648,7 @@
   dependencies:
     "@babel/runtime" "^7.15.4"
 
-"@mui/material@^5.0.2":
+"@mui/material@^5.0.3":
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.0.3.tgz#5ac4d9f7d9635efc9cf7347373e49db41f1b065b"
   integrity sha512-Qj2hwSi63qrYRJuHrUFdN83lCT6HXyLzpCniDTvK7NlqXCnpy4F3Gg0hRJTnO4hNqTTBV+SCOKTSbfuzHl/dnQ==
@@ -1676,7 +1676,7 @@
     "@mui/utils" "^5.0.1"
     prop-types "^15.7.2"
 
-"@mui/styled-engine-sc@^5.0.0":
+"@mui/styled-engine-sc@^5.0.3":
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/@mui/styled-engine-sc/-/styled-engine-sc-5.0.3.tgz#cb6bb674bfbc447db1a4aa095df5f676dd899438"
   integrity sha512-Fe3VxYbZMQg/9G9NiF092FpeDAgu90jUgiTzeIUqRNPBgW85Q/EP1uECUAtTG85HPRtkl6iXPUE8oAWxxmxl9A==
