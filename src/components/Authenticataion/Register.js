@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import { useAuth } from './AuthContext';
 import { useHistory } from 'react-router-dom';
-
+import { USER_PAGE } from '../../constants/routes';
 const useStyles = makeStyles({
   root: {
     display: 'flex',
@@ -25,7 +25,7 @@ const Register = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signup, currentUser } = useAuth();
+  const { signup } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -36,40 +36,37 @@ const Register = () => {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError('Passwords do not match');
     }
-
+    setError('');
+    setLoading(true);
     try {
-      setError('');
-      setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
-      history.push('/');
+      setLoading(false);
+      history.push(USER_PAGE);
     } catch {
       setError('Failed to create an account');
     }
-
-    setLoading(false);
   }
-
+  // dialog vs alert to show error message
   return (
     <div className={classes.root}>
       <FormControl component="form" onSubmit={handleSubmit}>
         <h1>Registration Form</h1>
-        {currentUser.email}
         <TextField
-          ref={emailRef}
+          inputRef={emailRef}
           label="Email"
           type="email"
           variant="outlined"
           required
         />
         <TextField
-          ref={passwordRef}
+          inputRef={passwordRef}
           label="Password"
           type="password"
           variant="outlined"
           required
         />
         <TextField
-          ref={passwordConfirmRef}
+          inputRef={passwordConfirmRef}
           label="Re-Type Password"
           type="password"
           variant="outlined"
