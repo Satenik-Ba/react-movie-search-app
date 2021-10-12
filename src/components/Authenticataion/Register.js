@@ -3,7 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import { useAuth } from './AuthContext';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -25,21 +25,27 @@ const Register = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { login } = useAuth();
+  const { signup, currentUser } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const history = useHistory();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError('Passwords do not match');
+    }
+
     try {
       setError('');
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
+      await signup(emailRef.current.value, passwordRef.current.value);
+      history.push('/');
     } catch {
-      setError('Failed to log in');
+      setError('Failed to create an account');
     }
+
     setLoading(false);
   }
 
@@ -47,18 +53,7 @@ const Register = () => {
     <div className={classes.root}>
       <FormControl component="form" onSubmit={handleSubmit}>
         <h1>Registration Form</h1>
-        {/* <TextField
-          ref={firstNameRef}
-          label="First Name"
-          type="text"
-          variant="outlined"
-        />
-        <TextField
-          ref={lastNameRef}
-          label="Last Name"
-          type="text"
-          variant="outlined"
-        /> */}
+        {currentUser.email}
         <TextField
           ref={emailRef}
           label="Email"
@@ -80,7 +75,7 @@ const Register = () => {
           variant="outlined"
           required
         />
-        <button className={classes.button} type="submit">
+        <button className={classes.button} disabled={loading} type="submit">
           Register
         </button>
       </FormControl>

@@ -5,9 +5,9 @@ import GoogleIcon from "@mui/icons-material/Google";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { makeStyles } from "@mui/styles";
-import { Box } from "@mui/system"; //
-import Button from "@mui/material/Button";
-import { Grid, Link } from "@mui/material";
+import { Box } from "@mui/system"; 
+import Grid from "@mui/material/Grid";
+import Link from '@mui/material/Link'; 
 
 const useStyles = makeStyles(() => {
   return {
