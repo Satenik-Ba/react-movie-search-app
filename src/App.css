@@ -1,31 +1,3 @@
-/* #FilmsAppBar {
-  background-color: #171c2c;
-  color: #d1d2d6;
-}
-#FilmsAppBar a {
-  text-decoration: none;
-}
-
-#logoDiv {
-  width: 250px;
-  display: flex;
-  text-align: center;
-  font-size: 23px;
-  font-weight: bold;
-}
-#logoDiv p {
-  margin-left: 25px;
-  color: white;
-}
-#logodivSpanOne {
-  color: red;
-}
-#logodivSpanTwo {
-  color: blue;
-}
-#logodivSpanThree {
-  color: orange;
-} */
 #caruselFilmsParent {
   width: 80%;
   margin: auto;
