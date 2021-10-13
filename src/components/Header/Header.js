@@ -17,6 +17,30 @@ const useStyles = makeStyles(() => {
     root: {
       cursor: 'pointer',
     },
+    filmsAppBar: {
+      backgroundColor: "#171c2c !important",
+      color: "#d1d2d6 !important",
+    },
+    logo: {
+      width: "250px",
+      display: "flex",
+      textAlign: "center",
+      fontSize: "23px",
+      fontWeight: "bold",
+    },
+    logoP: {
+      marginLeft: "25px",
+      color: "white",
+    },
+    logoSpanOne: {
+      color: "red",
+    },
+    logoSpanTwo: {
+      color: "blue",
+    },
+    logoSpanThree: {
+      color: "orange",
+    },
   };
 });
 
@@ -24,14 +48,14 @@ function Header() {
   const classes = useStyles();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar id="FilmsAppBar" position="static">
+      <AppBar className={classes.filmsAppBar} position="static">
         <Toolbar>
-          <Link id="logoDiv" to={HOME_ROUTE} >
+          <Link className={classes.logo} to={HOME_ROUTE} >
             <img src={logo} alt="Logo" />
-            <p>
-              <span id="logodivSpanOne">A</span>
-              <span id="logodivSpanTwo">R</span>
-              <span id="logodivSpanThree">M</span>FILM
+            <p className={classes.logoP}>
+              <span className={classes.logoSpanOne}>A</span>
+              <span className={classes.logoSpanTwo}>R</span>
+              <span className={classes.logoSpanThree}>M</span>FILM
             </p>
           </Link>
           <AcordionCountryCategories />
