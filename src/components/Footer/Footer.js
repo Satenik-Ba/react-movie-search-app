@@ -4,10 +4,10 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import GoogleIcon from "@mui/icons-material/Google";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import { makeStyles } from '@mui/styles';
-import { Box } from "@mui/system"; 
+import { makeStyles } from "@mui/styles";
+import { Box } from "@mui/system";
 import Grid from "@mui/material/Grid";
-import Link from '@mui/material/Link'; 
+import Link from "@mui/material/Link";
 
 const useStyles = makeStyles(() => {
   return {
@@ -57,7 +57,7 @@ function Footer() {
   const classes = useStyles();
 
   return (
-    <div style={{ backgroundColor: "black" }}>
+    <div style={{ backgroundColor: "#171C2C" }}>
       <Grid>
         <FacebookIcon className={classes.root} />
         <InstagramIcon className={classes.root} />
