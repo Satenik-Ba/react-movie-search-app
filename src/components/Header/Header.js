@@ -6,7 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import AcordionCountryCategories from "./AcordionCountryCategories";
-import logo from "../images/filmLogo.jpg";
+import logo from "../images/filmLogo.png";
 import SearchFilms from "./SearchFilms";
 import CategoryFilms from "./CategoryFilms";
 import {
