@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => {
     caruselFilmsParent: {
       width: "83%",
       margin: "auto",
-      paddingTop: "40px",
+      paddingTop: "115px",
     },
   };
 });

@@ -45,6 +45,15 @@ const useStyles = makeStyles(() => {
     logoSpanThree: {
       color: "orange",
     },
+    registerBtn: {
+      backgroundColor: "blue !important",
+      fontWeight: "bold !important",
+      marginLeft: "2px !important",
+    },
+    loginBtn: {
+      backgroundColor: "#BF3B7C !important",
+      fontWeight: "bold !important",
+    },
   };
 });
 
@@ -52,7 +61,7 @@ function Header() {
   const classes = useStyles();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar className={classes.filmsAppBar} position="static">
+      <AppBar className={classes.filmsAppBar} position="fixed">
         <Toolbar>
           <Link className={classes.logo} to={HOME_ROUTE}>
             <img src={logo} alt="Logo" />
@@ -75,10 +84,20 @@ function Header() {
 
           <SearchFilms />
 
-          <Button component={Link} to={SIGNIN_ROUTE} color="inherit">
-            Login
+          <Button
+            className={classes.loginBtn}
+            component={Link}
+            to={SIGNIN_ROUTE}
+            color="inherit"
+          >
+            Log in
           </Button>
-          <Button component={Link} to={REGISTER_ROUTE} color="inherit">
+          <Button
+            className={classes.registerBtn}
+            component={Link}
+            to={REGISTER_ROUTE}
+            color="inherit"
+          >
             Register
           </Button>
         </Toolbar>
