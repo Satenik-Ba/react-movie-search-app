@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Movie from "./Movie";
-import { POPULAR_MOVIES_API } from "../../constants/APIs";
-import CarouselFilms from "./CarouselFilms";
-import { makeStyles } from "@mui/styles";
+import React, { useEffect, useState } from 'react';
+import Movie from './Movie';
+import { POPULAR_MOVIES_API } from '../../constants/APIs';
+import CarouselFilms from './CarouselFilms';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#232A3E",
+      backgroundColor: '#232A3E',
     },
   };
 });
@@ -19,7 +19,7 @@ function MainPage() {
     fetch(POPULAR_MOVIES_API)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result, "Movie RESULT");
+        console.log(result, 'Movie RESULT');
         setFeaturedMovies(result.results);
       });
   }, []);
