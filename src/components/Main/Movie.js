@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Movie = ({ title, release_date, image }) => {
+const Movie = ({ title, release_date, image, overview }) => {
   const onInfoClick = () => {
     console.log('info click');
   };
@@ -39,6 +39,7 @@ const Movie = ({ title, release_date, image }) => {
           </IconButton>
         }
       />
+      <p>{overview}</p>
     </ImageListItem>
   );
 };
