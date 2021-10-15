@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {AppBar} from '@mui/material';
+import { AppBar } from '@mui/material';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,8 +9,14 @@ import AcordionCountryCategories from './AcordionCountryCategories';
 import logo from '../images/filmLogo.jpg';
 import SearchFilms from './SearchFilms';
 import CategoryFilms from './CategoryFilms';
-import { SIGNIN_ROUTE, REGISTER_ROUTE, HOME_ROUTE} from '../../constants/routes';
+import {
+  SIGNIN_ROUTE,
+  REGISTER_ROUTE,
+  HOME_ROUTE,
+} from '../../constants/routes';
 import { Link } from 'react-router-dom';
+import Logout from '../Authenticataion/Logout';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(() => {
   return {
@@ -18,39 +24,42 @@ const useStyles = makeStyles(() => {
       cursor: 'pointer',
     },
     filmsAppBar: {
-      backgroundColor: "#171c2c !important",
-      color: "#d1d2d6 !important",
+      backgroundColor: '#171c2c !important',
+      color: '#d1d2d6 !important',
     },
     logo: {
-      width: "250px",
-      display: "flex",
-      textAlign: "center",
-      fontSize: "23px",
-      fontWeight: "bold",
+      width: '250px',
+      display: 'flex',
+      textAlign: 'center',
+      fontSize: '23px',
+      fontWeight: 'bold',
     },
     logoP: {
-      marginLeft: "25px",
-      color: "white",
+      marginLeft: '25px',
+      color: 'white',
     },
     logoSpanOne: {
-      color: "red",
+      color: 'red',
     },
     logoSpanTwo: {
-      color: "blue",
+      color: 'blue',
     },
     logoSpanThree: {
-      color: "orange",
+      color: 'orange',
     },
   };
 });
 
 function Header() {
   const classes = useStyles();
+  const isAuth = useSelector((state) => state.userInfo.isAuthenticated);
+  console.log(isAuth, 'IsAUTHENTICATED');
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar className={classes.filmsAppBar} position="static">
         <Toolbar>
-          <Link className={classes.logo} to={HOME_ROUTE} >
+          <Link className={classes.logo} to={HOME_ROUTE}>
             <img src={logo} alt="Logo" />
             <p className={classes.logoP}>
               <span className={classes.logoSpanOne}>A</span>
@@ -70,14 +79,18 @@ function Header() {
           </Typography>
 
           <SearchFilms />
-          
-          <Button component={Link} to={SIGNIN_ROUTE} color="inherit">
-            Login
-          </Button>
-          <Button component={Link} to={REGISTER_ROUTE} color="inherit">
-            Register
-          </Button>
-          
+
+          {!isAuth && (
+            <Button component={Link} to={SIGNIN_ROUTE} color="inherit">
+              Log in{' '}
+            </Button>
+          )}
+          {!isAuth && (
+            <Button component={Link} to={REGISTER_ROUTE} color="inherit">
+              Register
+            </Button>
+          )}
+          {isAuth && <Logout />}
         </Toolbar>
       </AppBar>
     </Box>
