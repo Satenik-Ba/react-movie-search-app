@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AcordionCountryCategories from './AcordionCountryCategories';
-import logo from '../images/filmLogo.jpg';
+import logo from '../images/filmLogo.png';
 import SearchFilms from './SearchFilms';
 import CategoryFilms from './CategoryFilms';
 import {
@@ -18,11 +18,10 @@ import { Link } from 'react-router-dom';
 import Logout from '../Authenticataion/Logout';
 import { useSelector } from 'react-redux';
 
-
 const useStyles = makeStyles(() => {
   return {
     root: {
-      cursor: "pointer",
+      cursor: 'pointer',
     },
     filmsAppBar: {
       backgroundColor: '#171c2c !important',
@@ -49,13 +48,13 @@ const useStyles = makeStyles(() => {
       color: 'orange',
     },
     registerBtn: {
-      backgroundColor: "blue !important",
-      fontWeight: "bold !important",
-      marginLeft: "2px !important",
+      backgroundColor: 'blue !important',
+      fontWeight: 'bold !important',
+      marginLeft: '2px !important',
     },
     loginBtn: {
-      backgroundColor: "#BF3B7C !important",
-      fontWeight: "bold !important",
+      backgroundColor: '#BF3B7C !important',
+      fontWeight: 'bold !important',
     },
   };
 });
@@ -89,7 +88,6 @@ function Header() {
           </Typography>
 
           <SearchFilms />
-
 
           {!isAuth && (
             <Button component={Link} to={SIGNIN_ROUTE} color="inherit">
