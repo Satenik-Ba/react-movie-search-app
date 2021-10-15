@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { AppBar } from '@mui/material';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
@@ -18,10 +18,11 @@ import { Link } from 'react-router-dom';
 import Logout from '../Authenticataion/Logout';
 import { useSelector } from 'react-redux';
 
+
 const useStyles = makeStyles(() => {
   return {
     root: {
-      cursor: 'pointer',
+      cursor: "pointer",
     },
     filmsAppBar: {
       backgroundColor: '#171c2c !important',
@@ -47,6 +48,15 @@ const useStyles = makeStyles(() => {
     logoSpanThree: {
       color: 'orange',
     },
+    registerBtn: {
+      backgroundColor: "blue !important",
+      fontWeight: "bold !important",
+      marginLeft: "2px !important",
+    },
+    loginBtn: {
+      backgroundColor: "#BF3B7C !important",
+      fontWeight: "bold !important",
+    },
   };
 });
 
@@ -57,7 +67,7 @@ function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar className={classes.filmsAppBar} position="static">
+      <AppBar className={classes.filmsAppBar} position="fixed">
         <Toolbar>
           <Link className={classes.logo} to={HOME_ROUTE}>
             <img src={logo} alt="Logo" />
@@ -79,6 +89,7 @@ function Header() {
           </Typography>
 
           <SearchFilms />
+
 
           {!isAuth && (
             <Button component={Link} to={SIGNIN_ROUTE} color="inherit">

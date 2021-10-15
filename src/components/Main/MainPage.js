@@ -37,7 +37,7 @@ function MainPage() {
           key={movie.id}
           title={movie.title}
           release_date={movie.release_date}
-          // overview={movie.overview}
+          overview={movie.overview}
           image={movie.poster_path}
         />
       ))}
