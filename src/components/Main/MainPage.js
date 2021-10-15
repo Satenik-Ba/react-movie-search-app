@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => {
 function MainPage() {
   const classes = useStyles();
   const [featuredMovies, setFeaturedMovies] = useState([]);
-  const [selectCategory, setSelectCategory] = useState(categoryId);
+  const [selectCategory, setSelectCategory] = useState(false);
   useEffect(() => {
     fetch(POPULAR_MOVIES_API)
       .then((response) => response.json())
@@ -44,7 +44,7 @@ function MainPage() {
                 key={movie.id}
                 title={movie.title}
                 release_date={movie.release_date}
-                // overview={movie.overview}
+                overview={movie.overview}
                 image={movie.poster_path}
               />
             ))
@@ -53,7 +53,7 @@ function MainPage() {
               key={movie.id}
               title={movie.title}
               release_date={movie.release_date}
-              // overview={movie.overview}
+              overview={movie.overview}
               image={movie.poster_path}
             />
           ))}

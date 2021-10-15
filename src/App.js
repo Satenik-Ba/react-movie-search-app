@@ -10,30 +10,51 @@ import {
   HOME_ROUTE,
   USER_PAGE,
 } from "./constants/routes";
-import { AuthProvider } from "./components/Authenticataion/AuthContext";
 import UserPage from "./components/User/UserPage";
+import { useDispatch } from "react-redux";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { UserInfoActions } from "./components/redux/UserInfo";
+import React, { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+  const auth = getAuth();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user, "USER");
+        dispatch(
+          UserInfoActions.setUserInfo({
+            userName: user.displayName,
+            userEmail: user.email,
+            userId: user.uid,
+          })
+        );
+      } else {
+        console.log("NO USER IS SIGNED IN ");
+      }
+    });
+  }, [dispatch, auth]);
+
   return (
     <div className="App">
-      <AuthProvider>
-        <Header />
-        <Switch>
-          <Route path={SIGNIN_ROUTE}>
-            <Auth />
-          </Route>
-          <Route path={REGISTER_ROUTE}>
-            <Auth />
-          </Route>
-          <Route path={HOME_ROUTE} exact>
-            <MainPage />
-          </Route>
-          <Route path={USER_PAGE}>
-            <UserPage />
-          </Route>
-        </Switch>
-        <Footer />
-      </AuthProvider>
+      <Header />
+      <Switch>
+        <Route path={SIGNIN_ROUTE}>
+          <Auth />
+        </Route>
+        <Route path={REGISTER_ROUTE}>
+          <Auth />
+        </Route>
+        <Route path={HOME_ROUTE} exact>
+          <MainPage />
+        </Route>
+        <Route path={USER_PAGE}>
+          <UserPage />
+        </Route>
+      </Switch>
+      <Footer />
     </div>
   );
 }
