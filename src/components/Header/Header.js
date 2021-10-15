@@ -9,6 +9,7 @@ import AcordionCountryCategories from './AcordionCountryCategories';
 import logo from '../images/filmLogo.png';
 import SearchFilms from './SearchFilms';
 import CategoryFilms from './CategoryFilms';
+
 import {
   SIGNIN_ROUTE,
   REGISTER_ROUTE,
