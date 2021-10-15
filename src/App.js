@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import React, { useEffect } from 'react';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import MainPage from './components/Main/MainPage';
@@ -10,14 +11,35 @@ import {
   HOME_ROUTE,
   USER_PAGE,
 } from './constants/routes';
-import { AuthProvider } from './components/Authenticataion/AuthContext';
 import UserPage from './components/User/UserPage';
+import { useDispatch } from 'react-redux';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { UserInfoActions } from './components/redux/UserInfo';
 
 function App() {
+  const dispatch = useDispatch();
+  const auth = getAuth();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user, 'USER');
+        dispatch(
+          UserInfoActions.setUserInfo({
+            userName: user.displayName,
+            userEmail: user.email,
+            userId: user.uid,
+          })
+        );
+      } else {
+        console.log('NO USER IS SIGNED IN ');
+      }
+    });
+  }, [dispatch, auth]);
+
   return (
     <div className="App">
-    <AuthProvider>
-        <Header />
+      <Header />
       <Switch>
         <Route path={SIGNIN_ROUTE}>
           <Auth />
@@ -33,7 +55,6 @@ function App() {
         </Route>
       </Switch>
       <Footer />
-    </AuthProvider>
     </div>
   );
 }

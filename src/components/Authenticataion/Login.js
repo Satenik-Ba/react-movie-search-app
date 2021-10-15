@@ -1,22 +1,29 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
+import React, { useRef, useState } from 'react';
+import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
-import { REGISTER_ROUTE } from '../../constants/routes';
+import { REGISTER_ROUTE, USER_PAGE } from '../../constants/routes';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const useStyles = makeStyles({
   root: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    height: '100vh',
+    width: '100vw',
+    'margin-top': '-7rem',
   },
   button: {
     backgroundColor: '#171c2c',
     color: 'white',
+    height: '2.5rem',
     '&:hover': {
       backgroundColor: '#7b84a4',
     },
@@ -24,20 +31,54 @@ const useStyles = makeStyles({
 });
 const Login = () => {
   const classes = useStyles();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const [error, setError] = useState('');
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const auth = getAuth();
+  function login(email, password) {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  }
+
+  function handleSignIn(e) {
+    e.preventDefault();
+    setError('');
+
+    try {
+      login(emailRef.current.value, passwordRef.current.value);
+      history.push(USER_PAGE);
+    } catch {
+      setError('Failed to log in');
+    }
+  }
   return (
     <div className={classes.root}>
-      <Box component="form">
+      <FormControl component="form" onSubmit={handleSignIn}>
         <h1>Sign In</h1>
-        <TextField label="Email" type="email" variant="outlined" required />
+        <TextField
+          label="Email"
+          type="email"
+          variant="outlined"
+          ref={emailRef}
+          required
+        />
         <TextField
           label="Password"
           type="password"
           variant="outlined"
+          ref={passwordRef}
           required
         />
-        <div>
-          <button className={classes.button}>Log In</button>
-        </div>
+        <button className={classes.button}>Log In</button>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox defaultChecked />}
@@ -51,7 +92,7 @@ const Login = () => {
             <Link to={REGISTER_ROUTE}>Sign Up Now</Link>
           </span>
         </p>
-      </Box>
+      </FormControl>
     </div>
   );
 };
