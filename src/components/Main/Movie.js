@@ -6,7 +6,6 @@ import InfoIcon from "@mui/icons-material/Info";
 import { makeStyles } from "@mui/styles";
 import { lineHeight } from "@mui/system";
 import ReactDOM from "react-dom";
-
 const useStyles = makeStyles({
   text: {
     width: "273px",
@@ -25,7 +24,6 @@ const useStyles = makeStyles({
     },
   },
 });
-
 const Movie = ({ title, release_date, image, overview }) => {
   const classes = useStyles();
   const onInfoClick = () => {
@@ -64,5 +62,4 @@ const Movie = ({ title, release_date, image, overview }) => {
     </ImageListItem>
   );
 };
-
 export default Movie;
