@@ -16,8 +16,11 @@ const useStyles = makeStyles(() => {
   };
 });
 
+export let selectedId = 0;
+
 function CategoryFilms() {
   const classes = useStyles();
+  const [categoryId, setCategoryId] = React.useState(false);
   const [age, setAge] = React.useState("");
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -38,14 +41,28 @@ function CategoryFilms() {
             label="Films"
             onChange={handleChange}
           >
-            <MenuItem value={10}>Biography</MenuItem>
-            <MenuItem value={20}>Horror</MenuItem>
-            <MenuItem value={30}>Drama</MenuItem>
-            <MenuItem value={40}>Melodramma</MenuItem>
-            <MenuItem value={50}>Comedy</MenuItem>
-            <MenuItem value={60}>Detective</MenuItem>
-            <MenuItem value={70}>Crime</MenuItem>
-            <MenuItem value={80}>Fantasy</MenuItem>
+            <MenuItem onClick={() => setCategoryId(false)}>
+              All categories
+            </MenuItem>
+            <MenuItem onClick={() => setCategoryId(28)}>Action</MenuItem>
+            <MenuItem value={12}>Adventure</MenuItem>
+            <MenuItem value={16}>Animation</MenuItem>
+            <MenuItem value={35}>Comedy</MenuItem>
+            <MenuItem value={80}>Crime</MenuItem>
+            <MenuItem value={99}>Documentary</MenuItem>
+            <MenuItem value={18}>Drama</MenuItem>
+            <MenuItem value={10751}>Family</MenuItem>
+            <MenuItem value={14}>Fantasy</MenuItem>
+            <MenuItem value={36}>History</MenuItem>
+            <MenuItem value={27}>Horror</MenuItem>
+            <MenuItem value={10402}>Music</MenuItem>
+            <MenuItem value={9648}>Mystery</MenuItem>
+            <MenuItem value={10749}>Romance</MenuItem>
+            <MenuItem value={878}>Science Fiction</MenuItem>
+            <MenuItem value={10770}>TV Movie</MenuItem>
+            <MenuItem value={53}>Thriller</MenuItem>
+            <MenuItem value={10752}>War</MenuItem>
+            <MenuItem value={37}>Western</MenuItem>
           </Select>
         </FormControl>
       </Box>
