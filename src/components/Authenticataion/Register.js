@@ -4,7 +4,10 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
 import { USER_PAGE } from '../../constants/routes';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
 
 const useStyles = makeStyles({
   root: {
@@ -36,14 +39,7 @@ const Register = () => {
   const history = useHistory();
   const auth = getAuth();
 
-  function signup(email, password) {
-    createUserWithEmailAndPassword(auth, email, password).then(
-      (userCredential) => {
-        const user = userCredential.user;
-      }
-    );
-  }
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError('Passwords do not match');
@@ -51,7 +47,7 @@ const Register = () => {
     setError('');
     setLoading(true);
     try {
-      signup(emailRef.current.value, passwordRef.current.value);
+     await createUserWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value);
       setLoading(false);
       history.push(USER_PAGE);
     } catch {

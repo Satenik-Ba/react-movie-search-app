@@ -9,7 +9,6 @@ import AcordionCountryCategories from './AcordionCountryCategories';
 import logo from '../images/filmLogo.png';
 import SearchFilms from './SearchFilms';
 import CategoryFilms from './CategoryFilms';
-
 import {
   SIGNIN_ROUTE,
   REGISTER_ROUTE,
@@ -63,7 +62,6 @@ const useStyles = makeStyles(() => {
 function Header() {
   const classes = useStyles();
   const isAuth = useSelector((state) => state.userInfo.isAuthenticated);
-  console.log(isAuth, 'IsAUTHENTICATED');
 
   return (
     <Box sx={{ flexGrow: 1 }}>

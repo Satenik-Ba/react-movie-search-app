@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import { REGISTER_ROUTE, USER_PAGE } from '../../constants/routes';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const useStyles = makeStyles({
@@ -35,9 +34,8 @@ const Login = () => {
   const passwordRef = useRef();
   const [error, setError] = useState('');
   const history = useHistory();
-  const dispatch = useDispatch();
-
   const auth = getAuth();
+
   function login(email, password) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -68,14 +66,14 @@ const Login = () => {
           label="Email"
           type="email"
           variant="outlined"
-          ref={emailRef}
+          inputRef={emailRef}
           required
         />
         <TextField
           label="Password"
           type="password"
           variant="outlined"
-          ref={passwordRef}
+          inputRef={passwordRef}
           required
         />
         <button className={classes.button}>Log In</button>
