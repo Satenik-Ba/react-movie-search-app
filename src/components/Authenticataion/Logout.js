@@ -16,9 +16,9 @@ function Logout() {
     history.push(HOME_ROUTE);
   };
   return (
-    <Button color="inherit" onClick={handleLogout}>
+    <div color="inherit" onClick={handleLogout}>
       Log Out
-    </Button>
+    </div>
   );
 }
 

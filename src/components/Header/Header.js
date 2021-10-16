@@ -15,8 +15,8 @@ import {
   HOME_ROUTE,
 } from '../../constants/routes';
 import { Link } from 'react-router-dom';
-import Logout from '../Authenticataion/Logout';
 import { useSelector } from 'react-redux';
+import UserAvatar from './UserAvatar';
 
 const useStyles = makeStyles(() => {
   return {
@@ -98,7 +98,7 @@ function Header() {
               Register
             </Button>
           )}
-          {isAuth && <Logout />}
+          {isAuth && <UserAvatar />}
         </Toolbar>
       </AppBar>
     </Box>
