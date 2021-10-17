@@ -1,15 +1,14 @@
-import * as React from 'react';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
-import { makeStyles } from '@mui/styles';
-import { lineHeight } from '@mui/system';
-import ReactDOM from 'react-dom';
+import * as React from "react";
+import ImageListItem from "@mui/material/ImageListItem";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
+import IconButton from "@mui/material/IconButton";
+import { makeStyles } from "@mui/styles";
+import FavoriteVideoIcon from "./FavoriteVideoIcon";
+import ReitingVideoStars from "./ReitingVideoStars";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 const useStyles = makeStyles({
   text: {
-
-    height: "99%",
+    height: "90%",
     overflow: "hidden",
     color: "white",
     fontSize: "16px",
@@ -22,26 +21,27 @@ const useStyles = makeStyles({
     },
   },
 });
+
 const Movie = ({ title, tvName, image, overview }) => {
   const classes = useStyles();
-  const onInfoClick = () => {
-    // console.log(overview);
-    // const element = <div className={classes.text}>{overview}</div>;
-    // ReactDOM.render(element, document.document.getElementById("info"));
+  const onVideoThis = () => {
+    console.log(overview);
   };
+
   return (
     <ImageListItem
       sx={{
-        width: '20vw',
+        width: "20vw",
         height: 100,
-        padding: '5px',
-        lineHeight: '1.3 !important',
+        padding: "5px",
+        lineHeight: "1.3 !important",
       }}
       cols={8}
     >
+      <ReitingVideoStars />
       <div className={classes.text}>{overview}</div>
       <img
-        src={'https://image.tmdb.org/t/p/w500/' + image}
+        src={"https://image.tmdb.org/t/p/w500/" + image}
         alt=""
         loading="lazy"
       />
@@ -49,11 +49,11 @@ const Movie = ({ title, tvName, image, overview }) => {
         title={title}
         actionIcon={
           <IconButton
-            sx={{ color: 'rgba(255, 255, 255, 0.94)' }}
+            sx={{ color: "rgba(255, 255, 255, 0.94)" }}
             aria-label={`info abou`}
-            onClick={onInfoClick}
           >
-            <InfoIcon />
+            <FavoriteVideoIcon />
+            <PlayCircleOutlineIcon onClick={onVideoThis} />
           </IconButton>
         }
       />
