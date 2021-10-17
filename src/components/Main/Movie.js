@@ -8,16 +8,13 @@ import { lineHeight } from "@mui/system";
 import ReactDOM from "react-dom";
 const useStyles = makeStyles({
   text: {
-    width: "273px",
-    height: "400px",
+    height: "99%",
     overflow: "hidden",
     color: "white",
     fontSize: "16px",
     fontWeight: "bold",
     backgroundColor: "#171C2C",
     position: "absolute",
-    top: "1%",
-    left: "2%",
     opacity: "0",
     "&:hover": {
       opacity: "0.7",
