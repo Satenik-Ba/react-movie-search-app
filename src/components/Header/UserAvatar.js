@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => {
 function UserAvatar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const userEmail = useSelector((state) => state.userInfo.userEmail.userEmail);
+  const userName = useSelector((state) => state.userInfo.userName.userName);
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -33,7 +33,7 @@ function UserAvatar() {
     <div>
       <Box sx={{ flexGrow: 1 }}>
         <Toolbar>
-        <span>Hello {userEmail} </span>
+        <span>Hello {userName} </span>
             <div>
               <IconButton
                 aria-label="account of current user"

@@ -75,6 +75,7 @@ function Footer() {
         <button className={classes.button}>Participation in research</button>
         <button className={classes.button}>Offers</button>
         <button className={classes.button}>Support</button>
+        {/* <a href="https://www.freepik.com/vectors/border">Border vector created by upklyak - www.freepik.com</a> */}
       </Box>
       <Grid>
         <Link href="https://www.apple.com/">

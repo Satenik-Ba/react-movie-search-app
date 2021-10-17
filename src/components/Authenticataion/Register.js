@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
@@ -7,6 +7,7 @@ import { USER_PAGE } from '../../constants/routes';
 import {
   getAuth,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from 'firebase/auth';
 
 const useStyles = makeStyles({
@@ -38,6 +39,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const auth = getAuth();
+  const user = auth.currentUser;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -47,14 +49,30 @@ const Register = () => {
     setError('');
     setLoading(true);
     try {
-     await createUserWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value);
+      await createUserWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      );
       setLoading(false);
       history.push(USER_PAGE);
     } catch {
       setError('Failed to create an account');
     }
   }
+ useEffect(() => {
+  if (user !== null) {updateProfile(user, {
+    displayName: userNameRef.current.value,
+  })
+    .then(() => {
+      console.log('profile was updated');
+    })
+    .catch((error) => {
+      console.log(error, 'an error has occured');
+    })};
 
+ }, [user])
+  
   // dialog vs alert to show error message
   return (
     <div className={classes.root}>
