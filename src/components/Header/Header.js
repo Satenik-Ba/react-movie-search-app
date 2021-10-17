@@ -13,7 +13,7 @@ import {
   SIGNIN_ROUTE,
   REGISTER_ROUTE,
   HOME_ROUTE,
-  USER_PAGE
+  USER_PAGE,
 } from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -58,11 +58,11 @@ const useStyles = makeStyles(() => {
       fontWeight: 'bold !important',
     },
     myList: {
-      'text-decoration': 'none', 
-      'color': 'white', 
-      'font-size': '1.25rem', 
-      'padding-right': '2rem'
-    }
+      'text-decoration': 'none',
+      color: 'white',
+      'font-size': '1.25rem',
+      'padding-right': '2rem',
+    },
   };
 });
 
@@ -84,15 +84,15 @@ function Header() {
           </Link>
           <AcordionCountryCategories />
           <CategoryFilms />
-         <Link to={USER_PAGE} className={classes.myList}>
-         My List
-         </Link>
-
+          {isAuth && (
+            <Link to={USER_PAGE} className={classes.myList}>
+              My List
+            </Link>
+          )}
           <SearchFilms />
-
           {!isAuth && (
             <Button component={Link} to={SIGNIN_ROUTE} color="inherit">
-              Log in{' '}
+              Log in
             </Button>
           )}
           {!isAuth && (
