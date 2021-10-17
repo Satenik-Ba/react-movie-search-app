@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import { auth } from '../../firebase';
 import { useDispatch } from 'react-redux';
 import { UserInfoActions } from '../redux/UserInfo';

@@ -13,6 +13,7 @@ import {
   SIGNIN_ROUTE,
   REGISTER_ROUTE,
   HOME_ROUTE,
+  USER_PAGE
 } from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -56,6 +57,12 @@ const useStyles = makeStyles(() => {
       backgroundColor: '#BF3B7C !important',
       fontWeight: 'bold !important',
     },
+    myList: {
+      'text-decoration': 'none', 
+      'color': 'white', 
+      'font-size': '1.25rem', 
+      'padding-right': '2rem'
+    }
   };
 });
 
@@ -77,14 +84,9 @@ function Header() {
           </Link>
           <AcordionCountryCategories />
           <CategoryFilms />
-          <Typography
-            className={classes.root}
-            variant="h5"
-            component="div"
-            sx={{ flexGrow: 1 }}
-          >
-            About
-          </Typography>
+         <Link to={USER_PAGE} className={classes.myList}>
+         My List
+         </Link>
 
           <SearchFilms />
 

@@ -1,17 +1,19 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { makeStyles } from "@mui/styles";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { makeStyles } from '@mui/styles';
+import { useDispatch } from 'react-redux';
+import { CatValueAction } from '../redux/categoryValue';
 
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#171c2c !important",
-      color: "#d1d2d6 !important",
+      backgroundColor: '#171c2c !important',
+      color: '#d1d2d6 !important',
     },
   };
 });
@@ -21,10 +23,19 @@ export let selectedId = 0;
 function CategoryFilms() {
   const classes = useStyles();
   const [categoryId, setCategoryId] = React.useState(false);
-  const [age, setAge] = React.useState("");
+  const [age, setAge] = React.useState('');
+  const dispatch = useDispatch();
+
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+  // const changeCatValue = (value) => {
+  //   dispatch(
+  //     CatValueAction.changeValue({
+  //       catValue: '28',
+  //     })
+  //   );
+  // };
 
   return (
     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
@@ -44,8 +55,30 @@ function CategoryFilms() {
             <MenuItem onClick={() => setCategoryId(false)}>
               All categories
             </MenuItem>
-            <MenuItem onClick={() => setCategoryId(28)}>Action</MenuItem>
-            <MenuItem value={12}>Adventure</MenuItem>
+            <MenuItem
+              value={28}
+              onClick={() => {
+                dispatch(
+                  CatValueAction.changeValue({
+                    catValue: '28',
+                  })
+                );
+              }}
+            >
+              Action
+            </MenuItem>
+            <MenuItem
+              value={12}
+              onClick={() => {
+                dispatch(
+                  CatValueAction.changeValue({
+                    catValue: '12',
+                  })
+                );
+              }}
+            >
+              Adventure
+            </MenuItem>
             <MenuItem value={16}>Animation</MenuItem>
             <MenuItem value={35}>Comedy</MenuItem>
             <MenuItem value={80}>Crime</MenuItem>

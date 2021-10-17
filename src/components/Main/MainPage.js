@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Movie from "./Movie";
-import { POPULAR_MOVIES_API } from "../../constants/APIs";
-import CarouselFilms from "./CarouselFilms";
-import { makeStyles } from "@mui/styles";
-import { selectedId } from "../Header/CategoryFilms";
+import React, { useEffect, useState } from 'react';
+import Movie from './Movie';
+import { TRENDING_MOVIES_API } from '../../constants/APIs';
+import CarouselFilms from './CarouselFilms';
+import { makeStyles } from '@mui/styles';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#232A3E",
-      color: "#D1D2D6",
-      paddingBottom: "40px",
+      backgroundColor: '#232A3E',
+      color: '#D1D2D6',
+      paddingBottom: '40px',
     },
   };
 });
@@ -18,27 +18,26 @@ const useStyles = makeStyles(() => {
 function MainPage() {
   const classes = useStyles();
   const [featuredMovies, setFeaturedMovies] = useState([]);
-  const [selectCategory, setSelectCategory] = useState(false);
   useEffect(() => {
-    fetch(POPULAR_MOVIES_API)
+    fetch(TRENDING_MOVIES_API)
       .then((response) => response.json())
       .then((result) => {
         setFeaturedMovies(result.results);
+        console.log(result.results);
       });
   }, []);
-  console.log(selectedId);
-  console.log(selectCategory);
+  const catVal = useSelector((state) => state.categoryValue.catValue.catValue);
+  console.log(catVal, 'CAT VALUE ');
+
   return (
     <div className={classes.root}>
       <div>
         <CarouselFilms />
       </div>
       <h2 className={classes.root}>Featured Movies</h2>
-      {selectCategory
+      {catVal
         ? featuredMovies
-            .filter((featuredMovie) =>
-              featuredMovie.genre_ids.includes(selectCategory)
-            )
+            .filter((featuredMovie) => featuredMovie.genre_ids.includes(+catVal))
             .map((movie) => (
               <Movie
                 key={movie.id}

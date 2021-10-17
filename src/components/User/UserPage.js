@@ -1,31 +1,29 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@mui/styles';
+import Carousel from './Carousel';
+import UserFavorites from './UserFavorites';
 
 const useStyles = makeStyles({
   root: {
     backgroundColor: '#232A3E',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
+    height: '100%',
     width: '100vw',
-    color: 'black',
+    color: 'white',
   },
 });
 
 function UserPage() {
   const classes = useStyles();
-  const userEmail = useSelector((state) => state.userInfo.userEmail.userEmail);
-  const userName = useSelector(state => state.userInfo.userName.userName)
-  const userId = useSelector(state => state.userInfo.userId.userId)
-  const isAuthenticated = useSelector(state => state.userInfo.isAuthenticated)
-  console.log(userEmail, 'userEmail is taken from state');
+  const userName = useSelector((state) => state.userInfo.userName.userName);
+  const isAuthenticated = useSelector(
+    (state) => state.userInfo.isAuthenticated
+  );
+
   return (
     <div className={classes.root}>
-      {isAuthenticated && <h1>Welcome {userEmail}</h1>}
-      {isAuthenticated && <h1>Welcome {userName} </h1>}
-      {isAuthenticated && <h1>Welcome {userId}</h1>}    
+      <UserFavorites />
+      <Carousel />
     </div>
   );
 }
