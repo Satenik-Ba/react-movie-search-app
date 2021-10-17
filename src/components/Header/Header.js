@@ -89,12 +89,10 @@ function Header() {
               My List
             </Link>
           )}
-
           <SearchFilms />
-
           {!isAuth && (
             <Button component={Link} to={SIGNIN_ROUTE} color="inherit">
-              Log in{' '}
+              Log in
             </Button>
           )}
           {!isAuth && (
