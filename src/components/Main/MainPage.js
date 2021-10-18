@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Movie from "./Movie";
-import { TRENDING_MOVIES_API } from "../../constants/APIs";
-import CarouselFilms from "./CarouselFilms";
-import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
-import VideoMoviePage from "./VideoMoviePage";
+import React, { useEffect, useState } from 'react';
+import Movie from './Movie';
+import { TRENDING_MOVIES_API } from '../../constants/APIs';
+import CarouselFilms from './CarouselFilms';
+import { makeStyles } from '@mui/styles';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#232A3E",
-      color: "#D1D2D6",
-      paddingBottom: "40px",
+      backgroundColor: '#232A3E',
+      color: '#D1D2D6',
+      paddingBottom: '40px',
     },
   };
 });
@@ -28,24 +27,7 @@ function MainPage() {
       });
   }, []);
   const catVal = useSelector((state) => state.categoryValue.catValue.catValue);
-  const videoIdMain = useSelector((state) => state.videoPageId.videoId.videoId);
-
-  console.log(videoIdMain);
-  if (videoIdMain) {
-    return (
-      <div>
-        <div>{videoIdMain}</div>
-        <div>{videoIdMain}</div>
-        <div>{videoIdMain}</div>
-        <div>{videoIdMain}</div>
-        <div>{videoIdMain}</div>
-        <div>{videoIdMain}</div>
-        <div>{videoIdMain}</div>
-        <div>{videoIdMain}</div>
-        <div>{videoIdMain}</div>
-      </div>
-    );
-  } else {
+ 
     return (
       <div className={classes.root}>
         <div>
@@ -61,24 +43,17 @@ function MainPage() {
               .map((movie) => (
                 <Movie
                   id={movie.id}
-                  title={movie.title}
-                  release_date={movie.release_date}
-                  overview={movie.overview}
-                  image={movie.poster_path}
+                  movie={movie}
                 />
               ))
           : featuredMovies.map((movie) => (
               <Movie
                 id={movie.id}
-                title={movie.title}
-                release_date={movie.release_date}
-                overview={movie.overview}
-                image={movie.poster_path}
+                movie={movie}
               />
             ))}
       </div>
     );
   }
-}
 
 export default MainPage;

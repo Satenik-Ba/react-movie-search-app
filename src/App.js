@@ -1,20 +1,22 @@
-import { Route, Switch } from "react-router-dom";
-import "./App.css";
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import MainPage from "./components/Main/MainPage";
-import Auth from "./components/Authenticataion/Auth";
+import { Route, Switch } from 'react-router-dom';
+import './App.css';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import MainPage from './components/Main/MainPage';
+import Auth from './components/Authenticataion/Auth';
 import {
   SIGNIN_ROUTE,
   REGISTER_ROUTE,
   HOME_ROUTE,
   USER_PAGE,
-} from "./constants/routes";
-import UserPage from "./components/User/UserPage";
-import { useDispatch } from "react-redux";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { UserInfoActions } from "./components/redux/UserInfo";
-import React, { useEffect } from "react";
+  VIDEO_PAGE,
+} from './constants/routes';
+import UserPage from './components/User/UserPage';
+import { useDispatch } from 'react-redux';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { UserInfoActions } from './components/redux/UserInfo';
+import React, { useEffect } from 'react';
+import VideoMoviePage from './components/Main/VideoMoviePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,7 +25,7 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user, "USER");
+        console.log(user, 'USER');
         dispatch(
           UserInfoActions.setUserInfo({
             userName: user.displayName,
@@ -32,7 +34,7 @@ function App() {
           })
         );
       } else {
-        console.log("NO USER IS SIGNED IN ");
+        console.log('NO USER IS SIGNED IN ');
       }
     });
   }, [dispatch, auth]);
@@ -52,6 +54,9 @@ function App() {
         </Route>
         <Route path={USER_PAGE}>
           <UserPage />
+        </Route>
+        <Route path={VIDEO_PAGE}>
+          <VideoMoviePage />
         </Route>
       </Switch>
       <Footer />

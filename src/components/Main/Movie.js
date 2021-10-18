@@ -1,71 +1,87 @@
-import * as React from "react";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import IconButton from "@mui/material/IconButton";
-import { makeStyles } from "@mui/styles";
-import FavoriteVideoIcon from "./FavoriteVideoIcon";
-import ReitingVideoStars from "./ReitingVideoStars";
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import { useDispatch } from "react-redux";
-import { VideoIdAction } from "../redux/videoPageId";
+import React, { useEffect } from 'react';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import IconButton from '@mui/material/IconButton';
+import { makeStyles } from '@mui/styles';
+import FavoriteVideoIcon from './FavoriteVideoIcon';
+import ReitingVideoStars from './ReitingVideoStars';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import VideoMoviePage from './VideoMoviePage';
+import { VIDEO_PAGE } from '../../constants/routes';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { selectedMovieAction } from '../redux/SelectedMovie';
+
 const useStyles = makeStyles({
   text: {
-    height: "90%",
-    overflow: "hidden",
-    color: "white",
-    fontSize: "16px",
-    fontWeight: "bold",
-    backgroundColor: "#171C2C",
-    position: "absolute",
-    opacity: "0",
-    "&:hover": {
-      opacity: "0.7",
+    height: '90%',
+    overflow: 'hidden',
+    color: 'white',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    backgroundColor: '#171C2C',
+    position: 'absolute',
+    opacity: '0',
+    '&:hover': {
+      opacity: '0.7',
     },
   },
 });
 
-const Movie = ({ title, tvName, image, overview, id }) => {
+const Movie = ({ movie, id }) => {
   const classes = useStyles();
-  const disIdPatch = useDispatch();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const isSelected = useSelector((state) => state.SelectedMovie.isSelected);
+
+  const handleMovieClick = () => {
+    dispatch(
+      selectedMovieAction.changeMovie({
+        selectedMovie: movie,
+      })
+    );
+    history.push(VIDEO_PAGE);
+    dispatch(
+      selectedMovieAction.isSelected()
+    );
+  };
 
   return (
-    <ImageListItem
-      onClick={() => {
-        disIdPatch(
-          VideoIdAction.changeId({
-            videoId: id,
-          })
-        );
-      }}
-      sx={{
-        width: "20vw",
-        height: 100,
-        padding: "5px",
-        lineHeight: "1.3 !important",
-        cursor: "pointer",
-      }}
-      cols={8}
-    >
-      <ReitingVideoStars />
-      <div className={classes.text}>{overview}</div>
-      <img
-        src={"https://image.tmdb.org/t/p/w500/" + image}
-        alt=""
-        loading="lazy"
-      />
-      <ImageListItemBar
-        // title={title}
-        actionIcon={
-          <IconButton
-            sx={{ color: "rgba(255, 255, 255, 0.94)" }}
-            aria-label={`info abou`}
-          >
-            <FavoriteVideoIcon />
-            <PlayCircleOutlineIcon />
-          </IconButton>
-        }
-      />
-    </ImageListItem>
+    <>
+      <ImageListItem
+        onClick={handleMovieClick}
+        sx={{
+          width: '20vw',
+          height: 100,
+          padding: '5px',
+          lineHeight: '1.3 !important',
+          cursor: 'pointer',
+        }}
+        cols={8}
+      >
+        <ReitingVideoStars />
+        <div className={classes.text}>{movie.overview}</div>
+        <img
+          src={'https://image.tmdb.org/t/p/w500/' + `${movie.poster_path}`}
+          alt=""
+          loading="lazy"
+        />
+        <ImageListItemBar
+          // title={title}
+          actionIcon={
+            <IconButton
+              sx={{ color: 'rgba(255, 255, 255, 0.94)' }}
+              aria-label={`info abou`}
+            >
+              <FavoriteVideoIcon />
+              <PlayCircleOutlineIcon />
+            </IconButton>
+          }
+        />
+      </ImageListItem>
+      {isSelected && <VideoMoviePage />};
+    </>
   );
 };
 export default Movie;
