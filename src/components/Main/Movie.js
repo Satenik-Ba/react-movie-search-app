@@ -6,6 +6,8 @@ import { makeStyles } from "@mui/styles";
 import FavoriteVideoIcon from "./FavoriteVideoIcon";
 import ReitingVideoStars from "./ReitingVideoStars";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import { useDispatch } from "react-redux";
+import { VideoIdAction } from "../redux/videoPageId";
 const useStyles = makeStyles({
   text: {
     height: "90%",
@@ -22,19 +24,25 @@ const useStyles = makeStyles({
   },
 });
 
-const Movie = ({ title, tvName, image, overview }) => {
+const Movie = ({ title, tvName, image, overview, id }) => {
   const classes = useStyles();
-  const onVideoThis = () => {
-    console.log(overview);
-  };
+  const disIdPatch = useDispatch();
 
   return (
     <ImageListItem
+      onClick={() => {
+        disIdPatch(
+          VideoIdAction.changeId({
+            videoId: id,
+          })
+        );
+      }}
       sx={{
         width: "20vw",
         height: 100,
         padding: "5px",
         lineHeight: "1.3 !important",
+        cursor: "pointer",
       }}
       cols={8}
     >
@@ -46,14 +54,14 @@ const Movie = ({ title, tvName, image, overview }) => {
         loading="lazy"
       />
       <ImageListItemBar
-        title={title}
+        // title={title}
         actionIcon={
           <IconButton
             sx={{ color: "rgba(255, 255, 255, 0.94)" }}
             aria-label={`info abou`}
           >
             <FavoriteVideoIcon />
-            <PlayCircleOutlineIcon onClick={onVideoThis} />
+            <PlayCircleOutlineIcon />
           </IconButton>
         }
       />
