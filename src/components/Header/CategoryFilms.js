@@ -22,20 +22,13 @@ export let selectedId = 0;
 
 function CategoryFilms() {
   const classes = useStyles();
-  const [categoryId, setCategoryId] = React.useState(false);
+
   const [age, setAge] = React.useState("");
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setAge(event.target.value);
   };
-  // const changeCatValue = (value) => {
-  //   dispatch(
-  //     CatValueAction.changeValue({
-  //       catValue: '28',
-  //     })
-  //   );
-  // };
 
   return (
     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
