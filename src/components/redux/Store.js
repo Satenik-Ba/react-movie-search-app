@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import UserInfo from "./UserInfo";
 import categoryValue from "./categoryValue";
-import videoPageId from "./videoPageId";
+import SelectedMovie from "./SelectedMovie";
 
 const store = configureStore({
   reducer: {
     userInfo: UserInfo,
     categoryValue: categoryValue,
-    videoPageId: videoPageId,
+    SelectedMovie: SelectedMovie,
   },
 });
 
