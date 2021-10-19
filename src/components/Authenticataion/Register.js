@@ -9,6 +9,8 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { firestore } from '../../firebase';
 
 const useStyles = makeStyles({
   root: {
@@ -60,19 +62,28 @@ const Register = () => {
       setError('Failed to create an account');
     }
   }
- useEffect(() => {
-  if (user !== null) {updateProfile(user, {
-    displayName: userNameRef.current.value,
-  })
-    .then(() => {
-      console.log('profile was updated');
-    })
-    .catch((error) => {
-      console.log(error, 'an error has occured');
-    })};
+  useEffect(() => {
+    if (user !== null) {
+      updateProfile(user, {
+        displayName: userNameRef.current.value,
+      })
+        .then(() => {
+          console.log('profile was updated');
+        })
+        .catch((error) => {
+          console.log(error, 'an error has occured');
+        });
+    }
+  }, [user]);
 
- }, [user])
-  
+  useEffect(() => {
+    if (user !== null) {
+      const data = {
+      };
+      setDoc(doc(firestore, 'users', user.uid), data);
+    }
+  }, [user]);
+
   // dialog vs alert to show error message
   return (
     <div className={classes.root}>

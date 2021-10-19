@@ -10,7 +10,8 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import YouTube from 'react-youtube';
 import {useHistory} from 'react-router-dom'; 
 import {HOME_ROUTE} from '../../constants/routes'; 
-
+import {selectedMovieAction} from '../redux/SelectedMovie'
+import {useDispatch} from 'react-redux'
 const opts = {
   height: '400px',
   width: '400px',
@@ -34,6 +35,7 @@ const VideoMoviePage = ({ id }) => {
   const classes = useStyles();
   const [movieKey, setMovieKey] = useState();
   const history = useHistory() 
+  const dispatch = useDispatch();
 
   const movie = useSelector(
     (state) => state.SelectedMovie.selectedMovie.selectedMovie
@@ -49,10 +51,13 @@ const VideoMoviePage = ({ id }) => {
       .then((result) => {
         setMovieKey(result.results[0]);
       });
+      dispatch(
+        selectedMovieAction.isSelected()
+      );
   }, []);
-  if(!isSelected){
-    history.push(HOME_ROUTE)
-  }
+  // if(!isSelected){
+  //   history.push(HOME_ROUTE)
+  // }
   console.log(movieKey)
   return (
     <div className={classes.root}>
