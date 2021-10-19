@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
 
-import YouTube from "react-youtube";
-import { useHistory } from "react-router-dom";
-import { HOME_ROUTE } from "../../constants/routes";
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@mui/styles';
+import { useSelector } from 'react-redux';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import IconButton from '@mui/material/IconButton';
+import FavoriteVideoIcon from './FavoriteVideoIcon';
+import ReitingVideoStars from './ReitingVideoStars';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import YouTube from 'react-youtube';
+import {useHistory} from 'react-router-dom'; 
+import {HOME_ROUTE} from '../../constants/routes'; 
+import {selectedMovieAction} from '../redux/SelectedMovie'
+import {useDispatch} from 'react-redux'
 
 const opts = {
   height: "400px",
@@ -38,7 +46,10 @@ const useStyles = makeStyles({
 const VideoMoviePage = () => {
   const classes = useStyles();
   const [movieKey, setMovieKey] = useState();
-  const history = useHistory();
+
+  const history = useHistory() 
+  const dispatch = useDispatch();
+
 
   const movie = useSelector(
     (state) => state.SelectedMovie.selectedMovie.selectedMovie
@@ -57,7 +68,15 @@ const VideoMoviePage = () => {
       .then((result) => {
         setMovieKey(result.results[0]);
       });
+      dispatch(
+        selectedMovieAction.isSelected()
+      );
   }, []);
+
+  // if(!isSelected){
+  //   history.push(HOME_ROUTE)
+  // }
+  console.log(movieKey)
 
   return (
     <div className={classes.root}>

@@ -18,6 +18,7 @@ import { UserInfoActions } from './components/redux/UserInfo';
 import React, { useEffect } from 'react';
 import VideoMoviePage from './components/Main/VideoMoviePage';
 
+
 function App() {
   const dispatch = useDispatch();
   const auth = getAuth();

@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import IconButton from "@mui/material/IconButton";
-import { makeStyles } from "@mui/styles";
-import FavoriteVideoIcon from "./FavoriteVideoIcon";
-import ReitingVideoStars from "./ReitingVideoStars";
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import VideoMoviePage from "./VideoMoviePage";
-import { VIDEO_PAGE, HOME_ROUTE } from "../../constants/routes";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { selectedMovieAction } from "../redux/SelectedMovie";
+
+import React, { useEffect } from 'react';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import IconButton from '@mui/material/IconButton';
+import { makeStyles } from '@mui/styles';
+import FavoriteVideoIcon from './FavoriteVideoIcon';
+import ReitingVideoStars from './ReitingVideoStars';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import VideoMoviePage from './VideoMoviePage';
+import { VIDEO_PAGE, HOME_ROUTE} from '../../constants/routes';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { selectedMovieAction } from '../redux/SelectedMovie';
 
 const useStyles = makeStyles({
   text: {
@@ -47,9 +48,6 @@ const Movie = ({ movie, id }) => {
       })
     );
     history.push(VIDEO_PAGE);
-    // dispatch(
-    //   selectedMovieAction.isSelected()
-    // );
   };
 
   return (
