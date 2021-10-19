@@ -8,23 +8,28 @@ import Menu from '@mui/material/Menu';
 import Logout from '../Authenticataion/Logout';
 import { makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { USER_PAGE } from '../../constants/routes';
 
 const useStyles = makeStyles(() => {
   return {
     avatar: {
-      fontSize: '2.3rem !important'
+      fontSize: '2.3rem !important',
     },
   };
 });
 
 function UserAvatar() {
   const classes = useStyles();
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const userName = useSelector((state) => state.userInfo.userName.userName);
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  const handleProfileClick = () => {
+    history.push(USER_PAGE);
+  };
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -33,40 +38,39 @@ function UserAvatar() {
     <div>
       <Box sx={{ flexGrow: 1 }}>
         <Toolbar>
-        <span>Hello {userName} </span>
-            <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle  className={classes.avatar}/>
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem>
-                  <Logout />
-                </MenuItem>
-              </Menu>
-            </div>
-          
+          <span>Hello {userName} </span>
+          <div>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle className={classes.avatar} />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem>
+                <Logout />
+              </MenuItem>
+            </Menu>
+          </div>
         </Toolbar>
       </Box>
     </div>

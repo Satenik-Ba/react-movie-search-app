@@ -3,7 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
-import { USER_PAGE } from '../../constants/routes';
+import { HOME_ROUTE } from '../../constants/routes';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -55,7 +55,7 @@ const Register = () => {
         passwordRef.current.value
       );
       setLoading(false);
-      history.push(USER_PAGE);
+      history.push(HOME_ROUTE);
     } catch {
       setError('Failed to create an account');
     }
