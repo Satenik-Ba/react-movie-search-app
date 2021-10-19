@@ -7,7 +7,7 @@ import FavoriteVideoIcon from './FavoriteVideoIcon';
 import ReitingVideoStars from './ReitingVideoStars';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import VideoMoviePage from './VideoMoviePage';
-import { VIDEO_PAGE } from '../../constants/routes';
+import { VIDEO_PAGE, HOME_ROUTE } from '../../constants/routes';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -42,9 +42,9 @@ const Movie = ({ movie, id }) => {
       })
     );
     history.push(VIDEO_PAGE);
-    dispatch(
-      selectedMovieAction.isSelected()
-    );
+    // dispatch(
+    //   selectedMovieAction.isSelected()
+    // );
   };
 
   return (
