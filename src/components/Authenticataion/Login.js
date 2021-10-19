@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
-import { REGISTER_ROUTE, USER_PAGE } from '../../constants/routes';
+import { REGISTER_ROUTE, HOME_ROUTE } from '../../constants/routes';
 import { useHistory } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -53,7 +53,7 @@ const Login = () => {
 
     try {
       login(emailRef.current.value, passwordRef.current.value);
-      history.push(USER_PAGE);
+      history.push(HOME_ROUTE);
     } catch {
       setError('Failed to log in');
     }
