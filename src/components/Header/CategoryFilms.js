@@ -57,6 +57,7 @@ function CategoryFilms() {
           >
             {categories.map((category) => (
               <MenuItem
+                value={category.id}
                 onClick={() => {
                   dispatch(
                     CatValueAction.changeValue({
