@@ -1,19 +1,16 @@
-
-import React, { useEffect } from 'react';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-import IconButton from '@mui/material/IconButton';
-import { makeStyles } from '@mui/styles';
-import FavoriteVideoIcon from './FavoriteVideoIcon';
-import ReitingVideoStars from './ReitingVideoStars';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import VideoMoviePage from './VideoMoviePage';
-import { VIDEO_PAGE, HOME_ROUTE} from '../../constants/routes';
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { selectedMovieAction } from '../redux/SelectedMovie';
-
+import React from "react";
+import ImageListItem from "@mui/material/ImageListItem";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
+import IconButton from "@mui/material/IconButton";
+import { makeStyles } from "@mui/styles";
+import FavoriteVideoIcon from "./FavoriteVideoIcon";
+import ReitingVideoStars from "./ReitingVideoStars";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import { VIDEO_PAGE, HOME_ROUTE } from "../../constants/routes";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectedMovieAction } from "../redux/SelectedMovie";
 const useStyles = makeStyles({
   text: {
     height: "50%",
@@ -24,7 +21,6 @@ const useStyles = makeStyles({
     backgroundColor: "#171C2C",
     position: "absolute",
     opacity: "0",
-
     "&:hover": {
       opacity: "0.7",
       cursor: "all-scroll",
@@ -34,13 +30,11 @@ const useStyles = makeStyles({
     cursor: "pointer",
   },
 });
-
-const Movie = ({ movie, id }) => {
+const Movie = ({ movie }) => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
   const isSelected = useSelector((state) => state.SelectedMovie.isSelected);
-
   const handleMovieClick = () => {
     dispatch(
       selectedMovieAction.changeMovie({
@@ -49,7 +43,6 @@ const Movie = ({ movie, id }) => {
     );
     history.push(VIDEO_PAGE);
   };
-
   return (
     <>
       <ImageListItem
@@ -62,7 +55,6 @@ const Movie = ({ movie, id }) => {
         cols={8}
       >
         <ReitingVideoStars />
-
         <div className={classes.text}>{movie.overview}</div>
         <img
           className={classes.cursor}
@@ -71,7 +63,6 @@ const Movie = ({ movie, id }) => {
           alt=""
           loading="lazy"
         />
-
         <ImageListItemBar
           // title={title}
           actionIcon={
@@ -79,7 +70,7 @@ const Movie = ({ movie, id }) => {
               sx={{ color: "rgba(255, 255, 255, 0.94)" }}
               aria-label={`info abou`}
             >
-              <FavoriteVideoIcon />
+              <FavoriteVideoIcon favMovie={movie} />
               <PlayCircleOutlineIcon />
             </IconButton>
           }

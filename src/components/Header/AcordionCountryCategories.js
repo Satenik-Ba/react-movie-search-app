@@ -6,6 +6,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { makeStyles } from "@mui/styles";
+import { useDispatch } from "react-redux";
+import { movieOrShowAction } from "../redux/movie_or_TV_show";
 
 const useStyles = makeStyles(() => {
   return {
@@ -17,6 +19,7 @@ const useStyles = makeStyles(() => {
 });
 
 function AcordionCountryCategories() {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [age, setAge] = React.useState("");
   const handleChange = (event) => {
@@ -38,10 +41,30 @@ function AcordionCountryCategories() {
             label="Films"
             onChange={handleChange}
           >
-            <MenuItem value={10}>Armenian Films</MenuItem>
-            <MenuItem value={20}>Russian Films</MenuItem>
-            <MenuItem value={30}>Artasahmanyan Films</MenuItem>
-            <MenuItem value={30}>Film Armenian Translate</MenuItem>
+            <MenuItem
+              value={10}
+              onClick={() => {
+                dispatch(
+                  movieOrShowAction.changeValue({
+                    movieOrShow: "movies",
+                  })
+                );
+              }}
+            >
+              Movies
+            </MenuItem>
+            <MenuItem
+              value={20}
+              onClick={() => {
+                dispatch(
+                  movieOrShowAction.changeValue({
+                    movieOrShow: "TV Showes",
+                  })
+                );
+              }}
+            >
+              TV Shows
+            </MenuItem>
           </Select>
         </FormControl>
       </Box>
