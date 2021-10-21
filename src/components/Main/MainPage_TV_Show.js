@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Movie from "./Movie";
 import { POPULAR_TV_SHOWS_API } from "../../constants/APIs";
 import CarouselFilms from "./CarouselFilms";
 import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
+
+import PaginationMainTvShows from "./PaginationMainTvShows";
 
 const useStyles = makeStyles(() => {
   return {
@@ -23,13 +25,20 @@ function MainPage_TV_Show() {
     (state) => state.searchName.searchValue.searchValue || ""
   );
   const [filtredMovies, setFiltredMovies] = useState([]);
+
+  const pagTvShowVal = useSelector(
+    (state) => state.pageTvShows.pagTvShows.pagTvShows
+  );
+  console.log("pagtvshows " + pagTvShowVal);
+
+  // useSelector((state) => state.pageValue.pagValue.pagValue);
   useEffect(() => {
-    fetch(POPULAR_TV_SHOWS_API)
+    fetch(POPULAR_TV_SHOWS_API + pagTvShowVal)
       .then((response) => response.json())
       .then((result) => {
         setFeaturedMovies(result.results);
       });
-  }, []);
+  }, [pagTvShowVal]);
 
   useEffect(() => {
     setFiltredMovies(
@@ -55,6 +64,7 @@ function MainPage_TV_Show() {
             )
             .map((movie) => <Movie id={movie.id} movie={movie} />)
         : filtredMovies.map((movie) => <Movie id={movie.id} movie={movie} />)}
+      <PaginationMainTvShows />
     </div>
   );
 }

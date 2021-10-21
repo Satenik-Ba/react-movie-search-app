@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Movie from "./Movie";
-import { TRENDING_MOVIES_API } from "../../constants/APIs";
+
 import CarouselFilms from "./CarouselFilms";
 import { makeStyles } from "@mui/styles";
 import { useSelector } from "react-redux";
 import { POPULAR_MOVIES_API } from "../../constants/APIs";
+import PaginationMain from "./PaginationMain";
 
 const useStyles = makeStyles(() => {
   return {
@@ -19,21 +20,20 @@ const useStyles = makeStyles(() => {
 function MainPage() {
   const classes = useStyles();
   const [featuredMovies, setFeaturedMovies] = useState([]);
-
+  const pagValue = useSelector((state) => state.pageValue.pagValue.pagValue);
   const catVal = useSelector((state) => state.categoryValue.catValue.catValue);
   const searchedName = useSelector(
     (state) => state.searchName.searchValue.searchValue || ""
   );
+
   const [filtredMovies, setFiltredMovies] = useState([]);
+
   useEffect(() => {
-    fetch(POPULAR_MOVIES_API + "" + 2)
+    fetch(POPULAR_MOVIES_API + pagValue)
       .then((response) => response.json())
       .then((result) => {
         setFeaturedMovies(result.results);
       });
-  }, []);
-
-  useEffect(() => {
     setFiltredMovies(
       featuredMovies.filter((featuredMovie) =>
         featuredMovie.title
@@ -41,7 +41,9 @@ function MainPage() {
           .includes(searchedName.toUpperCase().trim())
       )
     );
-  }, [searchedName, featuredMovies]);
+  }, [searchedName, featuredMovies, pagValue]);
+
+  // console.log("serchName " + searchedName);
 
   return (
     <div className={classes.root}>
@@ -57,6 +59,8 @@ function MainPage() {
             )
             .map((movie) => <Movie key={movie.id} movie={movie} />)
         : featuredMovies.map((movie) => <Movie key={movie.id} movie={movie} />)}
+
+      <PaginationMain />
     </div>
   );
 }

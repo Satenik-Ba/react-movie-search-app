@@ -1,15 +1,13 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { makeStyles } from '@mui/styles';
-import Carousel from './Carousel';
-import UserFavorites from './UserFavorites';
+import React from "react";
+import { useSelector } from "react-redux";
+import { makeStyles } from "@mui/styles";
+import Carousel from "./Carousel";
+import UserFavorites from "./UserFavorites";
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: '#232A3E',
-    height: '100%',
-    width: '100vw',
-    color: 'white',
+    backgroundColor: "#232A3E",
+    color: "white",
   },
 });
 

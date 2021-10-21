@@ -26,7 +26,7 @@ function App() {
   const movieOrShow = useSelector(
     (state) => state.movie_or_TV_show.movieOrShow.movieOrShow
   );
-  console.log(movieOrShow);
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -54,7 +54,7 @@ function App() {
         <Route path={REGISTER_ROUTE}>
           <Auth />
         </Route>
-        <Route path={HOME_ROUTE}>
+        <Route path={HOME_ROUTE} exact>
           {movieOrShow !== "TV Showes" ? <MainPage /> : <MainPage_TV_Show />}
         </Route>
         <Route path={USER_PAGE}>
