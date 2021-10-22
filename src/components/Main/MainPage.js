@@ -20,7 +20,7 @@ function MainPage() {
   const [featuredMovies, setFeaturedMovies] = useState([]);
   const loadingURL = useSelector((state) => state.loadingURL.loadingURL);
   const catVal = useSelector((state) => state.categoryValue.catValue);
-  const pagValue = useSelector((state) => state.pageValue.pagValue.pagValue);
+  const pagValue = useSelector((state) => state.pageValue.pagValue);
 
   const searchedName = useSelector(
     (state) => state.searchName.searchValue || ""

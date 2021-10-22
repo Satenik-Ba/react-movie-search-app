@@ -9,7 +9,7 @@ const pageValue = createSlice({
   initialState,
   reducers: {
     changeValue(state, action) {
-      state.pagValue = action.payload;
+      state.pagValue = action.payload.pagValue;
     },
   },
 });

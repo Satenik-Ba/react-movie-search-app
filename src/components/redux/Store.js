@@ -4,6 +4,7 @@ import categoryValue from "./categoryValue";
 import SelectedMovie from "./SelectedMovie";
 import searchName from "./searchName";
 import loadingURL from "./loadingURL";
+import pageValue from "./pageValue";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     SelectedMovie: SelectedMovie,
     searchName: searchName,
     loadingURL: loadingURL,
+    pageValue: pageValue,
   },
 });
 
