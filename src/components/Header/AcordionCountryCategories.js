@@ -7,7 +7,9 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
-import { movieOrShowAction } from "../redux/movie_or_TV_show";
+import { POPULAR_TV_SHOWS_API } from "../../constants/APIs";
+import { POPULAR_MOVIES_API } from "../../constants/APIs";
+import { loadingURLAction } from "../redux/loadingURL";
 
 const useStyles = makeStyles(() => {
   return {
@@ -21,10 +23,10 @@ const useStyles = makeStyles(() => {
 function AcordionCountryCategories() {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // const [age, setAge] = React.useState("");
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
 
   return (
     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
@@ -37,16 +39,16 @@ function AcordionCountryCategories() {
             className={classes.root}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            // value={age}
             label="Films"
-            onChange={handleChange}
+            // onChange={handleChange}
           >
             <MenuItem
               value={10}
               onClick={() => {
                 dispatch(
-                  movieOrShowAction.changeValue({
-                    movieOrShow: "movies",
+                  loadingURLAction.changeValue({
+                    loadingURL: POPULAR_MOVIES_API,
                   })
                 );
               }}
@@ -57,8 +59,8 @@ function AcordionCountryCategories() {
               value={20}
               onClick={() => {
                 dispatch(
-                  movieOrShowAction.changeValue({
-                    movieOrShow: "TV Showes",
+                  loadingURLAction.changeValue({
+                    loadingURL: POPULAR_TV_SHOWS_API,
                   })
                 );
               }}

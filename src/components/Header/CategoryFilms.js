@@ -23,11 +23,11 @@ export let selectedId = 0;
 
 function CategoryFilms() {
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
   const dispatch = useDispatch();
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // const [age, setAge] = React.useState("");
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
   const [categories, setCategories] = React.useState([]);
 
   useEffect(() => {
@@ -49,9 +49,9 @@ function CategoryFilms() {
             className={classes.root}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            // value={age}
             label="Films"
-            onChange={handleChange}
+            // onChange={handleChange}
           >
             <MenuItem
               value={"all category"}
@@ -68,6 +68,7 @@ function CategoryFilms() {
             {categories.map((category) => (
               <MenuItem
                 value={category.id}
+                key={category.id}
                 onClick={() => {
                   dispatch(
                     CatValueAction.changeValue({

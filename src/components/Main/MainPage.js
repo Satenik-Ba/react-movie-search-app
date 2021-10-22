@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Movie from "./Movie";
-import { TRENDING_MOVIES_API } from "../../constants/APIs";
 import CarouselFilms from "./CarouselFilms";
 import { makeStyles } from "@mui/styles";
 import { useSelector } from "react-redux";
-import { POPULAR_MOVIES_API } from "../../constants/APIs";
 
 const useStyles = makeStyles(() => {
   return {
@@ -19,24 +17,31 @@ const useStyles = makeStyles(() => {
 function MainPage() {
   const classes = useStyles();
   const [featuredMovies, setFeaturedMovies] = useState([]);
-
-  const catVal = useSelector((state) => state.categoryValue.catValue.catValue);
+  const loadingURL = useSelector((state) => state.loadingURL.loadingURL);
+  const catVal = useSelector((state) => state.categoryValue.catValue);
   const searchedName = useSelector(
-    (state) => state.searchName.searchValue.searchValue || ""
+    (state) => state.searchName.searchValue || ""
   );
   const [filtredMovies, setFiltredMovies] = useState([]);
+  const filmResult = useMemo(() => {
+    return catVal
+      ? filtredMovies.filter((featuredMovie) =>
+          featuredMovie.genre_ids.includes(+catVal)
+        )
+      : filtredMovies;
+  }, [catVal, filtredMovies, featuredMovies]);
   useEffect(() => {
-    fetch(POPULAR_MOVIES_API + "" + 2)
+    fetch(loadingURL + 2)
       .then((response) => response.json())
       .then((result) => {
         setFeaturedMovies(result.results);
       });
-  }, []);
+  }, [loadingURL]);
 
   useEffect(() => {
     setFiltredMovies(
       featuredMovies.filter((featuredMovie) =>
-        featuredMovie.title
+        (featuredMovie.title || featuredMovie.name)
           .toUpperCase()
           .includes(searchedName.toUpperCase().trim())
       )
@@ -50,13 +55,9 @@ function MainPage() {
       </div>
       <h2 className={classes.root}>Featured Movies</h2>
 
-      {catVal
-        ? filtredMovies
-            .filter((featuredMovie) =>
-              featuredMovie.genre_ids.includes(+catVal)
-            )
-            .map((movie) => <Movie key={movie.id} movie={movie} />)
-        : featuredMovies.map((movie) => <Movie key={movie.id} movie={movie} />)}
+      {filmResult.map((movie) => (
+        <Movie key={movie.id} movie={movie} />
+      ))}
     </div>
   );
 }
