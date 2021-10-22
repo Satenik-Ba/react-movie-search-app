@@ -3,6 +3,7 @@ import Movie from "./Movie";
 import CarouselFilms from "./CarouselFilms";
 import { makeStyles } from "@mui/styles";
 import { useSelector } from "react-redux";
+import PaginationMain from "./PaginationMain";
 
 const useStyles = makeStyles(() => {
   return {
@@ -19,10 +20,14 @@ function MainPage() {
   const [featuredMovies, setFeaturedMovies] = useState([]);
   const loadingURL = useSelector((state) => state.loadingURL.loadingURL);
   const catVal = useSelector((state) => state.categoryValue.catValue);
+  const pagValue = useSelector((state) => state.pageValue.pagValue.pagValue);
+
   const searchedName = useSelector(
     (state) => state.searchName.searchValue || ""
   );
+
   const [filtredMovies, setFiltredMovies] = useState([]);
+
   const filmResult = useMemo(() => {
     return catVal
       ? filtredMovies.filter((featuredMovie) =>
@@ -31,12 +36,12 @@ function MainPage() {
       : filtredMovies;
   }, [catVal, filtredMovies, featuredMovies]);
   useEffect(() => {
-    fetch(loadingURL + 2)
+    fetch(loadingURL + pagValue)
       .then((response) => response.json())
       .then((result) => {
         setFeaturedMovies(result.results);
       });
-  }, [loadingURL]);
+  }, [loadingURL, pagValue]);
 
   useEffect(() => {
     setFiltredMovies(
@@ -48,6 +53,8 @@ function MainPage() {
     );
   }, [searchedName, featuredMovies]);
 
+  // console.log("serchName " + searchedName);
+
   return (
     <div className={classes.root}>
       <div>
@@ -58,6 +65,7 @@ function MainPage() {
       {filmResult.map((movie) => (
         <Movie key={movie.id} movie={movie} />
       ))}
+      <PaginationMain />
     </div>
   );
 }
