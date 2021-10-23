@@ -48,6 +48,10 @@ const VideoMoviePage = () => {
     (state) => state.SelectedMovie.selectedMovie.selectedMovie
   );
   const isSelected = useSelector((state) => state.SelectedMovie.isSelected);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1d3526c60e339bb24b3d587fc63534be4a2cfe48
   useEffect(() => {
     fetch(
       "https://api.themoviedb.org/3/movie/" +
@@ -60,7 +64,11 @@ const VideoMoviePage = () => {
       });
     dispatch(selectedMovieAction.isSelected());
   }, []);
+<<<<<<< HEAD
   console.log(movieKey);
+=======
+
+>>>>>>> 1d3526c60e339bb24b3d587fc63534be4a2cfe48
   return (
     <div className={classes.root}>
       {movieKey && <YouTube videoId={movieKey.key} opts={opts} />}
