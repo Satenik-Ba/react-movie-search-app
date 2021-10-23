@@ -1,30 +1,28 @@
-import React, { useRef, useState } from 'react';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import { Link } from 'react-router-dom';
-import { makeStyles } from '@mui/styles';
-import { REGISTER_ROUTE, HOME_ROUTE } from '../../constants/routes';
-import { useHistory } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useRef, useState } from "react";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { Link } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
+import { REGISTER_ROUTE, HOME_ROUTE } from "../../constants/routes";
+import { useHistory } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    width: '100vw',
-    'margin-top': '-7rem',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
   },
   button: {
-    backgroundColor: '#171c2c',
-    color: 'white',
-    height: '2.5rem',
-    '&:hover': {
-      backgroundColor: '#7b84a4',
+    backgroundColor: "#171c2c",
+    color: "white",
+    height: "2.5rem",
+    "&:hover": {
+      backgroundColor: "#7b84a4",
     },
   },
 });
@@ -32,7 +30,7 @@ const Login = () => {
   const classes = useStyles();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const history = useHistory();
   const auth = getAuth();
 
@@ -49,13 +47,13 @@ const Login = () => {
 
   function handleSignIn(e) {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
       login(emailRef.current.value, passwordRef.current.value);
       history.push(HOME_ROUTE);
     } catch {
-      setError('Failed to log in');
+      setError("Failed to log in");
     }
   }
   return (
@@ -85,7 +83,7 @@ const Login = () => {
         </FormGroup>
         <Link>Forgot Password?</Link>
         <p>
-          New to ArmFilm?{' '}
+          New to ArmFilm?{" "}
           <span>
             <Link to={REGISTER_ROUTE}>Sign Up Now</Link>
           </span>

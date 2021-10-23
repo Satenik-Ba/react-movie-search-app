@@ -1,32 +1,30 @@
-import React, { useRef, useState, useEffect } from 'react';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import { makeStyles } from '@mui/styles';
-import { useHistory } from 'react-router-dom';
-import { HOME_ROUTE } from '../../constants/routes';
+import React, { useRef, useState, useEffect } from "react";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
+import { makeStyles } from "@mui/styles";
+import { useHistory } from "react-router-dom";
+import { HOME_ROUTE } from "../../constants/routes";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
-} from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { firestore } from '../../firebase';
+} from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { firestore } from "../../firebase";
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    width: '100vw',
-    'margin-top': '-7rem',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
   },
   button: {
-    backgroundColor: '#171c2c',
-    color: 'white',
-    height: '3rem',
-    '&:hover': {
-      backgroundColor: '#7b84a4',
+    backgroundColor: "#171c2c",
+    color: "white",
+    height: "3rem",
+    "&:hover": {
+      backgroundColor: "#7b84a4",
     },
   },
 });
@@ -37,7 +35,7 @@ const Register = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const auth = getAuth();
@@ -46,9 +44,9 @@ const Register = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError('Passwords do not match');
+      return setError("Passwords do not match");
     }
-    setError('');
+    setError("");
     setLoading(true);
     try {
       await createUserWithEmailAndPassword(
@@ -59,7 +57,7 @@ const Register = () => {
       setLoading(false);
       history.push(HOME_ROUTE);
     } catch {
-      setError('Failed to create an account');
+      setError("Failed to create an account");
     }
   }
   useEffect(() => {
@@ -68,19 +66,18 @@ const Register = () => {
         displayName: userNameRef.current.value,
       })
         .then(() => {
-          console.log('profile was updated');
+          console.log("profile was updated");
         })
         .catch((error) => {
-          console.log(error, 'an error has occured');
+          console.log(error, "an error has occured");
         });
     }
   }, [user]);
 
   useEffect(() => {
     if (user !== null) {
-      const data = {
-      };
-      setDoc(doc(firestore, 'users', user.uid), data);
+      const data = {};
+      setDoc(doc(firestore, "users", user.uid), data);
     }
   }, [user]);
 

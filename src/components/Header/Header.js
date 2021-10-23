@@ -18,6 +18,9 @@ import {
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserAvatar from "./UserAvatar";
+import { useDispatch } from "react-redux";
+import { CatValueAction } from "../redux/categoryValue";
+import { PagValueAction } from "../redux/pageValue";
 
 const useStyles = makeStyles(() => {
   return {
@@ -68,13 +71,24 @@ const useStyles = makeStyles(() => {
 
 function Header() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.userInfo.isAuthenticated);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar className={classes.filmsAppBar} position="fixed">
         <Toolbar>
-          <Link className={classes.logo} to={HOME_ROUTE}>
+          <Link
+            onClick={() => {
+              dispatch(
+                CatValueAction.changeValue({
+                  catValue: "",
+                })
+              );
+            }}
+            className={classes.logo}
+            to={HOME_ROUTE}
+          >
             <img src={logo} alt="Logo" />
             <p className={classes.logoP}>
               <span className={classes.logoSpanOne}>A</span>
