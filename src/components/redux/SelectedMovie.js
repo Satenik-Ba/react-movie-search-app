@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   selectedMovie: {},
-  isSelected: false
+  isSelected: false,
 };
 
 const SelectedMovie = createSlice({
@@ -10,12 +10,12 @@ const SelectedMovie = createSlice({
   initialState,
   reducers: {
     changeMovie(state, action) {
-      state.selectedMovie = action.payload;
-      state.isSelected = true; 
+      state.selectedMovie = action.payload.selectedMovie;
+      state.isSelected = true;
     },
-    isSelected(state){
+    isSelected(state) {
       state.isSelected = false;
-    }
+    },
   },
 });
 
