@@ -1,42 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import IconButton from "@mui/material/IconButton";
-import FavoriteVideoIcon from "./FavoriteVideoIcon";
-import ReitingVideoStars from "./ReitingVideoStars";
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import YouTube from "react-youtube";
-import { useHistory } from "react-router-dom";
-import { HOME_ROUTE } from "../../constants/routes";
-import { selectedMovieAction } from "../redux/SelectedMovie";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@mui/styles';
+import { useSelector } from 'react-redux';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import IconButton from '@mui/material/IconButton';
+import FavoriteVideoIcon from './FavoriteVideoIcon';
+import ReitingVideoStars from './ReitingVideoStars';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import YouTube from 'react-youtube';
+import { useHistory } from 'react-router-dom';
+import { HOME_ROUTE } from '../../constants/routes';
+import { selectedMovieAction } from '../redux/SelectedMovie';
+import { useDispatch } from 'react-redux';
 const opts = {
-  height: "400px",
-  width: "800px",
+  height: '400px',
+  width: '800px',
   playerVars: {
     autoplay: 0,
   },
 };
 const useStyles = makeStyles({
   root: {
-    color: "red",
-    width: "100vw",
-    height: "800px",
-    color: "white",
-    "background-color": "#232A3E",
+    color: 'red',
+    width: '100vw',
+    height: '800px',
+    color: 'white',
+    'background-color': '#232A3E',
     // marginTop: "75px",
-    paddingTop: "85px",
+    paddingTop: '85px',
   },
   imgWidth: {
-    width: "200px",
-    height: "300px",
+    width: '200px',
+    height: '300px',
   },
   displayFlex: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "50px",
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '50px',
   },
 });
 const VideoMoviePage = () => {
@@ -48,15 +48,11 @@ const VideoMoviePage = () => {
     (state) => state.SelectedMovie.selectedMovie.selectedMovie
   );
   const isSelected = useSelector((state) => state.SelectedMovie.isSelected);
-<<<<<<< HEAD
-=======
-
->>>>>>> 1d3526c60e339bb24b3d587fc63534be4a2cfe48
   useEffect(() => {
     fetch(
-      "https://api.themoviedb.org/3/movie/" +
+      'https://api.themoviedb.org/3/movie/' +
         `${movie.id}` +
-        "/videos?api_key=6241e31f828487ad21497bc364be7041"
+        '/videos?api_key=6241e31f828487ad21497bc364be7041'
     )
       .then((response) => response.json())
       .then((result) => {
@@ -64,24 +60,19 @@ const VideoMoviePage = () => {
       });
     dispatch(selectedMovieAction.isSelected());
   }, []);
-<<<<<<< HEAD
-  console.log(movieKey);
-=======
-
->>>>>>> 1d3526c60e339bb24b3d587fc63534be4a2cfe48
   return (
     <div className={classes.root}>
       {movieKey && <YouTube videoId={movieKey.key} opts={opts} />}
       <div className={classes.displayFlex}>
         <img
           className={classes.imgWidth}
-          src={"https://image.tmdb.org/t/p/w500/" + `${movie.poster_path}`}
+          src={'https://image.tmdb.org/t/p/w500/' + `${movie.poster_path}`}
           alt=""
           loading="lazy"
         />
         <div
           style={{
-            width: "43%",
+            width: '43%',
           }}
         >
           <h1> {movie.title}</h1>
