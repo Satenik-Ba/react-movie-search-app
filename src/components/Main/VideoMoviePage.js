@@ -48,6 +48,7 @@ const VideoMoviePage = () => {
     (state) => state.SelectedMovie.selectedMovie.selectedMovie
   );
   const isSelected = useSelector((state) => state.SelectedMovie.isSelected);
+
   useEffect(() => {
     fetch(
       "https://api.themoviedb.org/3/movie/" +
@@ -60,7 +61,7 @@ const VideoMoviePage = () => {
       });
     dispatch(selectedMovieAction.isSelected());
   }, []);
-  console.log(movieKey);
+
   return (
     <div className={classes.root}>
       {movieKey && <YouTube videoId={movieKey.key} opts={opts} />}

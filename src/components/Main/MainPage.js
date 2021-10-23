@@ -62,6 +62,7 @@ function MainPage() {
       </div>
       <h2 className={classes.root}>Featured Movies</h2>
 
+
       {filmResult.map((movie) => (
         <Movie key={movie.id} movie={movie} />
       ))}
