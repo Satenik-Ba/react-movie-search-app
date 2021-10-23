@@ -11,12 +11,20 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { makeStyles } from "@mui/styles";
 
+
 const useStyles = makeStyles({
   root: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
+
+  },
+  button: {
+    backgroundColor: "#171c2c",
+    color: "white",
+    height: "2.5rem",
+
     "margin-top": "auto",
     "margin-bottom": "auto",
   },
@@ -91,6 +99,17 @@ const Login = () => {
             inputRef={passwordRef}
             required
           />
+
+        </FormGroup>
+        <Link>Forgot Password?</Link>
+        <p>
+          New to ArmFilm?{" "}
+          <span>
+            <Link to={REGISTER_ROUTE}>Sign Up Now</Link>
+          </span>
+        </p>
+      </FormControl>
+
           <button className={classes.button}>Log In</button>
           <FormGroup>
             <FormControlLabel

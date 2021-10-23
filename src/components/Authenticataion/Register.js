@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
+
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
+
 import { makeStyles } from "@mui/styles";
 import { useHistory } from "react-router-dom";
 import { HOME_ROUTE } from "../../constants/routes";
@@ -20,6 +22,13 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
+
+  },
+  button: {
+    backgroundColor: "#171c2c",
+    color: "white",
+    height: "3rem",
+
     "margin-top": "auto",
     "margin-bottom": "auto",
   },
@@ -30,6 +39,7 @@ const useStyles = makeStyles({
     fontSize: "1.2rem",
     color: "white",
     height: "3.6rem",
+
     "&:hover": {
       backgroundColor: "#7b84a4",
     },
@@ -55,9 +65,12 @@ const Register = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+
+      
       return setError(
         "The Password Confirmation Doesn't Match Entered Password"
       );
+
     }
     setError("");
     setLoading(true);
@@ -69,6 +82,9 @@ const Register = () => {
       );
       setLoading(false);
       history.push(HOME_ROUTE);
+
+   
+
     } catch (error) {
       switch (error.code) {
         case "auth/email-already-in-use":
@@ -89,15 +105,19 @@ const Register = () => {
             "Invalid email or password. Please enter a valid correct email and password"
           );
       }
+
     }
   }
   useEffect(() => {
     if (user !== null) {
       updateProfile(user, {
         displayName: userNameRef.current.value,
+
+       
       }).catch((error) => {
         console.log(error.message);
       });
+
     }
   }, [user]);
 
