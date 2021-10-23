@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { makeStyles } from "@mui/styles";
-import { useDispatch } from "react-redux";
-import { CatValueAction } from "../redux/categoryValue";
-import { CATEGORIES_MOVIES_API } from "../../constants/APIs";
-
+import React, { useEffect } from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { makeStyles } from '@mui/styles';
+import { useDispatch } from 'react-redux';
+import { CatValueAction } from '../redux/categoryValue';
+import { CATEGORIES_MOVIES_API } from '../../constants/APIs';
+import PagValueAction from '../redux/pageValue';
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#171c2c !important",
-      color: "#d1d2d6 !important",
+      backgroundColor: '#171c2c !important',
+      color: '#d1d2d6 !important',
     },
   };
 });
@@ -54,11 +54,11 @@ function CategoryFilms() {
             // onChange={handleChange}
           >
             <MenuItem
-              value={"all category"}
+              value={'all category'}
               onClick={() => {
                 dispatch(
                   CatValueAction.changeValue({
-                    catValue: "",
+                    catValue: '',
                   })
                 );
               }}
