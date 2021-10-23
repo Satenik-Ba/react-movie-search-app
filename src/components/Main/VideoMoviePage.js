@@ -55,9 +55,7 @@ const VideoMoviePage = () => {
     (state) => state.SelectedMovie.selectedMovie.selectedMovie
   );
   const isSelected = useSelector((state) => state.SelectedMovie.isSelected);
-  if (!isSelected) {
-    history.push(HOME_ROUTE);
-  }
+ 
   useEffect(() => {
     fetch(
       "https://api.themoviedb.org/3/movie/" +
@@ -73,9 +71,7 @@ const VideoMoviePage = () => {
       );
   }, []);
 
-  // if(!isSelected){
-  //   history.push(HOME_ROUTE)
-  // }
+
   console.log(movieKey)
 
   return (

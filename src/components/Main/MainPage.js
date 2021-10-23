@@ -40,8 +40,8 @@ function MainPage() {
             .filter((featuredMovie) =>
               featuredMovie.genre_ids.includes(+catVal)
             )
-            .map((movie) => <Movie id={movie.id} movie={movie} />)
-        : featuredMovies.map((movie) => <Movie id={movie.id} movie={movie} />)}
+            .map((movie) => <Movie key={movie.id} movie={movie} />)
+        : featuredMovies.map((movie) => <Movie key={movie.id} movie={movie} />)}
     </div>
   );
 }
