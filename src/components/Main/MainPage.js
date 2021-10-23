@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Movie from "./Movie";
-import { TRENDING_MOVIES_API } from "../../constants/APIs";
 import CarouselFilms from "./CarouselFilms";
 import { makeStyles } from "@mui/styles";
 import { useSelector } from "react-redux";
+import PaginationMain from "./PaginationMain";
 
 const useStyles = makeStyles(() => {
   return {
@@ -18,15 +18,42 @@ const useStyles = makeStyles(() => {
 function MainPage() {
   const classes = useStyles();
   const [featuredMovies, setFeaturedMovies] = useState([]);
+  const loadingURL = useSelector((state) => state.loadingURL.loadingURL);
+  const catVal = useSelector((state) => state.categoryValue.catValue);
+  const pagValue = useSelector((state) => state.pageValue.pagValue);
 
+  const searchedName = useSelector(
+    (state) => state.searchName.searchValue || ""
+  );
+
+  const [filtredMovies, setFiltredMovies] = useState([]);
+
+  const filmResult = useMemo(() => {
+    return catVal
+      ? filtredMovies.filter((featuredMovie) =>
+          featuredMovie.genre_ids.includes(+catVal)
+        )
+      : filtredMovies;
+  }, [catVal, filtredMovies, featuredMovies]);
   useEffect(() => {
-    fetch(TRENDING_MOVIES_API)
+    fetch(loadingURL + pagValue)
       .then((response) => response.json())
       .then((result) => {
         setFeaturedMovies(result.results);
       });
-  }, []);
-  const catVal = useSelector((state) => state.categoryValue.catValue.catValue);
+  }, [loadingURL, pagValue]);
+
+  useEffect(() => {
+    setFiltredMovies(
+      featuredMovies.filter((featuredMovie) =>
+        (featuredMovie.title || featuredMovie.name)
+          .toUpperCase()
+          .includes(searchedName.toUpperCase().trim())
+      )
+    );
+  }, [searchedName, featuredMovies]);
+
+  // console.log("serchName " + searchedName);
 
   return (
     <div className={classes.root}>
@@ -35,13 +62,11 @@ function MainPage() {
       </div>
       <h2 className={classes.root}>Featured Movies</h2>
 
-      {catVal
-        ? featuredMovies
-            .filter((featuredMovie) =>
-              featuredMovie.genre_ids.includes(+catVal)
-            )
-            .map((movie) => <Movie key={movie.id} movie={movie} />)
-        : featuredMovies.map((movie) => <Movie key={movie.id} movie={movie} />)}
+
+      {filmResult.map((movie) => (
+        <Movie key={movie.id} movie={movie} />
+      ))}
+      <PaginationMain />
     </div>
   );
 }
