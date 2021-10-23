@@ -1,43 +1,43 @@
-import React, { useRef, useState, useEffect } from 'react';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
-import { makeStyles } from '@mui/styles';
-import { useHistory } from 'react-router-dom';
-import { HOME_ROUTE } from '../../constants/routes';
+import React, { useRef, useState, useEffect } from "react";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
+import { makeStyles } from "@mui/styles";
+import { useHistory } from "react-router-dom";
+import { HOME_ROUTE } from "../../constants/routes";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
-} from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { firestore } from '../../firebase';
+} from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { firestore } from "../../firebase";
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    'margin-top': 'auto',
-    'margin-bottom': 'auto',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    "margin-top": "auto",
+    "margin-bottom": "auto",
   },
   button: {
-    backgroundColor: '#171c2c',
-    alignSelf: 'center',
-    width: '25rem',
-    fontSize: '1.2rem',
-    color: 'white',
-    height: '3.6rem',
-    '&:hover': {
-      backgroundColor: '#7b84a4',
+    backgroundColor: "#171c2c",
+    alignSelf: "center",
+    width: "25rem",
+    fontSize: "1.2rem",
+    color: "white",
+    height: "3.6rem",
+    "&:hover": {
+      backgroundColor: "#7b84a4",
     },
   },
   heading: {
-    color: '#171c2c', 
-    fontWeight: 600
-  }
+    color: "#171c2c",
+    fontWeight: 600,
+  },
 });
 
 const Register = () => {
@@ -46,7 +46,7 @@ const Register = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const auth = getAuth();
@@ -59,7 +59,7 @@ const Register = () => {
         "The Password Confirmation Doesn't Match Entered Password"
       );
     }
-    setError('');
+    setError("");
     setLoading(true);
     try {
       await createUserWithEmailAndPassword(
@@ -71,22 +71,22 @@ const Register = () => {
       history.push(HOME_ROUTE);
     } catch (error) {
       switch (error.code) {
-        case 'auth/email-already-in-use':
+        case "auth/email-already-in-use":
           return setError(
-            'The provided email is already in use by an existing user. Please enter a different email address.'
+            "The provided email is already in use by an existing user. Please enter a different email address."
           );
           break;
-        case 'auth/invalid-email':
-          return setError('Invalid email. Please enter a valid email address.');
+        case "auth/invalid-email":
+          return setError("Invalid email. Please enter a valid email address.");
           break;
-        case 'auth/weak-password':
+        case "auth/weak-password":
           return setError(
-            'Invalid password. Password must be six or more characters.'
+            "Invalid password. Password must be six or more characters."
           );
           break;
         default:
           return setError(
-            'Invalid email or password. Please enter a valid correct email and password'
+            "Invalid email or password. Please enter a valid correct email and password"
           );
       }
     }
@@ -104,16 +104,15 @@ const Register = () => {
   useEffect(() => {
     if (user !== null) {
       const data = {};
-      setDoc(doc(firestore, 'users', user.uid), data);
+      setDoc(doc(firestore, "users", user.uid), data);
     }
   }, [user]);
 
   return (
     <div className={classes.root}>
       <Box
-        component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '25rem' },
+          "& .MuiTextField-root": { m: 1, width: "25rem" },
         }}
         noValidate
         autoComplete="off"
