@@ -35,9 +35,9 @@ const useStyles = makeStyles({
     },
   },
   heading: {
-    color: '#171c2c', 
-    fontWeight: 600
-  }
+    color: '#171c2c',
+    fontWeight: 600,
+  },
 });
 
 const Register = () => {
@@ -111,12 +111,9 @@ const Register = () => {
   return (
     <div className={classes.root}>
       <Box
-        component="form"
         sx={{
           '& .MuiTextField-root': { m: 1, width: '25rem' },
         }}
-        noValidate
-        autoComplete="off"
       >
         <FormControl component="form" onSubmit={handleSubmit} margin="normal">
           <h1 className={classes.heading}>Registration Form</h1>

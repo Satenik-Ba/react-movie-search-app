@@ -69,12 +69,9 @@ const Login = () => {
   return (
     <div className={classes.root}>
       <Box
-        component="form"
         sx={{
           '& .MuiTextField-root': { m: 1, width: '25rem' },
         }}
-        noValidate
-        autoComplete="off"
       >
         <FormControl component="form" onSubmit={handleSignIn} margin="normal">
           <h1 className={classes.heading}>Sign In</h1>
