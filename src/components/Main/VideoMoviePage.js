@@ -1,19 +1,17 @@
-
-import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@mui/styles';
-import { useSelector } from 'react-redux';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-import IconButton from '@mui/material/IconButton';
-import FavoriteVideoIcon from './FavoriteVideoIcon';
-import ReitingVideoStars from './ReitingVideoStars';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import YouTube from 'react-youtube';
-import {useHistory} from 'react-router-dom'; 
-import {HOME_ROUTE} from '../../constants/routes'; 
-import {selectedMovieAction} from '../redux/SelectedMovie'
-import {useDispatch} from 'react-redux'
-
+import React, { useEffect, useState } from "react";
+import { makeStyles } from "@mui/styles";
+import { useSelector } from "react-redux";
+import ImageListItem from "@mui/material/ImageListItem";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
+import IconButton from "@mui/material/IconButton";
+import FavoriteVideoIcon from "./FavoriteVideoIcon";
+import ReitingVideoStars from "./ReitingVideoStars";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import YouTube from "react-youtube";
+import { useHistory } from "react-router-dom";
+import { HOME_ROUTE } from "../../constants/routes";
+import { selectedMovieAction } from "../redux/SelectedMovie";
+import { useDispatch } from "react-redux";
 const opts = {
   height: "400px",
   width: "800px",
@@ -21,7 +19,6 @@ const opts = {
     autoplay: 0,
   },
 };
-
 const useStyles = makeStyles({
   root: {
     color: "red",
@@ -42,20 +39,15 @@ const useStyles = makeStyles({
     marginTop: "50px",
   },
 });
-
 const VideoMoviePage = () => {
   const classes = useStyles();
   const [movieKey, setMovieKey] = useState();
-
-  const history = useHistory() 
+  const history = useHistory();
   const dispatch = useDispatch();
-
-
   const movie = useSelector(
     (state) => state.SelectedMovie.selectedMovie.selectedMovie
   );
   const isSelected = useSelector((state) => state.SelectedMovie.isSelected);
- 
   useEffect(() => {
     fetch(
       "https://api.themoviedb.org/3/movie/" +
@@ -66,18 +58,12 @@ const VideoMoviePage = () => {
       .then((result) => {
         setMovieKey(result.results[0]);
       });
-      dispatch(
-        selectedMovieAction.isSelected()
-      );
+    dispatch(selectedMovieAction.isSelected());
   }, []);
-
-
-  console.log(movieKey)
-
+  console.log(movieKey);
   return (
     <div className={classes.root}>
       {movieKey && <YouTube videoId={movieKey.key} opts={opts} />}
-
       <div className={classes.displayFlex}>
         <img
           className={classes.imgWidth}

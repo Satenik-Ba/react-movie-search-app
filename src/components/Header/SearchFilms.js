@@ -1,8 +1,9 @@
-
-import * as React from "react";
+import React, { useEffect } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { SearchValueAction } from "../redux/searchName";
+import { useDispatch } from "react-redux";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -45,17 +46,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function SearchFilms() {
+  const dispatch = useDispatch();
+  function onSearch(event) {
+    return dispatch(
+      SearchValueAction.changeValue({
+        searchValue: event.target.value,
+      })
+    );
+  }
   return (
     <Search>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
+        onChange={onSearch}
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
       />
     </Search>
   );
 }
-
 export default SearchFilms;

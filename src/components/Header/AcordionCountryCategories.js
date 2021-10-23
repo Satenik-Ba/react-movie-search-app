@@ -6,6 +6,10 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { makeStyles } from "@mui/styles";
+import { useDispatch } from "react-redux";
+import { POPULAR_TV_SHOWS_API } from "../../constants/APIs";
+import { POPULAR_MOVIES_API } from "../../constants/APIs";
+import { loadingURLAction } from "../redux/loadingURL";
 
 const useStyles = makeStyles(() => {
   return {
@@ -17,11 +21,12 @@ const useStyles = makeStyles(() => {
 });
 
 function AcordionCountryCategories() {
+  const dispatch = useDispatch();
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // const [age, setAge] = React.useState("");
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
 
   return (
     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
@@ -34,14 +39,34 @@ function AcordionCountryCategories() {
             className={classes.root}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            // value={age}
             label="Films"
-            onChange={handleChange}
+            // onChange={handleChange}
           >
-            <MenuItem value={10}>Armenian Films</MenuItem>
-            <MenuItem value={20}>Russian Films</MenuItem>
-            <MenuItem value={30}>Artasahmanyan Films</MenuItem>
-            <MenuItem value={30}>Film Armenian Translate</MenuItem>
+            <MenuItem
+              value={10}
+              onClick={() => {
+                dispatch(
+                  loadingURLAction.changeValue({
+                    loadingURL: POPULAR_MOVIES_API,
+                  })
+                );
+              }}
+            >
+              Movies
+            </MenuItem>
+            <MenuItem
+              value={20}
+              onClick={() => {
+                dispatch(
+                  loadingURLAction.changeValue({
+                    loadingURL: POPULAR_TV_SHOWS_API,
+                  })
+                );
+              }}
+            >
+              TV Shows
+            </MenuItem>
           </Select>
         </FormControl>
       </Box>

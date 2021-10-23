@@ -8,7 +8,7 @@ import Select from "@mui/material/Select";
 import { makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { CatValueAction } from "../redux/categoryValue";
-import { CAREGORIES_MOVIES_API } from "../../constants/APIs";
+import { CATEGORIES_MOVIES_API } from "../../constants/APIs";
 
 const useStyles = makeStyles(() => {
   return {
@@ -23,17 +23,15 @@ export let selectedId = 0;
 
 function CategoryFilms() {
   const classes = useStyles();
-
-  const [age, setAge] = React.useState("");
   const dispatch = useDispatch();
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // const [age, setAge] = React.useState("");
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
   const [categories, setCategories] = React.useState([]);
 
   useEffect(() => {
-    fetch(CAREGORIES_MOVIES_API)
+    fetch(CATEGORIES_MOVIES_API)
       .then((response) => response.json())
       .then((result) => {
         setCategories(result.genres);
@@ -51,13 +49,26 @@ function CategoryFilms() {
             className={classes.root}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            // value={age}
             label="Films"
-            onChange={handleChange}
+            // onChange={handleChange}
           >
+            <MenuItem
+              value={"all category"}
+              onClick={() => {
+                dispatch(
+                  CatValueAction.changeValue({
+                    catValue: "",
+                  })
+                );
+              }}
+            >
+              All category
+            </MenuItem>
             {categories.map((category) => (
               <MenuItem
                 value={category.id}
+                key={category.id}
                 onClick={() => {
                   dispatch(
                     CatValueAction.changeValue({

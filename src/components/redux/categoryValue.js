@@ -1,15 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  catValue: '',
+  catValue: "",
 };
 
 const categoryValue = createSlice({
-  name: 'categoryValue',
+  name: "categoryValue",
   initialState,
   reducers: {
     changeValue(state, action) {
-      state.catValue = action.payload;
+      state.catValue = action.payload.catValue;
     },
   },
 });
