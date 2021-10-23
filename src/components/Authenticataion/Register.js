@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     },
   },
   heading: {
-    color: "#171c2c",
+    color: '#171c2c',
     fontWeight: 600,
   },
 });
