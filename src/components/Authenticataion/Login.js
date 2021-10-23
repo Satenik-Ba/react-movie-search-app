@@ -11,36 +11,28 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { makeStyles } from "@mui/styles";
 
-
 const useStyles = makeStyles({
   root: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-
-  },
-  button: {
-    backgroundColor: "#171c2c",
-    color: "white",
-    height: "2.5rem",
-
     "margin-top": "auto",
     "margin-bottom": "auto",
   },
   button: {
-    backgroundColor: "#171c2c",
+    backgroundColor: "#171C2C",
     alignSelf: "center",
     width: "25rem",
     fontSize: "1.2rem",
     color: "white",
     height: "3.6rem",
     "&:hover": {
-      backgroundColor: "#7b84a4",
+      backgroundColor: "#7B84A4",
     },
   },
   heading: {
-    color: "#171c2c",
+    color: "#171C2C",
     fontWeight: 600,
   },
 });
@@ -51,7 +43,6 @@ const Login = () => {
   const [error, setError] = useState("");
   const history = useHistory();
   const auth = getAuth();
-
   function login(email, password) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -62,11 +53,9 @@ const Login = () => {
         const errorMessage = error.message;
       });
   }
-
   function handleSignIn(e) {
     e.preventDefault();
     setError("");
-
     try {
       login(emailRef.current.value, passwordRef.current.value);
       history.push(HOME_ROUTE);
@@ -80,8 +69,6 @@ const Login = () => {
         sx={{
           "& .MuiTextField-root": { m: 1, width: "25rem" },
         }}
-        noValidate
-        autoComplete="off"
       >
         <FormControl component="form" onSubmit={handleSignIn} margin="normal">
           <h1 className={classes.heading}>Sign In</h1>
@@ -99,17 +86,6 @@ const Login = () => {
             inputRef={passwordRef}
             required
           />
-
-        </FormGroup>
-        <Link>Forgot Password?</Link>
-        <p>
-          New to ArmFilm?{" "}
-          <span>
-            <Link to={REGISTER_ROUTE}>Sign Up Now</Link>
-          </span>
-        </p>
-      </FormControl>
-
           <button className={classes.button}>Log In</button>
           <FormGroup>
             <FormControlLabel
@@ -129,5 +105,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;
