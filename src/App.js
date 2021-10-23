@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -17,16 +17,10 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { UserInfoActions } from "./components/redux/UserInfo";
 import React, { useEffect } from "react";
 import VideoMoviePage from "./components/Main/VideoMoviePage";
-import { useSelector } from "react-redux";
-import MainPage_TV_Show from "./components/Main/MainPage_TV_Show";
 
 function App() {
   const dispatch = useDispatch();
   const auth = getAuth();
-  const movieOrShow = useSelector(
-    (state) => state.movie_or_TV_show.movieOrShow.movieOrShow
-  );
-
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -55,7 +49,7 @@ function App() {
           <Auth />
         </Route>
         <Route path={HOME_ROUTE} exact>
-          {movieOrShow !== "TV Showes" ? <MainPage /> : <MainPage_TV_Show />}
+          <MainPage />
         </Route>
         <Route path={USER_PAGE}>
           <UserPage />
@@ -63,6 +57,7 @@ function App() {
         <Route path={VIDEO_PAGE}>
           <VideoMoviePage />
         </Route>
+        <Redirect to={HOME_ROUTE}></Redirect>
       </Switch>
       <Footer />
     </div>
