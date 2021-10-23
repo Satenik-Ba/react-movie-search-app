@@ -9,7 +9,7 @@ import { makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { CatValueAction } from "../redux/categoryValue";
 import { CATEGORIES_MOVIES_API } from "../../constants/APIs";
-
+import PagValueAction from "../redux/pageValue";
 const useStyles = makeStyles(() => {
   return {
     root: {

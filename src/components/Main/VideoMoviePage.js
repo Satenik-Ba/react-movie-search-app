@@ -75,7 +75,6 @@ const VideoMoviePage = () => {
       });
     // dispatch(selectedMovieAction.isSelected());
   }, []);
-
   return (
     <div className={classes.root}>
       {movieKey && <YouTube videoId={movieKey.key} opts={opts} />}
