@@ -7,7 +7,7 @@ import { PagValueAction } from "../redux/pageValue";
 
 const useStyles = makeStyles({
   root: {
-    width: "31%",
+    width: "32%",
     margin: "auto",
     backgroundColor: "#9826AB",
   },

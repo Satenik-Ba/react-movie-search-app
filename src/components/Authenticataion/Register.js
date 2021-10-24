@@ -1,3 +1,4 @@
+
 import React, { useRef, useState, useEffect } from 'react';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
@@ -16,6 +17,7 @@ import { firestore } from '../../firebase';
 
 const useStyles = makeStyles({
   root: {
+
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -36,6 +38,7 @@ const useStyles = makeStyles({
     },
     '&:disabled': {
       backgroundColor: 'red',
+ 
     },
   },
   heading: {
@@ -60,9 +63,12 @@ const Register = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+
+      
       return setError(
         "The Password Confirmation Doesn't Match Entered Password"
       );
+
     }
     setError('');
     try {
@@ -73,6 +79,9 @@ const Register = () => {
       );
       setLoading(true);
       history.push(HOME_ROUTE);
+
+   
+
     } catch (error) {
       setLoading(false);
       switch (error.code) {
@@ -95,15 +104,19 @@ const Register = () => {
             'Invalid email or password. Please enter a valid email and/or password'
           );
       }
+
     }
   }
   useEffect(() => {
     if (user !== null) {
       updateProfile(user, {
         displayName: userNameRef.current.value,
+
+       
       }).catch((error) => {
         console.log(error.message);
       });
+
     }
   }, [user]);
 

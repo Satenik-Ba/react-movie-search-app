@@ -22,6 +22,7 @@ const useStyles = makeStyles({
     'margin-bottom': 'auto',
   },
   button: {
+
     backgroundColor: '#171c2c',
     alignSelf: 'center',
     width: '25rem',
@@ -45,7 +46,6 @@ const Login = () => {
   const [error, setError] = useState('');
   const history = useHistory();
   const auth = getAuth();
-
   function login(email, password) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -53,6 +53,7 @@ const Login = () => {
       })
       .catch((error) => {});
   }
+
 
   async function handleSignIn(e) {
     e.preventDefault();
@@ -122,5 +123,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;
