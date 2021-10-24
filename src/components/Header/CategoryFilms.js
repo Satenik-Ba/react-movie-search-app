@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -11,6 +12,7 @@ import { CatValueAction } from '../redux/categoryValue';
 import { CATEGORIES_MOVIES_API } from '../../constants/APIs';
 import PagValueAction from '../redux/pageValue';
 import {useSelector} from 'react-redux'
+
 
 const useStyles = makeStyles(() => {
   return {
@@ -26,10 +28,7 @@ export let selectedId = 0;
 function CategoryFilms() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  // const [age, setAge] = React.useState("");
-  // const handleChange = (event) => {
-  //   setAge(event.target.value);
-  // };
+
   const [categories, setCategories] = React.useState([]);
   const catName = useSelector((state) => state.categoryValue.catName);
   useEffect(() => {
@@ -41,14 +40,13 @@ function CategoryFilms() {
   }, []);
 
   return (
-    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-      <Box sx={{ minWidth: 50 }}>
+    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+      <Box sx={{}}>
         <FormControl fullWidth>
-          <InputLabel className={classes.root} id="demo-simple-select-label">
-            Category
-          </InputLabel>
+          <InputLabel className={classes.root}>Category</InputLabel>
           <Select
             className={classes.root}
+
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Films"
@@ -72,6 +70,9 @@ function CategoryFilms() {
                 key={category.id}
                 onClick={() => {
                   dispatch(
+                    // PagValueAction.changeValue({
+                    //   pagValue: 1,
+                    // }),
                     CatValueAction.changeValue({
                       catValue: category.id,
                     })

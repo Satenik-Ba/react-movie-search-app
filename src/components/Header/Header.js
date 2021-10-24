@@ -14,12 +14,14 @@ import {
   REGISTER_ROUTE,
   HOME_ROUTE,
   USER_PAGE,
+
 } from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import UserAvatar from './UserAvatar';
 import { useDispatch } from 'react-redux';
 import { CatValueAction } from '../redux/categoryValue';
+
 const useStyles = makeStyles(() => {
   return {
     root: {
@@ -69,6 +71,7 @@ const useStyles = makeStyles(() => {
 
 function Header() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.userInfo.isAuthenticated);
 
   return (
@@ -76,6 +79,7 @@ function Header() {
       <AppBar className={classes.filmsAppBar} position="fixed">
         <Toolbar>
           <Link
+
             className={classes.logo}
             onClick={() => document.location.assign(HOME_ROUTE)}
             // to={HOME_ROUTE}
