@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -8,6 +8,7 @@ import noMovie from '../images/noMovie.jpg';
 import { doc, onSnapshot, getDoc } from 'firebase/firestore';
 import { firestore } from '../../firebase';
 import { useSelector } from 'react-redux';
+
 const useStyles = makeStyles(() => {
   return {
     root: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles(() => {
 
 const UserFavorites = () => {
   const [isEmpty, setIsEmpty] = useState(true);
-  const [userFavMovies, setUserFavMovies] = useState([]);
+  const [userFavMovies, setUserFavMovies] = useState();
   const classes = useStyles();
   const settings = {
     dots: true,
@@ -45,16 +46,27 @@ const UserFavorites = () => {
     pauseOnHover: true,
   };
   const currentUserId = useSelector((state) => state.userInfo.userId);
-  
-  async function getUserData() {
-    const documentRef = await doc(firestore, `/users/${currentUserId}`);
+
+  // async function getUserData() {
+  //   const documentRef = await doc(firestore, `/users/${currentUserId}`);
+  //   const documentSnapshot = onSnapshot(documentRef, (doc) => {
+  //     console.log('Current data: ', doc.data());
+  //     setUserFavMovies(doc.data().favoriteMovies);
+  //     setIsEmpty(false);
+  //   });
+  // }
+  // getUserData();
+  useEffect(() => {
+    const documentRef = doc(firestore, `/users/${currentUserId}`);
     const documentSnapshot = onSnapshot(documentRef, (doc) => {
       console.log('Current data: ', doc.data());
-      setUserFavMovies(doc.data().favoriteMovies);
-      setIsEmpty(false);
+      if (doc.data().favoriteMovies.length > 1) {
+        setUserFavMovies(doc.data().favoriteMovies);
+        setIsEmpty(false);
+      }
     });
-  }
-  getUserData();
+  }, [currentUserId]);
+
   return (
     <div>
       {!isEmpty && (

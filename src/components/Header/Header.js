@@ -73,7 +73,11 @@ function Header() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.userInfo.isAuthenticated);
+  // const dispatch = useDispatch();
 
+  // const handleHomeClick = () => {
+  //   dispatch(CatValueAction.resetCatValue());
+  // };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar className={classes.filmsAppBar} position="fixed">
