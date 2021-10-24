@@ -73,7 +73,7 @@ function Header() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.userInfo.isAuthenticated);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const handleHomeClick = () => {
   //   dispatch(CatValueAction.resetCatValue());
