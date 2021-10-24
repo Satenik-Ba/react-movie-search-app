@@ -1,38 +1,41 @@
-import React, { useRef, useState } from "react";
-import { REGISTER_ROUTE, HOME_ROUTE } from "../../constants/routes";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-import FormGroup from "@mui/material/FormGroup";
-import Box from "@mui/material/Box";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import { makeStyles } from "@mui/styles";
+import React, { useRef, useState } from 'react';
+import { REGISTER_ROUTE, HOME_ROUTE } from '../../constants/routes';
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
+import FormGroup from '@mui/material/FormGroup';
+import Box from '@mui/material/Box';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-    "margin-top": "auto",
-    "margin-bottom": "auto",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    'margin-top': 'auto',
+    'margin-bottom': 'auto',
   },
   button: {
-    backgroundColor: "#171C2C",
-    alignSelf: "center",
-    width: "25rem",
-    fontSize: "1.2rem",
-    color: "white",
-    height: "3.6rem",
-    "&:hover": {
-      backgroundColor: "#7B84A4",
+
+    backgroundColor: '#171c2c',
+    alignSelf: 'center',
+    width: '25rem',
+    fontSize: '1.2rem',
+    color: 'white',
+    height: '3.5rem',
+    borderRadius: '4px',
+    '&:hover': {
+      backgroundColor: '#7b84a4',
     },
   },
   heading: {
-    color: "#171C2C",
+    color: '#171c2c',
     fontWeight: 600,
   },
 });
@@ -40,7 +43,7 @@ const Login = () => {
   const classes = useStyles();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const history = useHistory();
   const auth = getAuth();
   function login(email, password) {
@@ -48,26 +51,36 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+      .catch((error) => {});
   }
-  function handleSignIn(e) {
+
+
+  async function handleSignIn(e) {
     e.preventDefault();
-    setError("");
+    setError('');
     try {
-      login(emailRef.current.value, passwordRef.current.value);
+      await signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value);
       history.push(HOME_ROUTE);
-    } catch {
-      setError("Failed to log in");
+    } catch (error) {
+      switch (error.code) {
+        case 'auth/user-not-found':
+          return setError('User not found. Please enter a valid email address.');
+          break;
+        case 'auth/wrong-password':
+          return setError('Wrong Password.');
+          break;
+        default:
+          return setError(
+            'Invalid email or password. Please enter a correct email and/or password'
+          );
+      }
     }
   }
   return (
     <div className={classes.root}>
       <Box
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "25rem" },
+          '& .MuiTextField-root': { m: 1, width: '25rem' },
         }}
       >
         <FormControl component="form" onSubmit={handleSignIn} margin="normal">
@@ -86,6 +99,11 @@ const Login = () => {
             inputRef={passwordRef}
             required
           />
+          {error && (
+            <Alert variant="filled" severity="error" width="25rem">
+              {error}
+            </Alert>
+          )}
           <button className={classes.button}>Log In</button>
           <FormGroup>
             <FormControlLabel
@@ -95,7 +113,7 @@ const Login = () => {
           </FormGroup>
           <Link>Forgot Password?</Link>
           <p>
-            New to ArmFilm?{" "}
+            New to ArmFilm?{' '}
             <span>
               <Link to={REGISTER_ROUTE}>Sign Up Now</Link>
             </span>

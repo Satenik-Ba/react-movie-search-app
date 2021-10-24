@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     cursor: "pointer",
   },
 });
-const Movie = ({ movie, id }) => {
+const Movie = ({ movie }) => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -71,7 +71,7 @@ const Movie = ({ movie, id }) => {
               sx={{ color: "rgba(255, 255, 255, 0.94)" }}
               aria-label={`info abou`}
             >
-              <FavoriteVideoIcon />
+              <FavoriteVideoIcon favMovie={movie}/>
               <PlayCircleOutlineIcon />
             </IconButton>
           }

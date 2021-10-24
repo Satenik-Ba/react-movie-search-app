@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   catValue: "",
+  catName: 'All Categories'
 };
 
 const categoryValue = createSlice({
@@ -11,6 +12,10 @@ const categoryValue = createSlice({
     changeValue(state, action) {
       state.catValue = action.payload.catValue;
     },
+    resetCatValue(state){
+      state.catValue = ''; 
+      state.catName = 'All Categories'
+    }
   },
 });
 

@@ -15,16 +15,12 @@ import {
   HOME_ROUTE,
   USER_PAGE,
 
-} from "../../constants/routes";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import UserAvatar from "./UserAvatar";
-import { useDispatch } from "react-redux";
-import { CatValueAction } from "../redux/categoryValue";
-import { PagValueAction } from "../redux/pageValue";
-
-
-
+} from '../../constants/routes';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import UserAvatar from './UserAvatar';
+import { useDispatch } from 'react-redux';
+import { CatValueAction } from '../redux/categoryValue';
 
 const useStyles = makeStyles(() => {
   return {
@@ -80,18 +76,13 @@ function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar className={classes.filmsAppBar} position="sticky" top="0">
+      <AppBar className={classes.filmsAppBar} position="fixed">
         <Toolbar>
           <Link
-            onClick={() => {
-              dispatch(
-                CatValueAction.changeValue({
-                  catValue: "",
-                })
-              );
-            }}
+
             className={classes.logo}
-            to={HOME_ROUTE}
+            onClick={() => document.location.assign(HOME_ROUTE)}
+            // to={HOME_ROUTE}
           >
             <img src={logo} alt="Logo" />
             <p className={classes.logoP}>
@@ -100,17 +91,15 @@ function Header() {
               <span className={classes.logoSpanThree}>M</span>FLIX
             </p>
           </Link>
+          <AcordionCountryCategories />
+          <CategoryFilms />
 
           {isAuth && (
-            <>
-              <AcordionCountryCategories />
-              <CategoryFilms />
-              <Link to={USER_PAGE} className={classes.myList}>
-                My List
-              </Link>
-              <SearchFilms />
-            </>
+            <Link to={USER_PAGE} className={classes.myList}>
+              My List
+            </Link>
           )}
+          <SearchFilms />
           {!isAuth && (
             <>
               <Button component={Link} to={SIGNIN_ROUTE} color="inherit">
