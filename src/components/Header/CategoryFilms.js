@@ -1,20 +1,22 @@
-import React, { useEffect } from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { makeStyles } from "@mui/styles";
-import { useDispatch } from "react-redux";
-import { CatValueAction } from "../redux/categoryValue";
-import { CATEGORIES_MOVIES_API } from "../../constants/APIs";
-import PagValueAction from "../redux/pageValue";
+import React, { useEffect } from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { makeStyles } from '@mui/styles';
+import { useDispatch } from 'react-redux';
+import { CatValueAction } from '../redux/categoryValue';
+import { CATEGORIES_MOVIES_API } from '../../constants/APIs';
+import PagValueAction from '../redux/pageValue';
+import {useSelector} from 'react-redux'
+
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#171c2c !important",
-      color: "#d1d2d6 !important",
+      backgroundColor: '#171c2c !important',
+      color: '#d1d2d6 !important',
     },
   };
 });
@@ -29,7 +31,7 @@ function CategoryFilms() {
   //   setAge(event.target.value);
   // };
   const [categories, setCategories] = React.useState([]);
-
+  const catName = useSelector((state) => state.categoryValue.catName);
   useEffect(() => {
     fetch(CATEGORIES_MOVIES_API)
       .then((response) => response.json())
@@ -49,21 +51,20 @@ function CategoryFilms() {
             className={classes.root}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            // value={age}
             label="Films"
             // onChange={handleChange}
           >
             <MenuItem
-              value={"all category"}
+              value={catName}
               onClick={() => {
                 dispatch(
                   CatValueAction.changeValue({
-                    catValue: "",
+                    catValue: '',
                   })
                 );
               }}
             >
-              All category
+            {catName}
             </MenuItem>
             {categories.map((category) => (
               <MenuItem

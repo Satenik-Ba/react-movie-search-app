@@ -13,8 +13,8 @@ const UserInfo = createSlice({
   reducers: {
     setUserInfo(state, action) { 
       state.userEmail = action.payload;
-      state.userName = action.payload;
-      state.userId = action.payload;
+      state.userName = action.payload.userName;
+      state.userId = action.payload.userId;
       state.isAuthenticated = true;
     },
     setLogout(state) {

@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 
 function UserPage() {
   const classes = useStyles();
-  const userName = useSelector((state) => state.userInfo.userName.userName);
+  const userName = useSelector((state) => state.userInfo.userName);
   const isAuthenticated = useSelector(
     (state) => state.userInfo.isAuthenticated
   );

@@ -4,6 +4,7 @@ import CarouselFilms from './CarouselFilms';
 import { makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux';
 import PaginationMain from './PaginationMain';
+import {POPULAR_MOVIES_API} from '../../constants/APIs'
 
 const useStyles = makeStyles(() => {
   return {
@@ -60,7 +61,8 @@ function MainPage() {
       <div>
         <CarouselFilms />
       </div>
-      <h2 className={classes.root}>Featured Movies</h2>
+      {loadingURL === POPULAR_MOVIES_API ? <h2 className={classes.root}>Featured Movies</h2> : <h2 className={classes.root}>Featured TV Shows</h2>}
+    
 
       {filmResult.map((movie) => (
         <Movie key={movie.id} movie={movie} />

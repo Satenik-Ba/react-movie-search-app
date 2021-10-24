@@ -18,7 +18,8 @@ import {
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import UserAvatar from './UserAvatar';
-
+import { useDispatch } from 'react-redux';
+import { CatValueAction } from '../redux/categoryValue';
 const useStyles = makeStyles(() => {
   return {
     root: {
@@ -72,9 +73,13 @@ function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar className={classes.filmsAppBar} position="sticky" top="0">
+      <AppBar className={classes.filmsAppBar} position="fixed">
         <Toolbar>
-          <Link className={classes.logo} to={HOME_ROUTE}>
+          <Link
+            className={classes.logo}
+            onClick={() => document.location.assign(HOME_ROUTE)}
+            // to={HOME_ROUTE}
+          >
             <img src={logo} alt="Logo" />
             <p className={classes.logoP}>
               <span className={classes.logoSpanOne}>A</span>
@@ -82,17 +87,15 @@ function Header() {
               <span className={classes.logoSpanThree}>M</span>FLIX
             </p>
           </Link>
+          <AcordionCountryCategories />
+          <CategoryFilms />
 
           {isAuth && (
-            <>
-              <AcordionCountryCategories />
-              <CategoryFilms />
-              <Link to={USER_PAGE} className={classes.myList}>
-                My List
-              </Link>
-              <SearchFilms />
-            </>
+            <Link to={USER_PAGE} className={classes.myList}>
+              My List
+            </Link>
           )}
+          <SearchFilms />
           {!isAuth && (
             <>
               <Button component={Link} to={SIGNIN_ROUTE} color="inherit">

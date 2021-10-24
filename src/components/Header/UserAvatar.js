@@ -23,7 +23,7 @@ function UserAvatar() {
   const classes = useStyles();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const userName = useSelector((state) => state.userInfo.userName.userName);
+  const userName = useSelector((state) => state.userInfo.userName);
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
