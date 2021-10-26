@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
@@ -8,13 +8,15 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import { makeStyles } from '@mui/styles';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc, onSnapshot, getDoc } from 'firebase/firestore';
 import { firestore } from '../../firebase';
 import { arrayUnion } from '@firebase/firestore';
 import { useSelector } from 'react-redux';
 import SelectedMovie from '../redux/SelectedMovie';
 import { SIGNIN_ROUTE } from '../../constants/routes';
 import { useHistory } from 'react-router-dom';
+import VideoDeleteIcon from './VideoDeleteIcon';
+
 const useStyles = makeStyles({
   icon: {
     color: 'white ',
@@ -27,16 +29,15 @@ const useStyles = makeStyles({
   },
 });
 
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
 export default function FavoriteVideoIcon({ favMovie }) {
   const classes = useStyles();
   const currentUserId = useSelector((state) => state.userInfo.userId);
   const movie = useSelector((state) => state.SelectedMovie.selectedMovie);
-
+  const favMovies = useSelector((state) => state.FavoriteMovie.favMovies);
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
-
+  const [favIcon, setFavIcon] = useState();
+  const [isDisabled, setIsDisabled] = useState(false);
   const history = useHistory();
 
   const handleClickOpen = () => {
@@ -50,29 +51,34 @@ export default function FavoriteVideoIcon({ favMovie }) {
   const handleLogin = () => {
     history.push(SIGNIN_ROUTE);
   };
-  async function onFavoriteVideoByUser() {
+
+  async function handleFavoriteClick() {
     const userRef = doc(firestore, 'users', currentUserId);
+    favMovie.isFavorite = true;
+    favMovie.deleteIcon = true;
     await updateDoc(userRef, {
       favoriteMovies: arrayUnion(favMovie),
-    });
+      });
+    setIsDisabled(true);
+    // setIsFavorite(true)
+    // icon = deleteIcon
+    // getData();
   }
 
   return (
     <div>
       {currentUserId && (
         <Checkbox
-          {...label}
-          onClick={onFavoriteVideoByUser}
+          onClick={handleFavoriteClick}
+          disabled={isDisabled}
           icon={<FavoriteBorder className={classes.icon} />}
           checkedIcon={<Favorite className={classes.backgroundIcon} />}
-          // id={SelectedMovie.id}
         />
       )}
       {!currentUserId && (
         <div>
           <Checkbox
             onClick={handleClickOpen}
-            {...label}
             checked={checked}
             icon={<FavoriteBorder className={classes.icon} />}
             checkedIcon={<Favorite className={classes.clearBackground} />}

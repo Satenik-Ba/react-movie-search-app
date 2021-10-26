@@ -110,13 +110,10 @@ const Register = () => {
   useEffect(() => {
     if (user !== null) {
       updateProfile(user, {
-        displayName: userNameRef.current.value,
-
-       
+        displayName: userNameRef.current.value,     
       }).catch((error) => {
         console.log(error.message);
-      });
-
+      }); 
     }
   }, [user]);
 
@@ -124,10 +121,8 @@ const Register = () => {
     if (user !== null) {
       const userRef = doc(firestore, 'users', user.uid);
       const data = {
-        favoriteMovies: [],
-        favoriteTvShows: [],
       };
-      setDoc(userRef, data);
+    setDoc(userRef, data);
     }
   }, [user]);
 

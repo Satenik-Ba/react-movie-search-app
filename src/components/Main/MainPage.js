@@ -62,7 +62,6 @@ function MainPage() {
         <CarouselFilms />
       </div>
       {loadingURL === POPULAR_MOVIES_API ? <h2 className={classes.root}>Featured Movies</h2> : <h2 className={classes.root}>Featured TV Shows</h2>}
-    
 
       {filmResult.map((movie) => (
         <Movie key={movie.id} movie={movie} />

@@ -14,7 +14,6 @@ import {
   REGISTER_ROUTE,
   HOME_ROUTE,
   USER_PAGE,
-
 } from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -66,6 +65,11 @@ const useStyles = makeStyles(() => {
       'font-size': '1.15rem',
       'padding-right': '2rem',
     },
+    '& a': {
+      '&:hover': {
+        backgroundColor: '#7b84a4',
+      },
+    },
   };
 });
 
@@ -83,7 +87,6 @@ function Header() {
       <AppBar className={classes.filmsAppBar} position="fixed">
         <Toolbar>
           <Link
-
             className={classes.logo}
             onClick={() => document.location.assign(HOME_ROUTE)}
             // to={HOME_ROUTE}
