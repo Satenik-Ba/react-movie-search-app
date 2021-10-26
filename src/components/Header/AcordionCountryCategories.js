@@ -10,6 +10,9 @@ import { useDispatch } from "react-redux";
 import { POPULAR_TV_SHOWS_API } from "../../constants/APIs";
 import { POPULAR_MOVIES_API } from "../../constants/APIs";
 import { loadingURLAction } from "../redux/loadingURL";
+import { useHistory } from "react-router-dom";
+import { HOME_ROUTE } from "../../constants/routes";
+import { PagValueAction } from "../redux/pageValue";
 
 const useStyles = makeStyles(() => {
   return {
@@ -21,12 +24,39 @@ const useStyles = makeStyles(() => {
 });
 
 function AcordionCountryCategories() {
-  const dispatch = useDispatch();
   const classes = useStyles();
-  // const [age, setAge] = React.useState("");
-  // const handleChange = (event) => {
-  //   setAge(event.target.value);
-  // };
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const onClickMovies = () => {
+    dispatch(
+      loadingURLAction.changeValue({
+        loadingURL: POPULAR_MOVIES_API,
+      })
+    );
+    //   dispatch(
+    //     PagValueAction.changeValue({
+    //       pagValue: 1,
+    //     })
+    //   );
+    // };
+    history.push(HOME_ROUTE);
+  };
+  const onClickTvShows = () => {
+    dispatch(
+      loadingURLAction.changeValue({
+        loadingURL: POPULAR_TV_SHOWS_API,
+      })
+    );
+    //   dispatch(
+    //     PagValueAction.changeValue({
+    //       pagValue: 1,
+    //     })
+    //   );
+    // };
+
+    history.push(HOME_ROUTE);
+  };
 
   return (
     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
@@ -43,28 +73,10 @@ function AcordionCountryCategories() {
             label="Films"
             // onChange={handleChange}
           >
-            <MenuItem
-              value={10}
-              onClick={() => {
-                dispatch(
-                  loadingURLAction.changeValue({
-                    loadingURL: POPULAR_MOVIES_API,
-                  })
-                );
-              }}
-            >
+            <MenuItem value={10} onClick={onClickMovies}>
               Movies
             </MenuItem>
-            <MenuItem
-              value={20}
-              onClick={() => {
-                dispatch(
-                  loadingURLAction.changeValue({
-                    loadingURL: POPULAR_TV_SHOWS_API,
-                  })
-                );
-              }}
-            >
+            <MenuItem value={20} onClick={onClickTvShows}>
               TV Shows
             </MenuItem>
           </Select>

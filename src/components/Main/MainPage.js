@@ -1,17 +1,17 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import Movie from './Movie';
-import CarouselFilms from './CarouselFilms';
-import { makeStyles } from '@mui/styles';
-import { useSelector } from 'react-redux';
-import PaginationMain from './PaginationMain';
-import {POPULAR_MOVIES_API} from '../../constants/APIs'
+import React, { useEffect, useMemo, useState } from "react";
+import Movie from "./Movie";
+import CarouselFilms from "./CarouselFilms";
+import { makeStyles } from "@mui/styles";
+import { useSelector } from "react-redux";
+import PaginationMain from "./PaginationMain";
+import { POPULAR_MOVIES_API } from "../../constants/APIs";
 
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: '#232A3E',
-      color: '#D1D2D6',
-      paddingBottom: '40px',
+      backgroundColor: "#232A3E",
+      color: "#D1D2D6",
+      paddingBottom: "40px",
     },
   };
 });
@@ -24,7 +24,7 @@ function MainPage() {
   const pagValue = useSelector((state) => state.pageValue.pagValue);
 
   const searchedName = useSelector(
-    (state) => state.searchName.searchValue || ''
+    (state) => state.searchName.searchValue || ""
   );
 
   const [filtredMovies, setFiltredMovies] = useState([]);
@@ -61,11 +61,14 @@ function MainPage() {
       <div>
         <CarouselFilms />
       </div>
-      {loadingURL === POPULAR_MOVIES_API ? <h2 className={classes.root}>Featured Movies</h2> : <h2 className={classes.root}>Featured TV Shows</h2>}
-    
+      {loadingURL === POPULAR_MOVIES_API ? (
+        <h2 className={classes.root}>Featured Movies</h2>
+      ) : (
+        <h2 className={classes.root}>Featured TV Shows</h2>
+      )}
 
       {filmResult.map((movie) => (
-        <Movie key={movie.id} movie={movie} />
+        <Movie key={movie.id} movie={movie} defaultValue={movie.vote_average} />
       ))}
       <PaginationMain />
     </div>

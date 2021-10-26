@@ -9,14 +9,17 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ReitingVideoStars() {
+export default function ReitingVideoStars(props) {
+  console.log(props);
   const classes = useStyles();
   return (
     <Stack spacing={1}>
       <Rating
         className={classes.icon}
-        name="size-large"
-        defaultValue={2}
+        name="read-only"
+        readOnly
+        defaultValue={props.defaultValue / 2}
+        precision={0.1}
         size="large"
       />
     </Stack>
