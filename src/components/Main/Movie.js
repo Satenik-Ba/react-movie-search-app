@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -18,30 +19,34 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectedMovieAction } from "../redux/SelectedMovie";
+
+import {imgSrc} from '../../constants/constants'
+import ManageFavorites from './ManageFavorites';
+
+
 const useStyles = makeStyles({
   text: {
-    height: "50%",
-    overflow: "hidden",
-    color: "white",
-    fontSize: "16px",
-    fontWeight: "bold",
-    backgroundColor: "#171C2C",
-    position: "absolute",
-    opacity: "0",
-    "&:hover": {
-      opacity: "0.7",
-      cursor: "all-scroll",
+    height: '50%',
+    overflow: 'hidden',
+    color: 'white',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    backgroundColor: '#171C2C',
+    position: 'absolute',
+    opacity: '0',
+    '&:hover': {
+      opacity: '0.7',
+      cursor: 'all-scroll',
     },
   },
   cursor: {
-    cursor: "pointer",
+    cursor: 'pointer',
   },
 });
-const Movie = ({ movie }) => {
+const Movie = ({ movie, deleteIcon }) => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const isSelected = useSelector((state) => state.SelectedMovie.isSelected);
   const handleMovieClick = () => {
     dispatch(
       selectedMovieAction.changeMovie({
@@ -54,10 +59,10 @@ const Movie = ({ movie }) => {
     <>
       <ImageListItem
         sx={{
-          width: "20vw",
+          width: '17vw',
           height: 100,
-          padding: "5px",
-          lineHeight: "1.3 !important",
+          padding: '8px',
+          lineHeight: '1.3 !important',
         }}
         cols={8}
       >
@@ -66,17 +71,18 @@ const Movie = ({ movie }) => {
         <img
           className={classes.cursor}
           onClick={handleMovieClick}
-          src={"https://image.tmdb.org/t/p/w500/" + `${movie.poster_path}`}
-          alt=""
+          src={imgSrc + `${movie.poster_path}`}
+          alt="movie image poster"
           loading="lazy"
         />
         <ImageListItemBar
           // title={title}
           actionIcon={
             <IconButton
-              sx={{ color: "rgba(255, 255, 255, 0.94)" }}
+              sx={{ color: 'rgba(255, 255, 255, 0.94)' }}
               aria-label={`info abou`}
             >
+
               {/* <Switch>
                 <Route path={USER_PAGE}>
                   <button />
@@ -88,8 +94,11 @@ const Movie = ({ movie }) => {
                   </Route>
                 </Route>
               </Switch> */}
-              <FavoriteVideoIcon favMovie={movie} />
-              <PlayCircleOutlineIcon />
+             
+            
+
+              <ManageFavorites favMovie={movie} deleteIcon={deleteIcon}/>
+
             </IconButton>
           }
         />

@@ -61,6 +61,7 @@ function MainPage() {
       <div>
         <CarouselFilms />
       </div>
+
       {loadingURL === POPULAR_MOVIES_API ? (
         <h2 className={classes.root}>Featured Movies</h2>
       ) : (
