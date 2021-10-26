@@ -20,9 +20,18 @@ const useStyles = makeStyles({
     height: '100vh',
     'margin-top': 'auto',
     'margin-bottom': 'auto',
+    '& a': {
+      textDecoration: 'none', 
+      color: '#171c2c', 
+      fontSize: '1.15rem',
+      fontWeight: 700,
+      '&:hover': {
+        color: '#7b84a4',
+        fontWeight: 400,
+      }
+    }
   },
   button: {
-
     backgroundColor: '#171c2c',
     alignSelf: 'center',
     width: '25rem',
@@ -37,6 +46,22 @@ const useStyles = makeStyles({
   heading: {
     color: '#171c2c',
     fontWeight: 600,
+  },
+  footer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'left',
+  },
+  span: {
+    fontSize: '1.15rem',
+    textDecoration: 'none',
+    padding: '1rem',
+    color: 'black',
+    // '& a': {
+    //   textDecoration: 'none',
+    //   color: '#14213d',
+    //   fontWeight: 700,
+    // },
   },
 });
 const Login = () => {
@@ -54,17 +79,22 @@ const Login = () => {
       .catch((error) => {});
   }
 
-
   async function handleSignIn(e) {
     e.preventDefault();
     setError('');
     try {
-      await signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value);
+      await signInWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      );
       history.push(HOME_ROUTE);
     } catch (error) {
       switch (error.code) {
         case 'auth/user-not-found':
-          return setError('User not found. Please enter a valid email address.');
+          return setError(
+            'User not found. Please enter a valid email address.'
+          );
           break;
         case 'auth/wrong-password':
           return setError('Wrong Password.');
@@ -111,13 +141,16 @@ const Login = () => {
               label="Remember me"
             />
           </FormGroup>
-          <Link>Forgot Password?</Link>
-          <p>
-            New to ArmFilm?{' '}
-            <span>
-              <Link to={REGISTER_ROUTE}>Sign Up Now</Link>
-            </span>
-          </p>
+          <div className={classes.footer}>
+            <Link>Forgot Password?</Link>
+            </div>
+
+            <div className={classes.span}>
+              New to ArmFlix?{' '}
+              <span>
+                <Link to={REGISTER_ROUTE}>Sign Up Now</Link>
+              </span>
+            </div>
         </FormControl>
       </Box>
     </div>

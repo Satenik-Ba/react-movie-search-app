@@ -31,7 +31,7 @@ function AcordionCountryCategories() {
   return (
     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
       <Box sx={{ minWidth: 50 }}>
-        <FormControl fullWidth>
+        <FormControl fullWidth className={classes.root}>
           <InputLabel className={classes.root} id="demo-simple-select-label">
             Films
           </InputLabel>
