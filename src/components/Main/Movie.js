@@ -50,17 +50,17 @@ const Movie = ({ movie, deleteIcon }) => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  const comentUserName = useSelector((state) => state.userInfo.userName);
+  const commentsRef = doc(firestore, `/comments/${movie.id}`);
+  getDoc(commentsRef).then((docSnap) => {
+    if (!docSnap.exists()) {
+      const data = {
+        movieComments: [],
+      };
+      setDoc(commentsRef, data);
+    }
+  });
   const handleMovieClick = () => {
-    const commentsRef = doc(firestore, `/comments/${movie.id}`);
-    getDoc(commentsRef).then((docSnap) => {
-      if (!docSnap.exists()) {
-        const data = {
-          movieComments: [],
-        };
-        setDoc(commentsRef, data);
-      }
-    });
-
     dispatch(
       selectedMovieAction.changeMovie({
         selectedMovie: movie,
@@ -97,21 +97,6 @@ const Movie = ({ movie, deleteIcon }) => {
               sx={{ color: "rgba(255, 255, 255, 0.94)" }}
               aria-label={`info abou`}
             >
-              <FavoriteVideoIcon favMovie={movie} />
-              <PlayCircleOutlineIcon />
-
-              {/* <Switch>
-                <Route path={USER_PAGE}>
-                  <button />
-                </Route>
-                <Route path={HOME_ROUTE}>
-                  <FavoriteVideoIcon favMovie={movie} />
-                  <Route path={VIDEO_PAGE}>
-                    <FavoriteVideoIcon favMovie={movie} />
-                  </Route>
-                </Route>
-              </Switch> */}
-
               <ManageFavorites favMovie={movie} deleteIcon={deleteIcon} />
             </IconButton>
           }

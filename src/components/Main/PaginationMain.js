@@ -4,6 +4,7 @@ import Stack from "@mui/material/Stack";
 import { makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { PagValueAction } from "../redux/pageValue";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -16,9 +17,10 @@ const useStyles = makeStyles({
 export default function PaginationMain() {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const [page, setPage] = React.useState(1);
+
+  const pagValue = useSelector((state) => state.pageValue.pagValue);
+
   const handleChange = (event, value) => {
-    setPage(value);
     dispatch(
       PagValueAction.changeValue({
         pagValue: value,
@@ -30,6 +32,7 @@ export default function PaginationMain() {
     <div className={classes.root}>
       <Stack>
         <Pagination
+          page={pagValue}
           defaultPage={1}
           count={99}
           color="secondary"
