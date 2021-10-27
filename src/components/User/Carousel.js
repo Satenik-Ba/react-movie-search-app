@@ -4,8 +4,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { POPULAR_MOVIES_API } from '../../constants/APIs';
 import { POPULAR_TV_SHOWS_API } from '../../constants/APIs';
-import ImageListItem from '@mui/material/ImageListItem';
 import { makeStyles } from '@mui/styles';
+import Movie from '../Main/Movie';
+import {imgSrc} from '../../constants/constants'
 
 const useStyles = makeStyles(() => {
   return {
@@ -22,9 +23,7 @@ const useStyles = makeStyles(() => {
       'font-size': '1.5rem',
       'text-align': 'left',
       'padding-left': '1.2rem',
-    },
-    divPadding: {
-      paddingBottom: '100px',
+      'padding-top': '1rem',
     },
   };
 });
@@ -35,7 +34,7 @@ const Carousel = () => {
   const [popularTvShows, setPopularTvShows] = useState([]);
 
   useEffect(() => {
-    fetch(POPULAR_MOVIES_API+1)
+    fetch(POPULAR_MOVIES_API)
       .then((response) => response.json())
       .then((result) => {
         setPopularMovies(result.results);
@@ -55,51 +54,41 @@ const Carousel = () => {
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1000,
-    pauseOnHover: false,
+    autoplaySpeed: 2000,
+    pauseOnHover: true,
   };
 
   return (
-    <div className={classes.divPadding}>
+    <div >
       <h2 className={classes.header}>Explore Popular Movies</h2>
       <Slider {...settings} className={classes.root}>
         {popularMovies.map((movie) => (
-          <ImageListItem
+          <Movie
+            movie={movie}
             key={movie.id}
-            sx={{
-              width: '14rem !important',
-              height: '18rem !important',
-              padding: '1px !important',
-              lineHeight: '1.3 !important',
-            }}
           >
             <img
-              src={'https://image.tmdb.org/t/p/w500/' + movie.poster_path}
-              alt=""
+              src={imgSrc + movie.poster_path}
+              alt="movie image poster"
               loading="lazy"
             />
-          </ImageListItem>
+          </Movie>
         ))}
       </Slider>
 
       <h2 className={classes.header}>Explore Popular TV Shows</h2>
       <Slider {...settings} className={classes.root}>
         {popularTvShows.map((movie) => (
-          <ImageListItem
+          <Movie
+            movie={movie}
             key={movie.id}
-            sx={{
-              width: '14rem !important',
-              height: '18rem !important',
-              padding: '1px !important',
-              lineHeight: '1.3 !important',
-            }}
           >
             <img
-              src={'https://image.tmdb.org/t/p/w500/' + movie.poster_path}
-              alt=""
+              src={imgSrc + movie.poster_path}
+              alt="movie image poster"
               loading="lazy"
             />
-          </ImageListItem>
+          </Movie>
         ))}
       </Slider>
     </div>

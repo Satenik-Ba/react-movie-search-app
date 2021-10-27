@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
-// import ImageListItem from "@mui/material/ImageListItem";
-// import ImageListItemBar from "@mui/material/ImageListItemBar";
-// import IconButton from "@mui/material/IconButton";
-// import FavoriteVideoIcon from "./FavoriteVideoIcon";
-// import ReitingVideoStars from "./ReitingVideoStars";
-// import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import YouTube from "react-youtube";
-import { useHistory } from "react-router-dom";
+
+
 import ComentsPage from "./ComentsPage";
+
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@mui/styles';
+import { useSelector } from 'react-redux';
+import YouTube from 'react-youtube';
+import { useHistory } from 'react-router-dom';
+import {imgSrc} from '../../constants/constants'
+
 // import { HOME_ROUTE } from "../../constants/routes";
 // import { selectedMovieAction } from "../redux/SelectedMovie";
 // import { useDispatch } from "react-redux";
@@ -77,8 +76,10 @@ const VideoMoviePage = () => {
       <div className={classes.displayFlex}>
         <img
           className={classes.imgWidth}
-          src={"https://image.tmdb.org/t/p/w500/" + `${movie.poster_path}`}
-          alt=""
+
+          src={imgSrc + `${movie.poster_path}`}
+          alt="movie poster image"
+
           loading="lazy"
         />
         <div
