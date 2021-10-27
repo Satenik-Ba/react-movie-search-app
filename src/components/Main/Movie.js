@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -8,9 +7,6 @@ import { makeStyles } from "@mui/styles";
 import FavoriteVideoIcon from "./FavoriteVideoIcon";
 import ReitingVideoStars from "./ReitingVideoStars";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-
-
-import { VIDEO_PAGE, HOME_ROUTE } from "../../constants/routes";
 
 import VideoMoviePage from "./VideoMoviePage";
 import {
@@ -28,29 +24,26 @@ import { selectedMovieAction } from "../redux/SelectedMovie";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 
-
-import {imgSrc} from '../../constants/constants'
-import ManageFavorites from './ManageFavorites';
-
-
+import { imgSrc } from "../../constants/constants";
+import ManageFavorites from "./ManageFavorites";
 
 const useStyles = makeStyles({
   text: {
-    height: '50%',
-    overflow: 'hidden',
-    color: 'white',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    backgroundColor: '#171C2C',
-    position: 'absolute',
-    opacity: '0',
-    '&:hover': {
-      opacity: '0.7',
-      cursor: 'all-scroll',
+    height: "50%",
+    overflow: "hidden",
+    color: "white",
+    fontSize: "16px",
+    fontWeight: "bold",
+    backgroundColor: "#171C2C",
+    position: "absolute",
+    opacity: "0",
+    "&:hover": {
+      opacity: "0.7",
+      cursor: "all-scroll",
     },
   },
   cursor: {
-    cursor: 'pointer',
+    cursor: "pointer",
   },
 });
 const Movie = ({ movie, deleteIcon }) => {
@@ -58,15 +51,7 @@ const Movie = ({ movie, deleteIcon }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const handleMovieClick = () => {
-    dispatch(
-      selectedMovieAction.changeMovie({
-        selectedMovie: movie,
-      })
-    );
-    history.push(VIDEO_PAGE);
-
     const commentsRef = doc(firestore, `/comments/${movie.id}`);
-
     getDoc(commentsRef).then((docSnap) => {
       if (!docSnap.exists()) {
         const data = {
@@ -75,16 +60,24 @@ const Movie = ({ movie, deleteIcon }) => {
         setDoc(commentsRef, data);
       }
     });
+
+    dispatch(
+      selectedMovieAction.changeMovie({
+        selectedMovie: movie,
+      })
+    );
+
+    history.push(VIDEO_PAGE);
   };
 
   return (
     <>
       <ImageListItem
         sx={{
-          width: '17vw',
+          width: "17vw",
           height: 100,
-          padding: '8px',
-          lineHeight: '1.3 !important',
+          padding: "8px",
+          lineHeight: "1.3 !important",
         }}
         cols={8}
       >
@@ -101,13 +94,11 @@ const Movie = ({ movie, deleteIcon }) => {
           // title={title}
           actionIcon={
             <IconButton
-              sx={{ color: 'rgba(255, 255, 255, 0.94)' }}
+              sx={{ color: "rgba(255, 255, 255, 0.94)" }}
               aria-label={`info abou`}
             >
-
               <FavoriteVideoIcon favMovie={movie} />
               <PlayCircleOutlineIcon />
-
 
               {/* <Switch>
                 <Route path={USER_PAGE}>
@@ -120,12 +111,8 @@ const Movie = ({ movie, deleteIcon }) => {
                   </Route>
                 </Route>
               </Switch> */}
-             
-            
 
-              <ManageFavorites favMovie={movie} deleteIcon={deleteIcon}/>
-
-
+              <ManageFavorites favMovie={movie} deleteIcon={deleteIcon} />
             </IconButton>
           }
         />
