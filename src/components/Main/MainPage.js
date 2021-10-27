@@ -2,9 +2,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import Movie from "./Movie";
 import CarouselFilms from "./CarouselFilms";
 import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PaginationMain from "./PaginationMain";
 import { POPULAR_MOVIES_API } from "../../constants/APIs";
+import { PagValueAction } from "../redux/pageValue";
 
 const useStyles = makeStyles(() => {
   return {
@@ -22,6 +23,7 @@ function MainPage() {
   const loadingURL = useSelector((state) => state.loadingURL.loadingURL);
   const catVal = useSelector((state) => state.categoryValue.catValue);
   const pagValue = useSelector((state) => state.pageValue.pagValue);
+  const dispatch = useDispatch();
 
   const searchedName = useSelector(
     (state) => state.searchName.searchValue || ""
@@ -53,6 +55,14 @@ function MainPage() {
       )
     );
   }, [searchedName, featuredMovies]);
+
+  useEffect(() => {
+    dispatch(
+      PagValueAction.changeValue({
+        pagValue: 1,
+      })
+    );
+  }, [loadingURL]);
 
   // console.log("serchName " + searchedName);
 
