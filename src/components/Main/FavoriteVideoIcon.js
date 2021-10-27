@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
@@ -17,17 +18,22 @@ import { SIGNIN_ROUTE } from '../../constants/routes';
 import { useHistory } from 'react-router-dom';
 import VideoDeleteIcon from './VideoDeleteIcon';
 
+
 const useStyles = makeStyles({
   icon: {
-    color: 'white ',
+    color: "white ",
   },
   backgroundIcon: {
-    color: '#BF3B7C',
+    color: "#BF3B7C",
   },
   clearBackground: {
-    color: 'none',
+    color: "none",
   },
 });
+
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
 
 export default function FavoriteVideoIcon({ favMovie }) {
   const classes = useStyles();
@@ -52,10 +58,15 @@ export default function FavoriteVideoIcon({ favMovie }) {
     history.push(SIGNIN_ROUTE);
   };
 
+  async function onFavoriteVideoByUser() {
+    const userRef = doc(firestore, "users", currentUserId);
+
+
   async function handleFavoriteClick() {
     const userRef = doc(firestore, 'users', currentUserId);
     favMovie.isFavorite = true;
     favMovie.deleteIcon = true;
+
     await updateDoc(userRef, {
       favoriteMovies: arrayUnion(favMovie),
       });

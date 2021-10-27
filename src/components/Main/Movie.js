@@ -8,6 +8,10 @@ import { makeStyles } from "@mui/styles";
 import FavoriteVideoIcon from "./FavoriteVideoIcon";
 import ReitingVideoStars from "./ReitingVideoStars";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+
+
+import { VIDEO_PAGE, HOME_ROUTE } from "../../constants/routes";
+
 import VideoMoviePage from "./VideoMoviePage";
 import {
   VIDEO_PAGE,
@@ -15,13 +19,19 @@ import {
   USER_PAGE,
   REGISTER_ROUTE,
 } from "../../constants/routes";
+
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectedMovieAction } from "../redux/SelectedMovie";
 
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { firestore } from "../../firebase";
+
+
 import {imgSrc} from '../../constants/constants'
 import ManageFavorites from './ManageFavorites';
+
 
 
 const useStyles = makeStyles({
@@ -54,7 +64,19 @@ const Movie = ({ movie, deleteIcon }) => {
       })
     );
     history.push(VIDEO_PAGE);
+
+    const commentsRef = doc(firestore, `/comments/${movie.id}`);
+
+    getDoc(commentsRef).then((docSnap) => {
+      if (!docSnap.exists()) {
+        const data = {
+          movieComments: [],
+        };
+        setDoc(commentsRef, data);
+      }
+    });
   };
+
   return (
     <>
       <ImageListItem
@@ -83,6 +105,10 @@ const Movie = ({ movie, deleteIcon }) => {
               aria-label={`info abou`}
             >
 
+              <FavoriteVideoIcon favMovie={movie} />
+              <PlayCircleOutlineIcon />
+
+
               {/* <Switch>
                 <Route path={USER_PAGE}>
                   <button />
@@ -98,6 +124,7 @@ const Movie = ({ movie, deleteIcon }) => {
             
 
               <ManageFavorites favMovie={movie} deleteIcon={deleteIcon}/>
+
 
             </IconButton>
           }
