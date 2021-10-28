@@ -32,9 +32,11 @@ function App() {
             userId: user.uid,
           })
         );
-      } else {
-        console.log("NO USER IS SIGNED IN ");
+
       }
+      //  else {
+      //   console.log('NO USER IS SIGNED IN ');
+      // }
     });
   }, [dispatch, auth]);
   const isAuthenticated = useSelector(

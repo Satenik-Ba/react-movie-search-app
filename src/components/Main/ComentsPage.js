@@ -99,7 +99,7 @@ export default function ComentsPage({ movie1 }) {
     });
   }, [movie1.id]);
 
-  console.log(loadingComentPage);
+  // console.log(loadingComentPage);
 
   return (
     <div>
