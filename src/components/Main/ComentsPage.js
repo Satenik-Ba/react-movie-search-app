@@ -9,6 +9,8 @@ import { doc, updateDoc, onSnapshot, getDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import { arrayUnion } from "@firebase/firestore";
 import firebase from "../../firebase";
+import Login from "../Authenticataion/Login";
+import { DialogContentText, DialogContent, Dialog } from "@mui/material";
 
 const useStyles = makeStyles({
   rootBtn: {
@@ -53,7 +55,8 @@ export default function ComentsPage({ movie1 }) {
   const [loadingComentPage, setLoadingComentPage] = useState();
   const [isEmpty, setIsEmpty] = useState(true);
   const timestamp = Date.now();
-
+  const [open, setOpen] = useState(false);
+  const [checked, setChecked] = useState(false);
   const newDataInComent = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "2-digit",
@@ -65,6 +68,13 @@ export default function ComentsPage({ movie1 }) {
 
   const onHandleChange = (event) => {
     setCommentValue(event.target.value);
+  };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+    setChecked(false);
   };
 
   async function onAddItem() {
@@ -98,8 +108,6 @@ export default function ComentsPage({ movie1 }) {
       }
     });
   }, [movie1.id]);
-
-  // console.log(loadingComentPage);
 
   return (
     <div>
@@ -136,9 +144,37 @@ export default function ComentsPage({ movie1 }) {
         placeholder="Your Comment"
         style={{ width: 400 }}
       />
-      <Button onClick={onAddItem} className={classes.rootBtn} variant="text">
-        Send
-      </Button>
+      {comentUserName !== "" && (
+        <Button onClick={onAddItem} className={classes.rootBtn} variant="text">
+          Send
+        </Button>
+      )}
+      {comentUserName == "" && (
+        <div>
+          <Button
+            onClick={handleClickOpen}
+            className={classes.rootBtn}
+            variant="text"
+          >
+            Send
+          </Button>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Please Login or Register to Add Movies/TV Shows to Your
+                Favorites List.
+              </DialogContentText>
+              <Login />
+              <Button onClick={handleClose}>Cancel</Button>
+            </DialogContent>
+          </Dialog>
+        </div>
+      )}
     </div>
   );
 }
