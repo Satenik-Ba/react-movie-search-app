@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
+// import Box from "@mui/material/Box";
+// import Typography from "@mui/material/Typography";
+// import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { CatValueAction } from "../redux/categoryValue";
 import { CATEGORIES_MOVIES_API } from "../../constants/APIs";
 
- import PagValueAction from '../redux/pageValue';
+import PagValueAction from "../redux/pageValue";
 
 import { useSelector } from "react-redux";
 
@@ -23,12 +23,15 @@ const useStyles = makeStyles(() => {
   };
 });
 
-export let selectedId = 0;
+// export let selectedId = 0;
 
 function CategoryFilms() {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const [age, setAge] = React.useState("Categories");
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
   const [categories, setCategories] = React.useState([]);
   const catName = useSelector((state) => state.categoryValue.catName);
   useEffect(() => {
@@ -40,52 +43,89 @@ function CategoryFilms() {
   }, []);
 
   return (
-    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-      <Box sx={{}}>
-        <FormControl fullWidth>
-          <InputLabel className={classes.root}>Category</InputLabel>
-          <Select
-            className={classes.root}
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-
-            // onChange={handleChange}
+    <div>
+      <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <Select
+          value={age}
+          onChange={handleChange}
+          displayEmpty
+          inputProps={{ "aria-label": "Without label" }}
+        >
+          <MenuItem
+            value="Categories"
+            onClick={() => {
+              dispatch(
+                CatValueAction.changeValue({
+                  catValue: "",
+                })
+              );
+            }}
           >
+            Category\ies
+          </MenuItem>
+          {categories.map((category) => (
             <MenuItem
-              value={catName}
+              value={category.id}
+              key={category.id}
               onClick={() => {
                 dispatch(
                   CatValueAction.changeValue({
-                    catValue: "",
+                    catValue: category.id,
                   })
                 );
               }}
             >
-              {catName}
+              {category.name}
             </MenuItem>
-            {categories.map((category) => (
-              <MenuItem
-                value={category.id}
-                key={category.id}
-                onClick={() => {
-                  dispatch(
-                    // PagValueAction.changeValue({
-                    //   pagValue: 1,
-                    // }),
-                    CatValueAction.changeValue({
-                      catValue: category.id,
-                    })
-                  );
-                }}
-              >
-                {category.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box>
-    </Typography>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
   );
-}
+  //   return (
+  //     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+  //       <Box sx={{}}>
+  //         <FormControl fullWidth>
+  //           <InputLabel className={classes.root}>Category</InputLabel>
+  //           <Select
+  //             className={classes.root}
+  //             labelId="demo-simple-select-label"
+  //             id="demo-simple-select"
 
+  //             // onChange={handleChange}
+  //           >
+  //             <MenuItem
+  //               value={catName}
+  //               onClick={() => {
+  //                 dispatch(
+  //                   CatValueAction.changeValue({
+  //                     catValue: "",
+  //                   })
+  //                 );
+  //               }}
+  //             >
+  //               {catName}
+  //             </MenuItem>
+  //             {categories.map((category) => (
+  //               <MenuItem
+  //                 value={category.id}
+  //                 key={category.id}
+  //                 onClick={() => {
+  //                   dispatch(
+  //                     CatValueAction.changeValue({
+  //                       catValue: category.id,
+  //                     })
+  //                   );
+  //                 }}
+  //               >
+  //                 {category.name}
+  //               </MenuItem>
+  //             ))}
+  //           </Select>
+  //         </FormControl>
+  //       </Box>
+  //     </Typography>
+  //   );
+  // }
+}
 export default CategoryFilms;

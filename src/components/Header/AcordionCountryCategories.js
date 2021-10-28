@@ -1,7 +1,7 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
+// import Box from "@mui/material/Box";
+// import Typography from "@mui/material/Typography";
+// import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -27,19 +27,16 @@ function AcordionCountryCategories() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-
+  const [age, setAge] = React.useState("Movies");
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
   const onClickMovies = () => {
     dispatch(
       loadingURLAction.changeValue({
         loadingURL: POPULAR_MOVIES_API,
       })
     );
-    //   dispatch(
-    //     PagValueAction.changeValue({
-    //       pagValue: 1,
-    //     })
-    //   );
-    // };
     history.push(HOME_ROUTE);
   };
   const onClickTvShows = () => {
@@ -48,42 +45,59 @@ function AcordionCountryCategories() {
         loadingURL: POPULAR_TV_SHOWS_API,
       })
     );
-    //   dispatch(
-    //     PagValueAction.changeValue({
-    //       pagValue: 1,
-    //     })
-    //   );
-    // };
 
     history.push(HOME_ROUTE);
   };
 
   return (
-    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-      <Box sx={{ minWidth: 50 }}>
-        <FormControl fullWidth className={classes.root}>
-          <InputLabel className={classes.root} id="demo-simple-select-label">
-            Films
-          </InputLabel>
-          <Select
-            className={classes.root}
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            // value={age}
-            label="Films"
-            // onChange={handleChange}
-          >
-            <MenuItem value={10} onClick={onClickMovies}>
-              Movies
-            </MenuItem>
-            <MenuItem value={20} onClick={onClickTvShows}>
-              TV Shows
-            </MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-    </Typography>
+    <div>
+      <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <Select
+          value={age}
+          onChange={handleChange}
+          displayEmpty
+          inputProps={{ "aria-label": "Without label" }}
+        >
+          <MenuItem value="Movies" onClick={onClickMovies}>
+            Movies
+          </MenuItem>
+
+          <MenuItem value={"TV Shows"} onClick={onClickTvShows}>
+            TV Shows
+          </MenuItem>
+        </Select>
+      </FormControl>
+    </div>
   );
 }
+
+//   return (
+//     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+//       <Box sx={{ minWidth: 50 }}>
+//         <FormControl fullWidth className={classes.root}>
+//           <InputLabel className={classes.root} id="demo-simple-select-label">
+//             Films
+//           </InputLabel>
+//           <Select
+//             // className={classes.root}
+//             displayEmpty
+//             // id="demo-simple-select"
+//             // value={age}
+//             label="Films"
+//             // onChange={handleChange}
+//             inputProps={{ "aria-label": "Without label" }}
+//           >
+//             <MenuItem value={10} onClick={onClickMovies}>
+//               Movies
+//             </MenuItem>
+//             <MenuItem value={20} onClick={onClickTvShows}>
+//               TV Shows
+//             </MenuItem>
+//           </Select>
+//         </FormControl>
+//       </Box>
+//     </Typography>
+//   );
+// }
 
 export default AcordionCountryCategories;
