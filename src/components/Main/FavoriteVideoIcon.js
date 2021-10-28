@@ -16,6 +16,7 @@ import SelectedMovie from "../redux/SelectedMovie";
 import { SIGNIN_ROUTE } from "../../constants/routes";
 import { useHistory } from "react-router-dom";
 import VideoDeleteIcon from "./VideoDeleteIcon";
+import Login from "../Authenticataion/Login";
 
 const useStyles = makeStyles({
   icon: {
@@ -97,13 +98,9 @@ export default function FavoriteVideoIcon({ favMovie }) {
                 Please Login or Register to Add Movies/TV Shows to Your
                 Favorites List.
               </DialogContentText>
-            </DialogContent>
-            <DialogActions>
+              <Login />
               <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleLogin} autoFocus>
-                Login
-              </Button>
-            </DialogActions>
+            </DialogContent>
           </Dialog>
         </div>
       )}

@@ -53,6 +53,7 @@ export default function ComentsPage({ movie1 }) {
   const [loadingComentPage, setLoadingComentPage] = useState();
   const [isEmpty, setIsEmpty] = useState(true);
   const timestamp = Date.now();
+
   const newDataInComent = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "2-digit",
