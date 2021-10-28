@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { SIGNIN_ROUTE } from "../../constants/routes";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -7,6 +8,7 @@ import { useSelector } from "react-redux";
 import { doc, updateDoc, onSnapshot, getDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import { arrayUnion } from "@firebase/firestore";
+import firebase from "../../firebase";
 
 const useStyles = makeStyles({
   rootBtn: {
@@ -35,9 +37,12 @@ const useStyles = makeStyles({
     marginLeft: "22%",
     fontSize: "30px",
   },
+  spanTime: {
+    marginLeft: "20px",
+    color: "#C52D3D",
+    fontSize: "15px",
+  },
 });
-
-// const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function ComentsPage({ movie1 }) {
   const classes = useStyles();
@@ -47,26 +52,40 @@ export default function ComentsPage({ movie1 }) {
   const [commentValue, setCommentValue] = useState("");
   const [loadingComentPage, setLoadingComentPage] = useState();
   const [isEmpty, setIsEmpty] = useState(true);
+  const timestamp = Date.now();
+  const newDataInComent = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).format(timestamp);
 
   const onHandleChange = (event) => {
     setCommentValue(event.target.value);
   };
 
   async function onAddItem() {
-    const commentsRef = doc(firestore, `/comments/${movie1.id}`);
-    await updateDoc(commentsRef, {
-      movieComments: arrayUnion(commentValue),
-    });
+    if (comentUserName !== "") {
+      if (commentValue.trim() !== "") {
+        const commentsRef = doc(firestore, `/comments/${movie1.id}`);
+        await updateDoc(commentsRef, {
+          movieComments: arrayUnion({
+            displayName: comentUserName,
+            uId: comentUserId,
+            text: commentValue,
+            timeCreatedAt: newDataInComent,
+          }),
+        });
+      } else {
+        alert("Please enter the text");
+      }
+    } else {
+      history.push(SIGNIN_ROUTE);
+    }
+
     setCommentValue("");
-
-    // const documentSnapshot = onSnapshot(commentsRef, (doc) => {
-    //   // console.log(doc.data().movieComments);
-
-    //   setLoading(loading.concat(doc.data().movieComments));
-
-    //   // console.log("loading " + loading);
-    //   // console.log(doc.data().movieComments.length);
-    // });
   }
 
   useEffect(() => {
@@ -88,8 +107,13 @@ export default function ComentsPage({ movie1 }) {
         <div className={classes.divComentUsers}>
           {loadingComentPage.map((comment) => (
             <div>
-              <p>{comentUserName}</p>
-              <p className={classes.comentValueUser}>{comment}</p>
+              <p>{comment.displayName}</p>
+              <p className={classes.comentValueUser}>
+                {comment.text}
+                <span className={classes.spanTime}>
+                  {comment.timeCreatedAt}
+                </span>
+              </p>
             </div>
           ))}
         </div>
@@ -109,8 +133,6 @@ export default function ComentsPage({ movie1 }) {
         minRows={4}
         aria-label="maximum height"
         placeholder="Your Comment"
-        // defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-        //   ut labore et dolore magna aliqua."
         style={{ width: 400 }}
       />
       <Button onClick={onAddItem} className={classes.rootBtn} variant="text">
