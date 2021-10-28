@@ -1,13 +1,10 @@
-
-
 import ComentsPage from "./ComentsPage";
-
-import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@mui/styles';
-import { useSelector } from 'react-redux';
-import YouTube from 'react-youtube';
-import { useHistory } from 'react-router-dom';
-import {imgSrc} from '../../constants/constants'
+import React, { useEffect, useState } from "react";
+import { makeStyles } from "@mui/styles";
+import { useSelector } from "react-redux";
+import YouTube from "react-youtube";
+// import { useHistory } from 'react-router-dom';
+import { imgSrc } from "../../constants/constants";
 
 // import { HOME_ROUTE } from "../../constants/routes";
 // import { selectedMovieAction } from "../redux/SelectedMovie";
@@ -19,7 +16,6 @@ const opts = {
 };
 const useStyles = makeStyles({
   root: {
-    color: "red",
     minHeight: "800px",
     color: "white",
     "background-color": "#232A3E",
@@ -39,7 +35,7 @@ const VideoMoviePage = () => {
   const classes = useStyles();
   const [movieKey, setMovieKey] = useState();
   const [persons, setPersons] = useState([]);
-  const history = useHistory();
+  // const history = useHistory();
   // const dispatch = useDispatch();
   const movie = useSelector((state) => state.SelectedMovie.selectedMovie);
   // const isSelected = useSelector((state) => state.SelectedMovie.isSelected);
@@ -70,16 +66,14 @@ const VideoMoviePage = () => {
         setPersons(result.cast);
       });
     // dispatch(selectedMovieAction.isSelected());
-  }, []);
+  }, [movie.id]);
   return (
     <div className={classes.root}>
       <div className={classes.displayFlex}>
         <img
           className={classes.imgWidth}
-
           src={imgSrc + `${movie.poster_path}`}
-          alt="movie poster image"
-
+          alt="movie poster"
           loading="lazy"
         />
         <div

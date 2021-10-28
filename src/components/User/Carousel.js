@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { POPULAR_MOVIES_API } from '../../constants/APIs';
-import { POPULAR_TV_SHOWS_API } from '../../constants/APIs';
-import { makeStyles } from '@mui/styles';
-import Movie from '../Main/Movie';
-import {imgSrc} from '../../constants/constants'
+import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { POPULAR_MOVIES_API } from "../../constants/APIs";
+import { POPULAR_TV_SHOWS_API } from "../../constants/APIs";
+import { makeStyles } from "@mui/styles";
+import Movie from "../Main/Movie";
+import { imgSrc } from "../../constants/constants";
 
 const useStyles = makeStyles(() => {
   return {
     root: {
-      '& button:before': {
-        color: 'white !important',
+      "& button:before": {
+        color: "white !important",
       },
-      cursor: 'pointer',
-      width: '98%',
+      cursor: "pointer",
+      width: "98%",
     },
     header: {
-      color: 'white',
-      'font-weight': 400,
-      'font-size': '1.5rem',
-      'text-align': 'left',
-      'padding-left': '1.2rem',
-      'padding-top': '1rem',
+      color: "white",
+      "font-weight": 400,
+      "font-size": "1.5rem",
+      "text-align": "left",
+      "padding-left": "1.2rem",
+      "padding-top": "1rem",
     },
   };
 });
@@ -59,17 +59,14 @@ const Carousel = () => {
   };
 
   return (
-    <div >
+    <div>
       <h2 className={classes.header}>Explore Popular Movies</h2>
       <Slider {...settings} className={classes.root}>
         {popularMovies.map((movie) => (
-          <Movie
-            movie={movie}
-            key={movie.id}
-          >
+          <Movie movie={movie} key={movie.id}>
             <img
               src={imgSrc + movie.poster_path}
-              alt="movie image poster"
+              alt="movie poster"
               loading="lazy"
             />
           </Movie>
@@ -79,13 +76,10 @@ const Carousel = () => {
       <h2 className={classes.header}>Explore Popular TV Shows</h2>
       <Slider {...settings} className={classes.root}>
         {popularTvShows.map((movie) => (
-          <Movie
-            movie={movie}
-            key={movie.id}
-          >
+          <Movie movie={movie} key={movie.id}>
             <img
               src={imgSrc + movie.poster_path}
-              alt="movie image poster"
+              alt="movie poster"
               loading="lazy"
             />
           </Movie>
