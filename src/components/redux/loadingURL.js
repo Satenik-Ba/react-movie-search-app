@@ -10,7 +10,6 @@ const loadingURL = createSlice({
   initialState,
   reducers: {
     changeValue(state, action) {
-      debugger;
       state.loadingURL = action.payload.loadingURL;
     },
   },
