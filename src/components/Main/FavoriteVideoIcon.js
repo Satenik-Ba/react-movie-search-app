@@ -14,8 +14,13 @@ import { arrayUnion } from "@firebase/firestore";
 import { useSelector } from "react-redux";
 import { SIGNIN_ROUTE } from "../../constants/routes";
 import { useHistory } from "react-router-dom";
-// import SelectedMovie from "../redux/SelectedMovie";
+
+import VideoDeleteIcon from "./VideoDeleteIcon";
+import Login from "../Authenticataion/Login";
+
+ import SelectedMovie from "../redux/SelectedMovie";
 // import VideoDeleteIcon from "./VideoDeleteIcon";
+
 
 const useStyles = makeStyles({
   icon: {
@@ -96,13 +101,9 @@ export default function FavoriteVideoIcon({ favMovie }) {
                 Please Login or Register to Add Movies/TV Shows to Your
                 Favorites List.
               </DialogContentText>
-            </DialogContent>
-            <DialogActions>
+              <Login />
               <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleLogin} autoFocus>
-                Login
-              </Button>
-            </DialogActions>
+            </DialogContent>
           </Dialog>
         </div>
       )}

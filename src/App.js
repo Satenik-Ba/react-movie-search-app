@@ -32,6 +32,7 @@ function App() {
             userId: user.uid,
           })
         );
+
       }
       //  else {
       //   console.log('NO USER IS SIGNED IN ');
@@ -44,7 +45,6 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
       <Switch>
         <Route path={SIGNIN_ROUTE}>
           <Auth />
@@ -53,6 +53,7 @@ function App() {
           <Auth />
         </Route>
         <Route path={HOME_ROUTE} exact>
+          <Header />
           <MainPage />
         </Route>
         {isAuthenticated && (
@@ -61,6 +62,7 @@ function App() {
           </Route>
         )}
         <Route path={VIDEO_PAGE}>
+          <Header />
           <VideoMoviePage />
         </Route>
         <Redirect to={HOME_ROUTE}></Redirect>

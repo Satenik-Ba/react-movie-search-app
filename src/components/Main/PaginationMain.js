@@ -8,9 +8,9 @@ import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
-    width: "32%",
+    width: "33.5%",
     margin: "auto",
-    backgroundColor: "#9826AB",
+    backgroundColor: "#BF3B7C",
   },
 });
 
@@ -34,8 +34,8 @@ export default function PaginationMain() {
         <Pagination
           page={pagValue}
           defaultPage={1}
-          count={99}
-          color="secondary"
+          count={500}
+          color="standard"
           size="large"
           onChange={handleChange}
         />

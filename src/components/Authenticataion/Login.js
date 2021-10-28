@@ -1,62 +1,62 @@
-import React, { useRef, useState } from 'react';
-import { REGISTER_ROUTE, HOME_ROUTE } from '../../constants/routes';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import Alert from '@mui/material/Alert';
-import FormGroup from '@mui/material/FormGroup';
-import Box from '@mui/material/Box';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import { makeStyles } from '@mui/styles';
+import React, { useRef, useState } from "react";
+import { REGISTER_ROUTE, HOME_ROUTE } from "../../constants/routes";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
+import Alert from "@mui/material/Alert";
+import FormGroup from "@mui/material/FormGroup";
+import Box from "@mui/material/Box";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    'margin-top': 'auto',
-    'margin-bottom': 'auto',
-    '& a': {
-      textDecoration: 'none', 
-      color: '#171c2c', 
-      fontSize: '1.15rem',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    "margin-top": "auto",
+    "margin-bottom": "auto",
+    "& a": {
+      textDecoration: "none",
+      color: "#171c2c",
+      fontSize: "1.15rem",
       fontWeight: 700,
-      '&:hover': {
-        color: '#7b84a4',
+      "&:hover": {
+        color: "#7b84a4",
         fontWeight: 400,
-      }
-    }
+      },
+    },
   },
   button: {
-    backgroundColor: '#171c2c',
-    alignSelf: 'center',
-    width: '25rem',
-    fontSize: '1.2rem',
-    color: 'white',
-    height: '3.5rem',
-    borderRadius: '4px',
-    '&:hover': {
-      backgroundColor: '#7b84a4',
+    backgroundColor: "#171c2c",
+    alignSelf: "center",
+    width: "25rem",
+    fontSize: "1.2rem",
+    color: "white",
+    height: "3.5rem",
+    borderRadius: "4px",
+    "&:hover": {
+      backgroundColor: "#7b84a4",
     },
   },
   heading: {
-    color: '#171c2c',
+    color: "#171c2c",
     fontWeight: 600,
   },
   footer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'left',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "left",
   },
   span: {
-    fontSize: '1.15rem',
-    textDecoration: 'none',
-    padding: '1rem',
-    color: 'black',
+    fontSize: "1.15rem",
+    textDecoration: "none",
+    padding: "1rem",
+    color: "black",
     // '& a': {
     //   textDecoration: 'none',
     //   color: '#14213d',
@@ -68,7 +68,7 @@ const Login = () => {
   const classes = useStyles();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const history = useHistory();
   const auth = getAuth();
   function login(email, password) {
@@ -81,7 +81,7 @@ const Login = () => {
 
   async function handleSignIn(e) {
     e.preventDefault();
-    setError('');
+    setError("");
     try {
       await signInWithEmailAndPassword(
         auth,
@@ -91,17 +91,17 @@ const Login = () => {
       history.push(HOME_ROUTE);
     } catch (error) {
       switch (error.code) {
-        case 'auth/user-not-found':
+        case "auth/user-not-found":
           return setError(
-            'User not found. Please enter a valid email address.'
+            "User not found. Please enter a valid email address."
           );
           break;
-        case 'auth/wrong-password':
-          return setError('Wrong Password.');
+        case "auth/wrong-password":
+          return setError("Wrong Password.");
           break;
         default:
           return setError(
-            'Invalid email or password. Please enter a correct email and/or password'
+            "Invalid email or password. Please enter a correct email and/or password"
           );
       }
     }
@@ -110,7 +110,7 @@ const Login = () => {
     <div className={classes.root}>
       <Box
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '25rem' },
+          "& .MuiTextField-root": { m: 1, width: "25rem" },
         }}
       >
         <FormControl component="form" onSubmit={handleSignIn} margin="normal">
@@ -143,16 +143,23 @@ const Login = () => {
           </FormGroup>
           <div className={classes.footer}>
             <Link>Forgot Password?</Link>
-            </div>
+          </div>
 
-            <div className={classes.span}>
-              New to ArmFlix?{' '}
-              <span>
-                <Link to={REGISTER_ROUTE}>Sign Up Now</Link>
-              </span>
-            </div>
+          <div className={classes.span}>
+            New to ArmFlix?{" "}
+            <span>
+              <Link to={REGISTER_ROUTE}>Sign Up Now</Link>
+            </span>
+          </div>
         </FormControl>
       </Box>
+      <button
+        onClick={() => {
+          history.push(HOME_ROUTE);
+        }}
+      >
+        Go To Home
+      </button>
     </div>
   );
 };
