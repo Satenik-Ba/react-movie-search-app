@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { makeStyles } from "@mui/styles";
+import { SIGNIN_ROUTE } from "../../constants/routes";
 
 const useStyles = makeStyles({
   root: {
@@ -88,7 +89,10 @@ const Login = () => {
         emailRef.current.value,
         passwordRef.current.value
       );
-      history.push(HOME_ROUTE);
+
+      if (history.location.pathname == SIGNIN_ROUTE) {
+        history.push(HOME_ROUTE);
+      }
     } catch (error) {
       switch (error.code) {
         case "auth/user-not-found":
