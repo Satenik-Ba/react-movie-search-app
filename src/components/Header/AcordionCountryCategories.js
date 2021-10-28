@@ -12,7 +12,7 @@ import { POPULAR_MOVIES_API } from "../../constants/APIs";
 import { loadingURLAction } from "../redux/loadingURL";
 import { useHistory } from "react-router-dom";
 import { HOME_ROUTE } from "../../constants/routes";
-import { PagValueAction } from "../redux/pageValue";
+// import { PagValueAction } from "../redux/pageValue";
 
 const useStyles = makeStyles(() => {
   return {

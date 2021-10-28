@@ -10,7 +10,6 @@ const useStyles = makeStyles({
 });
 
 export default function ReitingVideoStars(props) {
-  console.log(props);
   const classes = useStyles();
   return (
     <Stack spacing={1}>
