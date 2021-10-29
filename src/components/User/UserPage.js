@@ -1,44 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { makeStyles } from "@mui/styles";
-import Carousel from "./Carousel";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import ImageListItem from "@mui/material/ImageListItem";
-import noMovie from "../images/noMovie.jpg";
-import { doc, onSnapshot } from "firebase/firestore";
-import { firestore } from "../../firebase";
-import Movie from "../Main/Movie";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { makeStyles } from '@mui/styles';
+import Carousel from './Carousel';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import ImageListItem from '@mui/material/ImageListItem';
+import noMovie from '../images/noMovie.jpg';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { firestore } from '../../firebase';
+import Movie from '../Main/Movie';
+import { useDispatch } from 'react-redux';
 // import { favoriteMovieAction } from '../redux/FavoriteMovie';
 const useStyles = makeStyles({
   root: {
-    backgroundColor: "#232A3E",
-    color: "white",
-    "& button:before": {
-      color: "white !important",
+    backgroundColor: '#232A3E',
+    color: 'white',
+    '& button:before': {
+      color: 'white !important',
     },
-    cursor: "pointer",
+    cursor: 'pointer',
   },
   header: {
-    color: "white",
-    "font-weight": 400,
-    "font-size": "1.5rem",
-    "text-align": "left",
-    "padding-left": "1.2rem",
-    "padding-top": "5.5rem",
+    color: 'white',
+    'font-weight': 400,
+    'font-size': '1.5rem',
+    'text-align': 'left',
+    'padding-left': '1.2rem',
+    'padding-top': '5.5rem',
   },
   secondHeader: {
-    color: "white",
-    "font-weight": 400,
-    "font-size": "1.5rem",
-    "text-align": "left",
-    "padding-left": "1.2rem",
-    "padding-top": "1rem",
+    color: 'white',
+    'font-weight': 400,
+    'font-size': '1.5rem',
+    'text-align': 'left',
+    'padding-left': '1.2rem',
+    'padding-top': '1rem',
   },
   bottomMargin: {
-    marginBottom: "1.5rem",
+    marginBottom: '1.5rem',
   },
 });
 
@@ -46,7 +46,7 @@ function UserPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [favMovieIsEmpty, setFavMovieIsEmpty] = useState(true);
-  const [slidesToShow, setSlidesToShow] = useState(2);
+  const [slidesToShow, setSlidesToShow] = useState(1);
   const [userFavMovies, setUserFavMovies] = useState();
   const currentUserId = useSelector((state) => state.userInfo.userId);
 
@@ -63,13 +63,25 @@ function UserPage() {
   useEffect(() => {
     const documentRef = doc(firestore, `/users/${currentUserId}`);
     onSnapshot(documentRef, (doc) => {
-      if (doc.data().favoriteMovies.length >= 1) {
+      if (doc.data().favoriteMovies) {
         setUserFavMovies(doc.data().favoriteMovies);
-        setFavMovieIsEmpty(false);
+        setFavMovieIsEmpty(false); 
       } else {
         setFavMovieIsEmpty(true);
       }
-      if (doc.data().favoriteMovies.length >= 4) {
+      if (doc.data().favoriteMovies && doc.data().favoriteMovies.length >= 1) {
+        setSlidesToShow(1);
+      }
+      if (doc.data().favoriteMovies && doc.data().favoriteMovies.length >= 2) {
+        setSlidesToShow(2);
+      }
+      if (doc.data().favoriteMovies && doc.data().favoriteMovies.length >= 3) {
+        setSlidesToShow(3);
+      }
+      if (doc.data().favoriteMovies && doc.data().favoriteMovies.length >= 4) {
+        setSlidesToShow(4);
+      }
+      if (doc.data().favoriteMovies && doc.data().favoriteMovies.length >= 5) {
         setSlidesToShow(5);
       }
     });
@@ -96,10 +108,10 @@ function UserPage() {
             <h1 className={classes.header}>Your Favorites List is Empty</h1>
             <ImageListItem
               sx={{
-                width: "17vw !important",
-                height: "18rem !important",
-                padding: "1px !important",
-                lineHeight: "1.3 !important",
+                width: '17vw !important',
+                height: '18rem !important',
+                padding: '1px !important',
+                lineHeight: '1.3 !important',
               }}
             >
               <img src={noMovie} alt="empty movie poster" loading="lazy" />

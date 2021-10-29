@@ -3,6 +3,7 @@ import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
+import CloseIcon from '@mui/icons-material/Close';
 import { makeStyles } from "@mui/styles";
 import { useHistory } from "react-router-dom";
 import { HOME_ROUTE } from "../../constants/routes";
@@ -20,6 +21,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
+    position: "relative",
     "margin-top": "auto",
     "margin-bottom": "auto",
   },
@@ -42,7 +44,15 @@ const useStyles = makeStyles({
     color: "#171c2c",
     fontWeight: 600,
   },
-  errorAlert: {},
+  closeIcon: {
+    position: "absolute",
+    top: "15px",
+    right: "15px"
+  }, 
+  errorAlert: {
+    marginBottom: '0.5rem',
+    marginTop: '0.5rem'
+  },
 });
 
 const Register = () => {
@@ -168,13 +178,15 @@ const Register = () => {
           </button>
         </FormControl>
       </Box>
-      <button
+      <CloseIcon
+      className = {classes.closeIcon}
+      fontSize="large"
         onClick={() => {
           history.push(HOME_ROUTE);
         }}
       >
         Go To Home
-      </button>
+      </CloseIcon>
     </div>
   );
 };
