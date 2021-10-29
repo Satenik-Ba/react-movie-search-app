@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import FormGroup from "@mui/material/FormGroup";
 import Box from "@mui/material/Box";
+import CloseIcon from '@mui/icons-material/Close';
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { makeStyles } from "@mui/styles";
@@ -19,6 +20,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
+    position: "relative", 
     "margin-top": "auto",
     "margin-bottom": "auto",
     "& a": {
@@ -53,6 +55,11 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "left",
   },
+  closeIcon: {
+    position: "absolute",
+    top: "15px",
+    right: "15px"
+  }, 
   span: {
     fontSize: "1.15rem",
     textDecoration: "none",
@@ -157,13 +164,15 @@ const Login = () => {
           </div>
         </FormControl>
       </Box>
-      <button
+      <CloseIcon
+      fontSize="large"
+      className = {classes.closeIcon}
         onClick={() => {
           history.push(HOME_ROUTE);
         }}
       >
         Go To Home
-      </button>
+      </CloseIcon>
     </div>
   );
 };
