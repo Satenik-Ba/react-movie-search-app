@@ -33,8 +33,8 @@ const useStyles = makeStyles({
   },
   closeIcon: {
     position: 'absolute',
-    top: '15px',
-    right: '15px',
+    top: '58px',
+    right: '56px',
   },
 });
 
@@ -94,17 +94,17 @@ export default function FavoriteVideoIcon({ favMovie }) {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
           >
-            <DialogContent>
+            <DialogContent >
               <DialogContentText id="alert-dialog-description">
                 Please Login or Register to Add Movies/TV Shows to Your
                 Favorites List.
               </DialogContentText>
               <Login />
-              {/* <CloseIcon
+              <CloseIcon
                 fontSize="large"
                 className={classes.closeIcon}
                 onClick={handleClose}
-              /> */}
+              />
             </DialogContent>
           </Dialog>
         </div>
