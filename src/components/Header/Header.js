@@ -63,7 +63,6 @@ const useStyles = makeStyles(() => {
       "text-decoration": "none",
       color: "white",
       "font-size": "1.15rem",
-      "padding-right": "2rem",
     },
     "& a": {
       "&:hover": {
@@ -75,13 +74,9 @@ const useStyles = makeStyles(() => {
 
 function Header() {
   const classes = useStyles();
-  // const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.userInfo.isAuthenticated);
-  // const dispatch = useDispatch();
 
-  // const handleHomeClick = () => {
-  //   dispatch(CatValueAction.resetCatValue());
-  // };
+  const isAuth = useSelector((state) => state.userInfo.isAuthenticated);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar className={classes.filmsAppBar} position="fixed">
@@ -89,7 +84,6 @@ function Header() {
           <Link
             className={classes.logo}
             onClick={() => document.location.assign(HOME_ROUTE)}
-            // to={HOME_ROUTE}
           >
             <img src={logo} alt="Logo" />
             <p className={classes.logoP}>
