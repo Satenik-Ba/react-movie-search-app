@@ -62,7 +62,7 @@ function CategoryFilms() {
               );
             }}
           >
-            Category\ies
+            Categories
           </MenuItem>
           {categories.map((category) => (
             <MenuItem
