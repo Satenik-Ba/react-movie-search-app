@@ -32,7 +32,6 @@ function App() {
             userId: user.uid,
           })
         );
-
       }
       //  else {
       //   console.log('NO USER IS SIGNED IN ');
@@ -58,6 +57,7 @@ function App() {
         </Route>
         {isAuthenticated && (
           <Route path={USER_PAGE}>
+            <Header />
             <UserPage />
           </Route>
         )}

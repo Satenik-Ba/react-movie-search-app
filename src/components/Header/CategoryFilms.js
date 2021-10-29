@@ -44,8 +44,9 @@ function CategoryFilms() {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
+      <FormControl sx={{ m: 1, minWidth: 220 }}>
         <Select
+          className={classes.root}
           value={age}
           onChange={handleChange}
           displayEmpty
