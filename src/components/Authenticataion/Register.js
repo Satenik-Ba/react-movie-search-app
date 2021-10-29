@@ -3,7 +3,6 @@ import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
-import CloseIcon from '@mui/icons-material/Close';
 import { makeStyles } from "@mui/styles";
 import { useHistory } from "react-router-dom";
 import { HOME_ROUTE } from "../../constants/routes";
@@ -12,7 +11,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { doc, setDoc, collection } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 
 const useStyles = makeStyles({
@@ -172,21 +171,11 @@ const Register = () => {
               {error}
             </Alert>
           )}
-
           <button className={classes.button} disabled={loading} type="submit">
             Register
           </button>
         </FormControl>
       </Box>
-      <CloseIcon
-      className = {classes.closeIcon}
-      fontSize="large"
-        onClick={() => {
-          history.push(HOME_ROUTE);
-        }}
-      >
-        Go To Home
-      </CloseIcon>
     </div>
   );
 };

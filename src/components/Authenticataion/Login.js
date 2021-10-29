@@ -65,11 +65,6 @@ const useStyles = makeStyles({
     textDecoration: "none",
     padding: "1rem",
     color: "black",
-    // '& a': {
-    //   textDecoration: 'none',
-    //   color: '#14213d',
-    //   fontWeight: 700,
-    // },
   },
 });
 const Login = () => {
@@ -164,15 +159,6 @@ const Login = () => {
           </div>
         </FormControl>
       </Box>
-      <CloseIcon
-      fontSize="large"
-      className = {classes.closeIcon}
-        onClick={() => {
-          history.push(HOME_ROUTE);
-        }}
-      >
-        Go To Home
-      </CloseIcon>
     </div>
   );
 };

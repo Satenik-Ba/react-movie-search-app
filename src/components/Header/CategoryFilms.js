@@ -1,7 +1,4 @@
 import React, { useEffect } from "react";
-// import Box from "@mui/material/Box";
-// import Typography from "@mui/material/Typography";
-// import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -9,9 +6,6 @@ import { makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { CatValueAction } from "../redux/categoryValue";
 import { CATEGORIES_MOVIES_API } from "../../constants/APIs";
-
-import PagValueAction from "../redux/pageValue";
-
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(() => {
@@ -22,8 +16,6 @@ const useStyles = makeStyles(() => {
     },
   };
 });
-
-// export let selectedId = 0;
 
 function CategoryFilms() {
   const classes = useStyles();

@@ -35,16 +35,7 @@ const VideoMoviePage = () => {
   const classes = useStyles();
   const [movieKey, setMovieKey] = useState();
   const [persons, setPersons] = useState([]);
-  // const history = useHistory();
-  // const dispatch = useDispatch();
   const movie = useSelector((state) => state.SelectedMovie.selectedMovie);
-  // const isSelected = useSelector((state) => state.SelectedMovie.isSelected);
-  const acters = persons.filter(
-    (person) => person.known_for_department === "Acting"
-  );
-  const directors = persons.filter(
-    (person) => person.known_for_department === "Directing"
-  );
 
   useEffect(() => {
     fetch(
@@ -54,7 +45,7 @@ const VideoMoviePage = () => {
     )
       .then((response) => response.json())
       .then((result) => {
-        setMovieKey(result.results);
+        setMovieKey(result.results[0]);
       });
     fetch(
       "https://api.themoviedb.org/3/movie/" +
@@ -67,6 +58,12 @@ const VideoMoviePage = () => {
       });
     // dispatch(selectedMovieAction.isSelected());
   }, [movie.id]);
+  const acters = persons.filter(
+    (person) => person.known_for_department === "Acting"
+  );
+  const directors = persons.filter(
+    (person) => person.known_for_department === "Directing"
+  );
   return (
     <div className={classes.root}>
       <div className={classes.displayFlex}>

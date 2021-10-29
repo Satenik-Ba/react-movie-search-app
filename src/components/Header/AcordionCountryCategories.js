@@ -1,7 +1,4 @@
 import * as React from "react";
-// import Box from "@mui/material/Box";
-// import Typography from "@mui/material/Typography";
-// import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -12,7 +9,6 @@ import { POPULAR_MOVIES_API } from "../../constants/APIs";
 import { loadingURLAction } from "../redux/loadingURL";
 import { useHistory } from "react-router-dom";
 import { HOME_ROUTE } from "../../constants/routes";
-// import { PagValueAction } from "../redux/pageValue";
 
 const useStyles = makeStyles(() => {
   return {
