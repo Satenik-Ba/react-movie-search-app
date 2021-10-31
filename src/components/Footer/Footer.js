@@ -16,7 +16,8 @@ const useStyles = makeStyles(() => {
       width: "100%",
       height: "50",
       margin: "auto",
-      padding: "20px",
+      padding: "30px",
+      paddingTop: "40px !important",
       color: "grey",
       "&:hover": {
         color: "white",
@@ -37,7 +38,6 @@ const useStyles = makeStyles(() => {
       },
     },
     href: {
-      width: "10%",
       fontSize: "16px",
       background: "#323332",
       border: "none",
@@ -57,7 +57,7 @@ function Footer() {
   const classes = useStyles();
 
   return (
-    <div style={{ backgroundColor: "#171C2C" }}>
+    <div style={{ backgroundColor: "#222222" }}>
       <Grid>
         <FacebookIcon className={classes.root} />
         <InstagramIcon className={classes.root} />

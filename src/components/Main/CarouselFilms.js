@@ -14,13 +14,13 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#BF3B7C !important",
+      backgroundColor: "#C52D3D !important",
       color: "white !important",
     },
     caruselFilmsParent: {
-      width: "83%",
+      width: "60%",
       margin: "auto",
-      paddingTop: "115px",
+      paddingTop: "65px",
     },
   };
 });
@@ -99,7 +99,7 @@ function CarouselFilms() {
                 <Box
                   component="img"
                   sx={{
-                    height: 410,
+                    maxHeight: 400,
                     display: "block",
                     overflow: "hidden",
                     width: "100%",

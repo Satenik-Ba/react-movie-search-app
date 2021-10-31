@@ -13,8 +13,9 @@ import { HOME_ROUTE } from "../../constants/routes";
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#171c2c !important",
+      backgroundColor: "#C32D3D!important",
       color: "#d1d2d6 !important",
+      borderRadius: "15px !important",
     },
   };
 });
@@ -47,7 +48,7 @@ function AcordionCountryCategories() {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 240 }}>
+      <FormControl sx={{ m: 1, minWidth: 200 }}>
         <Select
           className={classes.root}
           value={age}

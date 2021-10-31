@@ -8,9 +8,7 @@ import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
-    width: "33.5%",
-    margin: "auto",
-    backgroundColor: "#BF3B7C",
+    backgroundColor: "#C52D3D",
   },
 });
 
@@ -29,17 +27,21 @@ export default function PaginationMain() {
   };
 
   return (
-    <div className={classes.root}>
-      <Stack>
-        <Pagination
-          page={pagValue}
-          defaultPage={1}
-          count={500}
-          color="standard"
-          size="large"
-          onChange={handleChange}
-        />
-      </Stack>
-    </div>
+    // <div className={classes.root}>
+    <Stack sx={{ padding: "30px" }}>
+      <Pagination
+        page={pagValue}
+        defaultPage={1}
+        count={500}
+        color="standard"
+        size="large"
+        sx={{
+          backgroundColor: "#C52D3D",
+          margin: "auto",
+        }}
+        onChange={handleChange}
+      />
+    </Stack>
+    // </div>
   );
 }

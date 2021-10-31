@@ -54,11 +54,13 @@ function App() {
         <Route path={HOME_ROUTE} exact>
           <Header />
           <MainPage />
+          <Footer />
         </Route>
         {isAuthenticated && (
           <Route path={USER_PAGE}>
             <Header />
             <UserPage />
+            <Footer />
           </Route>
         )}
         <Route path={VIDEO_PAGE}>
@@ -67,7 +69,6 @@ function App() {
         </Route>
         <Redirect to={HOME_ROUTE}></Redirect>
       </Switch>
-      <Footer />
     </div>
   );
 }

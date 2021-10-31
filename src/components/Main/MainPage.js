@@ -6,13 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import PaginationMain from "./PaginationMain";
 import { POPULAR_MOVIES_API } from "../../constants/APIs";
 import { PagValueAction } from "../redux/pageValue";
+import AcordionCountryCategories from "../Header/AcordionCountryCategories";
+import CategoryFilms from "../Header/CategoryFilms";
 
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#232A3E",
+      backgroundColor: "#1F1F1F",
       color: "#D1D2D6",
-      paddingBottom: "40px",
+      paddingTop: "50px",
+    },
+    disFlex: {
+      display: "flex",
+      justifyContent: "center",
     },
   };
 });
@@ -73,9 +79,21 @@ function MainPage() {
       </div>
 
       {loadingURL === POPULAR_MOVIES_API ? (
-        <h2 className={classes.root}>Featured Movies</h2>
+        <>
+          <h2 className={classes.root}>Featured Movies</h2>
+          <div className={classes.disFlex}>
+            <AcordionCountryCategories />
+            <CategoryFilms />
+          </div>
+        </>
       ) : (
-        <h2 className={classes.root}>Featured TV Shows</h2>
+        <>
+          <h2 className={classes.root}>Featured Tv Shows</h2>
+          <div className={classes.disFlex}>
+            <AcordionCountryCategories />
+            <CategoryFilms />
+          </div>
+        </>
       )}
 
       {filmResult.map((movie) => (
