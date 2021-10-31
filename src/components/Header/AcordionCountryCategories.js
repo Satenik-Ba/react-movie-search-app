@@ -9,6 +9,7 @@ import { POPULAR_MOVIES_API } from "../../constants/APIs";
 import { loadingURLAction } from "../redux/loadingURL";
 import { useHistory } from "react-router-dom";
 import { HOME_ROUTE } from "../../constants/routes";
+import { movieOrTVAction } from "../redux/movieOrTV";
 
 const useStyles = makeStyles(() => {
   return {
@@ -34,6 +35,11 @@ function AcordionCountryCategories() {
         loadingURL: POPULAR_MOVIES_API,
       })
     );
+    dispatch(
+      movieOrTVAction.changeValue({
+        movieOrTV: "movie",
+      })
+    );
     history.push(HOME_ROUTE);
   };
   const onClickTvShows = () => {
@@ -42,7 +48,11 @@ function AcordionCountryCategories() {
         loadingURL: POPULAR_TV_SHOWS_API,
       })
     );
-
+    dispatch(
+      movieOrTVAction.changeValue({
+        movieOrTV: "tv",
+      })
+    );
     history.push(HOME_ROUTE);
   };
 

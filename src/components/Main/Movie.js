@@ -47,12 +47,12 @@ const Movie = ({ movie, deleteIcon }) => {
     }
   });
   const handleMovieClick = () => {
-    dispatch(
-      selectedMovieAction.changeMovie({
-        selectedMovie: movie,
-      })
-    );
-
+    // dispatch(
+    //   selectedMovieAction.changeMovie({
+    //     selectedMovie: movie,
+    //   })
+    // );
+    localStorage.setItem("movieStor", JSON.stringify(movie));
     history.push(VIDEO_PAGE);
   };
 

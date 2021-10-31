@@ -2,8 +2,11 @@ import React from "react";
 import { AppBar } from "@mui/material";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
+
 import { useSelector } from "react-redux";
 import Toolbar from "@mui/material/Toolbar";
+// import Typography from '@mui/material/Typography';
+
 import Button from "@mui/material/Button";
 import AcordionCountryCategories from "./AcordionCountryCategories";
 import logo from "../images/filmLogo.png";
@@ -16,6 +19,7 @@ import {
   USER_PAGE,
 } from "../../constants/routes";
 import { Link } from "react-router-dom";
+
 
 import UserAvatar from "./UserAvatar";
 import { useDispatch } from "react-redux";
@@ -68,18 +72,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
+
+// import { useDispatch } from 'react-redux';
+// import { CatValueAction } from '../redux/categoryValue';
+
+
 const useStyles = makeStyles(() => {
   return {
     root: {
       cursor: "pointer",
     },
     filmsAppBar: {
+
       backgroundColor: "#222222 !important",
       color: "#d1d2d6 !important",
       maxHeight: "69px !important",
     },
     logo: {
       maxWidth: "250px",
+
       display: "flex",
       textAlign: "center",
       fontSize: "23px",
@@ -90,6 +102,7 @@ const useStyles = makeStyles(() => {
       color: "white",
     },
     logoSpanOne: {
+
       color: "#C52D3D",
     },
     logoSpanTwo: {
@@ -104,6 +117,7 @@ const useStyles = makeStyles(() => {
       marginRight: "5px !important",
       borderRadius: "15px !important",
       fontWeight: "bold !important",
+
     },
     registerBtn: {
       backgroundColor: "blue !important",
@@ -116,12 +130,14 @@ const useStyles = makeStyles(() => {
     },
     myList: {
       "text-decoration": "none",
+
       color: "#C52D3D",
       backgroundColor: "#212121",
       borderRadius: "8px",
       "font-size": "1.15rem",
       marginTop: "18px",
       fontWeight: "bold",
+
     },
     "& a": {
       "&:hover": {

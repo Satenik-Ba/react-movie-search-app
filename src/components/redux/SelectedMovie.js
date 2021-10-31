@@ -1,23 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+// import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  selectedMovie: {},
-  isSelected: false,
-};
+// const initialState = {
+//   selectedMovie: {},
+//   isSelected: false,
+// };
 
-const SelectedMovie = createSlice({
-  name: "selectedMovie",
-  initialState,
-  reducers: {
-    changeMovie(state, action) {
-      state.selectedMovie = action.payload.selectedMovie;
-      state.isSelected = true;
-    },
-    isSelected(state) {
-      state.isSelected = false;
-    },
-  },
-});
+// const SelectedMovie = createSlice({
+//   name: "selectedMovie",
+//   initialState,
+//   reducers: {
+//     changeMovie(state, action) {
+//       state.selectedMovie = action.payload.selectedMovie;
+//       state.isSelected = true;
+//     },
+//     isSelected(state) {
+//       state.isSelected = false;
+//     },
+//   },
+// });
 
-export const selectedMovieAction = SelectedMovie.actions;
-export default SelectedMovie.reducer;
+// export const selectedMovieAction = SelectedMovie.actions;
+// export default SelectedMovie.reducer;
