@@ -10,9 +10,9 @@ import ReitingVideoStars from "./ReitingVideoStars";
 // import VideoMoviePage from "./VideoMoviePage";
 import { VIDEO_PAGE } from "../../constants/routes";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 // import { useSelector } from "react-redux";
-import { selectedMovieAction } from "../redux/SelectedMovie";
+// import { selectedMovieAction } from "../redux/SelectedMovie";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import { imgSrc } from "../../constants/constants";
@@ -40,7 +40,7 @@ const useStyles = makeStyles({
 const Movie = ({ movie, deleteIcon }) => {
   const classes = useStyles();
   const history = useHistory();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const comentUserName = useSelector((state) => state.userInfo.userName);
   const commentsRef = doc(firestore, `/comments/${movie.id}`);
   getDoc(commentsRef).then((docSnap) => {

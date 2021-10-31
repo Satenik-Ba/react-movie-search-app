@@ -37,7 +37,7 @@ function MainPage() {
           featuredMovie.genre_ids.includes(+catVal)
         )
       : filtredMovies;
-  }, [catVal, filtredMovies, featuredMovies]);
+  }, [catVal, filtredMovies]);
   useEffect(() => {
     fetch(loadingURL + pagValue)
       .then((response) => response.json())
@@ -63,7 +63,7 @@ function MainPage() {
         pagValue: 1,
       })
     );
-  }, [loadingURL]);
+  }, [loadingURL, dispatch]);
 
   // console.log("serchName " + searchedName);
 
