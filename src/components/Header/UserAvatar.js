@@ -38,10 +38,10 @@ function UserAvatar() {
   };
 
   return (
-    <div  className={classes.root}>
+    <div className={classes.root}>
       <Box sx={{ flexGrow: 1 }}>
         <Toolbar>
-          <span>Hello {userName} </span>
+          <span> {userName} </span>
           <div>
             <IconButton
               aria-label="account of current user"
@@ -68,7 +68,7 @@ function UserAvatar() {
               onClose={handleClose}
             >
               <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
-              {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
+
               <MenuItem>
                 <Logout />
               </MenuItem>

@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => {
       "& button:before": {
         color: "white !important",
       },
+
       cursor: "pointer",
       width: "98%",
     },
