@@ -43,7 +43,8 @@ function MainPage() {
       .then((response) => response.json())
       .then((result) => {
         setFeaturedMovies(result.results);
-      });
+      })
+      .catch((err) => alert(err));
   }, [loadingURL, pagValue]);
 
   useEffect(() => {

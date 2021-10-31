@@ -36,25 +36,34 @@ const VideoMoviePage = () => {
   const [movieKey, setMovieKey] = useState();
   const [persons, setPersons] = useState([]);
   const movie = useSelector((state) => state.SelectedMovie.selectedMovie);
+  const movieOrTV = useSelector((state) => state.movieOrTV.movieOrTV);
 
   useEffect(() => {
     fetch(
-      "https://api.themoviedb.org/3/movie/" +
+      "https://api.themoviedb.org/3/" +
+        `${movieOrTV}` +
+        "/" +
         `${movie.id}` +
         "/videos?api_key=6241e31f828487ad21497bc364be7041"
     )
       .then((response) => response.json())
       .then((result) => {
         setMovieKey(result.results[0]);
-      });
+      })
+      .catch((err) => alert(err));
     fetch(
-      "https://api.themoviedb.org/3/movie/" +
+      "https://api.themoviedb.org/3/" +
+        `${movieOrTV}` +
+        "/" +
         `${movie.id}` +
         "/credits?api_key=6241e31f828487ad21497bc364be7041&language=en-US"
     )
       .then((response) => response.json())
       .then((result) => {
-        setPersons(result.cast);
+        setPersons(result.cast.concat(result.crew));
+      })
+      .catch((err) => {
+        alert(err);
       });
     // dispatch(selectedMovieAction.isSelected());
   }, [movie.id]);
@@ -64,6 +73,11 @@ const VideoMoviePage = () => {
   const directors = persons.filter(
     (person) => person.known_for_department === "Directing"
   );
+
+  console.log(directors);
+  {
+    persons.map((person) => console.log(person.known_for_department));
+  }
   return (
     <div className={classes.root}>
       <div className={classes.displayFlex}>
@@ -87,6 +101,7 @@ const VideoMoviePage = () => {
           </h4>
           <h5>Movie Overview: {movie.overview}</h5>
           <h4>Release Date: {movie.release_date}</h4>
+
           <h5>
             Acters:
             {acters.map((acter) => (
