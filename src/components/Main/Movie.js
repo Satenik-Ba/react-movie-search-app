@@ -6,8 +6,8 @@ import { makeStyles } from "@mui/styles";
 import ReitingVideoStars from "./ReitingVideoStars";
 import { VIDEO_PAGE } from "../../constants/routes";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { selectedMovieAction } from "../redux/SelectedMovie";
+// import { useDispatch } from "react-redux";
+// import { selectedMovieAction } from "../redux/SelectedMovie";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import { imgSrc } from "../../constants/constants";
@@ -36,7 +36,7 @@ const useStyles = makeStyles({
 const Movie = ({ movie, deleteIcon }) => {
   const classes = useStyles();
   const history = useHistory();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const commentsRef = doc(firestore, `/comments/${movie.id}`);
   getDoc(commentsRef).then((docSnap) => {
     if (!docSnap.exists()) {

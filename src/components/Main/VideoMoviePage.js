@@ -67,7 +67,7 @@ const VideoMoviePage = () => {
       })
       .catch((err) => console.log(err.name));
     // dispatch(selectedMovieAction.isSelected());
-  }, [movie.id]);
+  }, [movie.id, movieOrTV]);
   const acters = persons.filter(
     (person) => person.known_for_department === "Acting"
   );
