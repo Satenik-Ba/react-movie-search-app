@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
-import Checkbox from '@mui/material/Checkbox';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import { makeStyles } from '@mui/styles';
-import { doc, updateDoc } from 'firebase/firestore';
-import { firestore } from '../../firebase';
-import { arrayUnion } from '@firebase/firestore';
-import { useSelector } from 'react-redux';
-import { SIGNIN_ROUTE } from '../../constants/routes';
-import { useHistory } from 'react-router-dom';
-import Login from '../Authenticataion/Login';
-import CloseIcon from '@mui/icons-material/Close';
-import SelectedMovie from '../redux/SelectedMovie';
+import React, { useState } from "react";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+// import Button from '@mui/material/Button';
+import Dialog from "@mui/material/Dialog";
+// import DialogActions from '@mui/material/DialogActions';
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import { makeStyles } from "@mui/styles";
+import { doc, updateDoc } from "firebase/firestore";
+import { firestore } from "../../firebase";
+import { arrayUnion } from "@firebase/firestore";
+import { useSelector } from "react-redux";
+// import { SIGNIN_ROUTE } from '../../constants/routes';
+// import { useHistory } from 'react-router-dom';
+import Login from "../Authenticataion/Login";
+import CloseIcon from "@mui/icons-material/Close";
+// import SelectedMovie from '../redux/SelectedMovie';
 
 const useStyles = makeStyles({
   root: {
-    position: 'relative',
+    position: "relative",
   },
   icon: {
-    color: 'white ',
+    color: "white ",
   },
   backgroundIcon: {
-    color: '#BF3B7C',
+    color: "#BF3B7C",
   },
   clearBackground: {
-    color: 'none',
+    color: "none",
   },
   closeIcon: {
-    position: 'absolute',
-    top: '58px',
-    right: '56px',
+    position: "absolute",
+    top: "58px",
+    right: "56px",
   },
 });
 
@@ -46,7 +46,7 @@ export default function FavoriteVideoIcon({ favMovie }) {
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const history = useHistory();
+  // const history = useHistory();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -55,12 +55,12 @@ export default function FavoriteVideoIcon({ favMovie }) {
     setChecked(false);
   };
 
-  const handleLogin = () => {
-    history.push(SIGNIN_ROUTE);
-  };
+  // const handleLogin = () => {
+  //   history.push(SIGNIN_ROUTE);
+  // };
 
   async function handleFavoriteClick() {
-    const userRef = doc(firestore, 'users', currentUserId);
+    const userRef = doc(firestore, "users", currentUserId);
     favMovie.isFavorite = true;
     favMovie.deleteIcon = true;
 
@@ -94,7 +94,7 @@ export default function FavoriteVideoIcon({ favMovie }) {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
           >
-            <DialogContent >
+            <DialogContent>
               <DialogContentText id="alert-dialog-description">
                 Please Login or Register to Add Movies/TV Shows to Your
                 Favorites List.

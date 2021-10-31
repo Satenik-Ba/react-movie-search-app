@@ -6,7 +6,7 @@ import { makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { CatValueAction } from "../redux/categoryValue";
 import { CATEGORIES_MOVIES_API } from "../../constants/APIs";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(() => {
   return {
@@ -25,7 +25,7 @@ function CategoryFilms() {
     setAge(event.target.value);
   };
   const [categories, setCategories] = React.useState([]);
-  const catName = useSelector((state) => state.categoryValue.catName);
+  // const catName = useSelector((state) => state.categoryValue.catName);
   useEffect(() => {
     fetch(CATEGORIES_MOVIES_API)
       .then((response) => response.json())
