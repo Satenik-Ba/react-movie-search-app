@@ -11,17 +11,28 @@ import { arrayUnion } from "@firebase/firestore";
 import firebase from "../../firebase";
 import Login from "../Authenticataion/Login";
 import { DialogContentText, DialogContent, Dialog } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 const useStyles = makeStyles({
   rootBtn: {
-    marginBottom: "4% !important",
+    // marginBottom: "5% !important",
     color: "#C52D3D !important",
-    fontSize: "20px !important",
+    fontSize: "18px !important",
   },
   divComentUsers: {
     width: "80%",
     minHeight: "200px",
-    border: "1px black solid",
+    border: "1px #222222 solid",
     textAlign: "left",
     margin: "auto",
     color: "orange",
@@ -30,17 +41,13 @@ const useStyles = makeStyles({
   },
   comentValueUser: {
     fontWeight: "bold",
-    color: "white",
-
+    color: "#D1D2D6",
     minHeight: "20px",
     fontSize: "20px",
+    lineHeight: "10px",
   },
-  emptyComment: {
-    marginLeft: "22%",
-    fontSize: "30px",
-  },
+
   spanTime: {
-    marginLeft: "20px",
     color: "#C52D3D",
     fontSize: "15px",
   },
@@ -110,71 +117,83 @@ export default function ComentsPage({ movie1 }) {
   }, [movie1.id]);
 
   return (
-    <div>
-      <div>Coment Page</div>
-      {!isEmpty && (
-        <div className={classes.divComentUsers}>
-          {loadingComentPage.map((comment) => (
-            <div>
-              <p>{comment.displayName}</p>
-              <p className={classes.comentValueUser}>
-                {comment.text}
-                <span className={classes.spanTime}>
-                  {comment.timeCreatedAt}
-                </span>
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
-      {isEmpty && (
-        <div className={classes.divComentUsers}>
-          <p className={classes.emptyComment}>
-            No one has commented on this movie yet
-          </p>
-        </div>
-      )}
-
-      <TextareaAutosize
-        value={commentValue}
-        onChange={onHandleChange}
-        maxRows={4}
-        minRows={4}
-        aria-label="maximum height"
-        placeholder="Your Comment"
-        style={{ width: 400 }}
-      />
-      {comentUserName !== "" && (
-        <Button onClick={onAddItem} className={classes.rootBtn} variant="text">
-          Send
-        </Button>
-      )}
-      {comentUserName == "" && (
-        <div>
-          <Button
-            onClick={handleClickOpen}
-            className={classes.rootBtn}
-            variant="text"
-          >
-            Send
-          </Button>
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Please Login or Register to Add Movies/TV Shows to Your
-                Favorites List.
-              </DialogContentText>
-              <Login />
-              <Button onClick={handleClose}>Cancel</Button>
-            </DialogContent>
-          </Dialog>
-        </div>
-      )}
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={0} md={1}></Grid>
+        <Grid item xs={12} md={10}>
+          <Item sx={{ backgroundColor: "#1F1F1F" }}>
+            {!isEmpty && (
+              <div className={classes.divComentUsers}>
+                {loadingComentPage.map((comment) => (
+                  <div>
+                    <div className={classes.comentValueUser}>
+                      <p style={{ color: "black" }}>{comment.displayName}</p>
+                      <p style={{ lineHeight: "20px" }}> {comment.text} </p>
+                      <span className={classes.spanTime}>
+                        {comment.timeCreatedAt}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </Item>
+        </Grid>
+        <Grid item xs={0} md={1}></Grid>
+        <Grid item xs={0} md={2}></Grid>
+        <Grid item xs={9} md={7}>
+          <Item sx={{ backgroundColor: "#1F1F1F" }}>
+            <TextareaAutosize
+              value={commentValue}
+              onChange={onHandleChange}
+              maxRows={4}
+              minRows={4}
+              aria-label="maximum height"
+              placeholder="Your Comment"
+              style={{ width: 300 }}
+            />
+          </Item>
+        </Grid>
+        <Grid item xs={1} md={1}>
+          <Item sx={{ backgroundColor: "#1F1F1F" }}>
+            {comentUserName !== "" && (
+              <Button
+                onClick={onAddItem}
+                className={classes.rootBtn}
+                variant="text"
+              >
+                Send
+              </Button>
+            )}
+            {comentUserName == "" && (
+              <div>
+                <Button
+                  onClick={handleClickOpen}
+                  className={classes.rootBtn}
+                  variant="text"
+                >
+                  Send
+                </Button>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                      Please Login or Register to Add Movies/TV Shows to Your
+                      Favorites List.
+                    </DialogContentText>
+                    <Login />
+                    <Button onClick={handleClose}>Cancel</Button>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            )}
+          </Item>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
