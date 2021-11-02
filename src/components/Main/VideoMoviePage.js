@@ -3,43 +3,39 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { useSelector } from "react-redux";
 import YouTube from "react-youtube";
-// import { useHistory } from 'react-router-dom';
 import { imgSrc } from "../../constants/constants";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
-// import { HOME_ROUTE } from "../../constants/routes";
-// import { selectedMovieAction } from "../redux/SelectedMovie";
-// import movieOrTVAction from "../redux/movieOrTV";
-// import { useDispatch } from "react-redux";
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
+
 const opts = {
+  width: "100%",
+
   playerVars: {
     autoplay: 0,
   },
 };
 const useStyles = makeStyles({
-  root: {
-    minHeight: "800px",
-    color: "white",
-    "background-color": "#232A3E",
-    paddingTop: "85px",
-  },
   imgWidth: {
-    width: "300px",
-    height: "400px",
+    height: "320px",
   },
-  displayFlex: {
-    display: "flex",
-    justifyContent: "center",
-    marginBottom: "60px",
+  root: {
+    backgroundColor: "#1F1F1F",
   },
 });
 const VideoMoviePage = () => {
   const classes = useStyles();
   const [movieKey, setMovieKey] = useState();
   const [persons, setPersons] = useState([]);
-  // const movie = useSelector((state) => state.SelectedMovie.selectedMovie);
   const movieOrTV = useSelector((state) => state.movieOrTV.movieOrTV);
-  // const movieOrTV = localStorage.getItem("movieOrTV");
-  // const dispatch = useDispatch();
   const movie = JSON.parse(localStorage.getItem("movieStor"));
   useEffect(() => {
     fetch(
@@ -66,6 +62,7 @@ const VideoMoviePage = () => {
         setPersons(result.cast.concat(result.crew));
       })
       .catch((err) => console.log(err.name));
+
     // dispatch(selectedMovieAction.isSelected());
   }, [movie.id, movieOrTV]);
   const acters = persons.filter(
@@ -75,42 +72,50 @@ const VideoMoviePage = () => {
     (person) => person.known_for_department === "Directing"
   );
 
-  console.log(movieOrTV);
-
   return (
     <div className={classes.root}>
-      <div className={classes.displayFlex}>
-        <img
-          className={classes.imgWidth}
-          src={imgSrc + `${movie.poster_path}`}
-          alt="movie poster"
-          loading="lazy"
-        />
-        <div
-          style={{
-            width: "53%",
-          }}
-        >
-          <h2> {movie.title}</h2>
-          <h4>
-            Director:
-            {directors.map((director) => (
-              <span> {director.name},</span>
-            ))}
-          </h4>
-          <h5>Movie Overview: {movie.overview}</h5>
-          <h4>Release Date: {movie.release_date}</h4>
+      <Box sx={{ flexGrow: 1, paddingTop: "90px" }}>
+        <Grid container spacing={1}>
+          <Grid item md={3} xs={12}>
+            <Item sx={{ backgroundColor: "#1F1F1F" }}>
+              <img
+                className={classes.imgWidth}
+                src={imgSrc + `${movie.poster_path}`}
+                alt="movie poster"
+                loading="lazy"
+              />
+            </Item>
+          </Grid>
+          <Grid item md={9} xs={12}>
+            <Item sx={{ backgroundColor: "#1F1F1F", color: "#D1D2D6" }}>
+              <h2> {movie.title}</h2>
+              <h4>
+                Director:
+                {directors.map((director) => (
+                  <span> {director.name},</span>
+                ))}
+              </h4>
+              <h5>Movie Overview: {movie.overview}</h5>
+              <h4>Release Date: {movie.release_date}</h4>
 
-          <h5>
-            Acters:
-            {acters.map((acter) => (
-              <span> {acter.name},</span>
-            ))}
-          </h5>
-        </div>
-      </div>
-      {movieKey && <YouTube videoId={movieKey.key} opts={opts} />}
-      <ComentsPage movie1={movie} />
+              <h5>
+                Acters:
+                {acters.map((acter) => (
+                  <span> {acter.name},</span>
+                ))}
+              </h5>
+            </Item>
+          </Grid>
+          <Grid item md={3} xs={0}></Grid>
+          <Grid item md={6} xs={12}>
+            <Item sx={{ backgroundColor: "#1F1F1F" }}>
+              {movieKey && <YouTube videoId={movieKey.key} opts={opts} />}
+            </Item>
+          </Grid>
+          <Grid item md={3} xs={0}></Grid>
+        </Grid>
+        <ComentsPage movie1={movie} />
+      </Box>
     </div>
   );
 };

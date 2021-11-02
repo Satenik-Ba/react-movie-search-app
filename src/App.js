@@ -66,6 +66,7 @@ function App() {
         <Route path={VIDEO_PAGE}>
           <Header />
           <VideoMoviePage />
+          <Footer />
         </Route>
         <Redirect to={HOME_ROUTE}></Redirect>
       </Switch>
