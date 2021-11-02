@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import FormGroup from "@mui/material/FormGroup";
 import Box from "@mui/material/Box";
-import CloseIcon from '@mui/icons-material/Close';
+// import CloseIcon from '@mui/icons-material/Close';
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { makeStyles } from "@mui/styles";
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    position: "relative", 
+    position: "relative",
     "margin-top": "auto",
     "margin-bottom": "auto",
     "& a": {
@@ -58,8 +58,8 @@ const useStyles = makeStyles({
   closeIcon: {
     position: "absolute",
     top: "15px",
-    right: "15px"
-  }, 
+    right: "15px",
+  },
   span: {
     fontSize: "1.15rem",
     textDecoration: "none",
@@ -74,13 +74,13 @@ const Login = () => {
   const [error, setError] = useState("");
   const history = useHistory();
   const auth = getAuth();
-  function login(email, password) {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-      })
-      .catch((error) => {});
-  }
+  // function login(email, password) {
+  //   signInWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       const user = userCredential.user;
+  //     })
+  //     .catch((error) => {});
+  // }
 
   async function handleSignIn(e) {
     e.preventDefault();
@@ -92,7 +92,7 @@ const Login = () => {
         passwordRef.current.value
       );
 
-      if (history.location.pathname == SIGNIN_ROUTE) {
+      if (history.location.pathname === SIGNIN_ROUTE) {
         history.push(HOME_ROUTE);
       }
     } catch (error) {
@@ -101,10 +101,10 @@ const Login = () => {
           return setError(
             "User not found. Please enter a valid email address."
           );
-          break;
+        // break;
         case "auth/wrong-password":
           return setError("Wrong Password.");
-          break;
+        // break;
         default:
           return setError(
             "Invalid email or password. Please enter a correct email and/or password"

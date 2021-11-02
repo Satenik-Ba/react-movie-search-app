@@ -62,7 +62,9 @@ const VideoMoviePage = () => {
         setPersons(result.cast.concat(result.crew));
       })
       .catch((err) => console.log(err.name));
-  }, [movie.id]);
+
+    // dispatch(selectedMovieAction.isSelected());
+  }, [movie.id, movieOrTV]);
   const acters = persons.filter(
     (person) => person.known_for_department === "Acting"
   );
