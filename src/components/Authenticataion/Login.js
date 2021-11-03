@@ -103,7 +103,7 @@ const Login = () => {
           );
         // break;
         case "auth/wrong-password":
-          return setError("Wrong Password.");
+          return setError("Wrong Password or in email");
         // break;
         default:
           return setError(
@@ -119,6 +119,11 @@ const Login = () => {
           "& .MuiTextField-root": { m: 1, width: "25rem" },
         }}
       >
+        {error && (
+          <Alert variant="filled" severity="error" width="25rem">
+            {error}
+          </Alert>
+        )}
         <FormControl component="form" onSubmit={handleSignIn} margin="normal">
           <h1 className={classes.heading}>Sign In</h1>
           <TextField
@@ -135,11 +140,7 @@ const Login = () => {
             inputRef={passwordRef}
             required
           />
-          {error && (
-            <Alert variant="filled" severity="error" width="25rem">
-              {error}
-            </Alert>
-          )}
+
           <button className={classes.button}>Log In</button>
           <FormGroup>
             <FormControlLabel

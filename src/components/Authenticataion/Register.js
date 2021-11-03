@@ -131,6 +131,16 @@ const Register = () => {
           "& .MuiTextField-root": { m: 1, width: "25rem" },
         }}
       >
+        {error && (
+          <Alert
+            variant="filled"
+            severity="error"
+            width="25rem"
+            className={classes.errorAlert}
+          >
+            {error}
+          </Alert>
+        )}
         <FormControl component="form" onSubmit={handleSubmit} margin="normal">
           <h1 className={classes.heading}>Registration Form</h1>
           <TextField
@@ -161,16 +171,7 @@ const Register = () => {
             variant="outlined"
             required
           />
-          {error && (
-            <Alert
-              variant="filled"
-              severity="error"
-              width="25rem"
-              className={classes.errorAlert}
-            >
-              {error}
-            </Alert>
-          )}
+
           <button className={classes.button} disabled={loading} type="submit">
             Register
           </button>
