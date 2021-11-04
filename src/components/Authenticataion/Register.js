@@ -46,11 +46,11 @@ const useStyles = makeStyles({
   closeIcon: {
     position: "absolute",
     top: "15px",
-    right: "15px"
-  }, 
+    right: "15px",
+  },
   errorAlert: {
-    marginBottom: '0.5rem',
-    marginTop: '0.5rem'
+    marginBottom: "0.5rem",
+    marginTop: "0.5rem",
   },
 });
 
@@ -89,16 +89,16 @@ const Register = () => {
           return setError(
             "The provided email is already in use by an existing user. Please enter a different email address."
           );
-          break;
+        // break;
         case "auth/invalid-email":
           emailRef.current.value = "";
           return setError("Invalid email. Please enter a valid email address.");
-          break;
+        // break;
         case "auth/weak-password":
           return setError(
             "Invalid password. Password must be six or more characters."
           );
-          break;
+        // break;
         default:
           return setError(
             "Invalid email or password. Please enter a valid email and/or password"
@@ -131,6 +131,16 @@ const Register = () => {
           "& .MuiTextField-root": { m: 1, width: "25rem" },
         }}
       >
+        {error && (
+          <Alert
+            variant="filled"
+            severity="error"
+            width="25rem"
+            className={classes.errorAlert}
+          >
+            {error}
+          </Alert>
+        )}
         <FormControl component="form" onSubmit={handleSubmit} margin="normal">
           <h1 className={classes.heading}>Registration Form</h1>
           <TextField
@@ -161,16 +171,7 @@ const Register = () => {
             variant="outlined"
             required
           />
-          {error && (
-            <Alert
-              variant="filled"
-              severity="error"
-              width="25rem"
-              className={classes.errorAlert}
-            >
-              {error}
-            </Alert>
-          )}
+
           <button className={classes.button} disabled={loading} type="submit">
             Register
           </button>

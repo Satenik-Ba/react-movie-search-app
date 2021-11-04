@@ -1,24 +1,24 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import Movie from './Movie';
-import CarouselFilms from './CarouselFilms';
-import { makeStyles } from '@mui/styles';
-import { useDispatch, useSelector } from 'react-redux';
-import PaginationMain from './PaginationMain';
-import { POPULAR_MOVIES_API } from '../../constants/APIs';
-import { PagValueAction } from '../redux/pageValue';
-import Movie_TVShows from '../Header/Movie_TVShows';
-import CategoryFilms from '../Header/CategoryFilms';
+import React, { useEffect, useMemo, useState } from "react";
+import Movie from "./Movie";
+import CarouselFilms from "./CarouselFilms";
+import { makeStyles } from "@mui/styles";
+import { useDispatch, useSelector } from "react-redux";
+import PaginationMain from "./PaginationMain";
+import { POPULAR_MOVIES_API } from "../../constants/APIs";
+import { PagValueAction } from "../redux/pageValue";
+import Movie_TVShows from "../Header/Movie_TVShows";
+import CategoryFilms from "../Header/CategoryFilms";
+
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: '#232A3E',
-      color: '#D1D2D6',
-      paddingBottom: '40px',
+      backgroundColor: "#1F1F1F",
+      color: "#D1D2D6",
+      paddingTop: "50px",
     },
-    header: {
-      paddingTop: '4.4rem',
-      display: 'flex',
-      justifyContent: 'center',
+    disFlex: {
+      display: "flex",
+      justifyContent: "center",
     },
   };
 });
@@ -43,13 +43,14 @@ function MainPage() {
           featuredMovie.genre_ids.includes(+catVal)
         )
       : filtredMovies;
-  }, [catVal, filtredMovies, featuredMovies]);
+  }, [catVal, filtredMovies]);
   useEffect(() => {
     fetch(loadingURL + pagValue)
       .then((response) => response.json())
       .then((result) => {
         setFeaturedMovies(result.results);
-      });
+      })
+      .catch((err) => console.log(err.name));
   }, [loadingURL, pagValue]);
 
   useEffect(() => {
@@ -68,7 +69,7 @@ function MainPage() {
         pagValue: 1,
       })
     );
-  }, [loadingURL]);
+  }, [loadingURL, dispatch]);
 
   // console.log("serchName " + searchedName);
 
@@ -83,9 +84,21 @@ function MainPage() {
       </div>
 
       {loadingURL === POPULAR_MOVIES_API ? (
-        <h2 className={classes.root}>Featured Movies</h2>
+        <>
+          <h2 className={classes.root}>Featured Movies</h2>
+          <div className={classes.disFlex}>
+            <Movie_TVShows />
+            <CategoryFilms />
+          </div>
+        </>
       ) : (
-        <h2 className={classes.root}>Featured TV Shows</h2>
+        <>
+          <h2 className={classes.root}>Featured Tv Shows</h2>
+          <div className={classes.disFlex}>
+            <Movie_TVShows />
+            <CategoryFilms />
+          </div>
+        </>
       )}
 
       {filmResult.map((movie) => (

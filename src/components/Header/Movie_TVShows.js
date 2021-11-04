@@ -9,12 +9,14 @@ import { POPULAR_MOVIES_API } from "../../constants/APIs";
 import { loadingURLAction } from "../redux/loadingURL";
 import { useHistory } from "react-router-dom";
 import { HOME_ROUTE } from "../../constants/routes";
+import { movieOrTVAction } from "../redux/movieOrTV";
 
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#171c2c !important",
+      backgroundColor: "#C32D3D!important",
       color: "#d1d2d6 !important",
+      borderRadius: "15px !important",
     },
   };
 });
@@ -33,6 +35,11 @@ function Movie_TVShows() {
         loadingURL: POPULAR_MOVIES_API,
       })
     );
+    dispatch(
+      movieOrTVAction.changeValue({
+        movieOrTV: "movie",
+      })
+    );
     history.push(HOME_ROUTE);
   };
   const onClickTvShows = () => {
@@ -41,13 +48,17 @@ function Movie_TVShows() {
         loadingURL: POPULAR_TV_SHOWS_API,
       })
     );
-
+    dispatch(
+      movieOrTVAction.changeValue({
+        movieOrTV: "tv",
+      })
+    );
     history.push(HOME_ROUTE);
   };
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 600 }}>
+      <FormControl sx={{ m: 1, minWidth: 200 }}>
         <Select
           className={classes.root}
           value={age}

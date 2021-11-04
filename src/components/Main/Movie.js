@@ -1,47 +1,42 @@
 import React from "react";
-// import { Route, Switch, Redirect } from "react-router-dom";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import IconButton from "@mui/material/IconButton";
 import { makeStyles } from "@mui/styles";
-// import FavoriteVideoIcon from "./FavoriteVideoIcon";
 import ReitingVideoStars from "./ReitingVideoStars";
-// import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-// import VideoMoviePage from "./VideoMoviePage";
 import { VIDEO_PAGE } from "../../constants/routes";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-// import { useSelector } from "react-redux";
-import { selectedMovieAction } from "../redux/SelectedMovie";
+// import { useDispatch } from "react-redux";
+// import { selectedMovieAction } from "../redux/SelectedMovie";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import { imgSrc } from "../../constants/constants";
 import ManageFavorites from "./ManageFavorites";
 
 const useStyles = makeStyles({
-  text: {
-    height: "50%",
-    overflow: "hidden",
-    color: "white",
-    fontSize: "16px",
-    fontWeight: "bold",
-    backgroundColor: "#171C2C",
-    position: "absolute",
-    opacity: "0",
-    "&:hover": {
-      opacity: "0.7",
-      cursor: "all-scroll",
-    },
-  },
+  // text: {
+  //   maxHeight: "50%",
+  //   overflow: "hidden",
+  //   color: "white",
+  //   fontSize: "13px",
+  //   fontWeight: "bold",
+  //   backgroundColor: "#171C2C",
+  //   position: "absolute",
+  //   opacity: "0",
+  //   "&:hover": {
+  //     opacity: "0.7",
+  //     cursor: "all-scroll",
+  //   },
+  // },
   cursor: {
     cursor: "pointer",
   },
 });
+
 const Movie = ({ movie, deleteIcon }) => {
   const classes = useStyles();
   const history = useHistory();
-  const dispatch = useDispatch();
-  // const comentUserName = useSelector((state) => state.userInfo.userName);
+  // const dispatch = useDispatch();
   const commentsRef = doc(firestore, `/comments/${movie.id}`);
   getDoc(commentsRef).then((docSnap) => {
     if (!docSnap.exists()) {
@@ -52,12 +47,12 @@ const Movie = ({ movie, deleteIcon }) => {
     }
   });
   const handleMovieClick = () => {
-    dispatch(
-      selectedMovieAction.changeMovie({
-        selectedMovie: movie,
-      })
-    );
-
+    // dispatch(
+    //   selectedMovieAction.changeMovie({
+    //     selectedMovie: movie,
+    //   })
+    // );
+    localStorage.setItem("movieStor", JSON.stringify(movie));
     history.push(VIDEO_PAGE);
   };
 
@@ -73,7 +68,8 @@ const Movie = ({ movie, deleteIcon }) => {
         cols={8}
       >
         <ReitingVideoStars defaultValue={movie.vote_average} />
-        <div className={classes.text}>{movie.overview}</div>
+        {/* <div className={classes.text}>{movie.overview}</div> */}
+
         <img
           className={classes.cursor}
           onClick={handleMovieClick}
@@ -81,6 +77,7 @@ const Movie = ({ movie, deleteIcon }) => {
           alt="movie poster"
           loading="lazy"
         />
+
         <ImageListItemBar
           // title={title}
           actionIcon={
