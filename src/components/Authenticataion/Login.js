@@ -8,7 +8,6 @@ import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import FormGroup from "@mui/material/FormGroup";
 import Box from "@mui/material/Box";
-import CloseIcon from '@mui/icons-material/Close';
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { makeStyles } from "@mui/styles";

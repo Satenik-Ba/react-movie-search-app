@@ -3,12 +3,9 @@ import { AppBar } from '@mui/material';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
 import Toolbar from '@mui/material/Toolbar';
-// import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import AcordionCountryCategories from './AcordionCountryCategories';
 import logo from '../images/filmLogo.png';
 import SearchFilms from './SearchFilms';
-import CategoryFilms from './CategoryFilms';
 import {
   SIGNIN_ROUTE,
   REGISTER_ROUTE,
@@ -18,8 +15,6 @@ import {
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import UserAvatar from './UserAvatar';
-import { useDispatch } from 'react-redux';
-// import { CatValueAction } from '../redux/categoryValue';
 
 const useStyles = makeStyles(() => {
   return {
@@ -92,9 +87,6 @@ function Header() {
               <span className={classes.logoSpanThree}>M</span>FLIX
             </p>
           </Link>
-          <AcordionCountryCategories />
-          <CategoryFilms />
-
           <SearchFilms />
           {isAuth && (
             <Link to={USER_PAGE} className={classes.myList}>

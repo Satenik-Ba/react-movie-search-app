@@ -1,18 +1,24 @@
-import React, { useEffect, useMemo, useState } from "react";
-import Movie from "./Movie";
-import CarouselFilms from "./CarouselFilms";
-import { makeStyles } from "@mui/styles";
-import { useDispatch, useSelector } from "react-redux";
-import PaginationMain from "./PaginationMain";
-import { POPULAR_MOVIES_API } from "../../constants/APIs";
-import { PagValueAction } from "../redux/pageValue";
-
+import React, { useEffect, useMemo, useState } from 'react';
+import Movie from './Movie';
+import CarouselFilms from './CarouselFilms';
+import { makeStyles } from '@mui/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import PaginationMain from './PaginationMain';
+import { POPULAR_MOVIES_API } from '../../constants/APIs';
+import { PagValueAction } from '../redux/pageValue';
+import Movie_TVShows from '../Header/Movie_TVShows';
+import CategoryFilms from '../Header/CategoryFilms';
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#232A3E",
-      color: "#D1D2D6",
-      paddingBottom: "40px",
+      backgroundColor: '#232A3E',
+      color: '#D1D2D6',
+      paddingBottom: '40px',
+    },
+    header: {
+      paddingTop: '4.4rem',
+      display: 'flex',
+      justifyContent: 'center',
     },
   };
 });
@@ -26,7 +32,7 @@ function MainPage() {
   const dispatch = useDispatch();
 
   const searchedName = useSelector(
-    (state) => state.searchName.searchValue || ""
+    (state) => state.searchName.searchValue || ''
   );
 
   const [filtredMovies, setFiltredMovies] = useState([]);
@@ -68,6 +74,10 @@ function MainPage() {
 
   return (
     <div className={classes.root}>
+      <div className={classes.header}>
+        <Movie_TVShows />
+        <CategoryFilms />
+      </div>
       <div>
         <CarouselFilms />
       </div>

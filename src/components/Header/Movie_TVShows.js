@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => {
   };
 });
 
-function AcordionCountryCategories() {
+function Movie_TVShows() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ function AcordionCountryCategories() {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 240 }}>
+      <FormControl sx={{ m: 1, minWidth: 600 }}>
         <Select
           className={classes.root}
           value={age}
@@ -58,7 +58,6 @@ function AcordionCountryCategories() {
           <MenuItem value="Movies" onClick={onClickMovies}>
             Movies
           </MenuItem>
-
           <MenuItem value={"TV Shows"} onClick={onClickTvShows}>
             TV Shows
           </MenuItem>
@@ -68,33 +67,4 @@ function AcordionCountryCategories() {
   );
 }
 
-//   return (
-//     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-//       <Box sx={{ minWidth: 50 }}>
-//         <FormControl fullWidth className={classes.root}>
-//           <InputLabel className={classes.root} id="demo-simple-select-label">
-//             Films
-//           </InputLabel>
-//           <Select
-//             // className={classes.root}
-//             displayEmpty
-//             // id="demo-simple-select"
-//             // value={age}
-//             label="Films"
-//             // onChange={handleChange}
-//             inputProps={{ "aria-label": "Without label" }}
-//           >
-//             <MenuItem value={10} onClick={onClickMovies}>
-//               Movies
-//             </MenuItem>
-//             <MenuItem value={20} onClick={onClickTvShows}>
-//               TV Shows
-//             </MenuItem>
-//           </Select>
-//         </FormControl>
-//       </Box>
-//     </Typography>
-//   );
-// }
-
-export default AcordionCountryCategories;
+export default Movie_TVShows;
