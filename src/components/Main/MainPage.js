@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PaginationMain from "./PaginationMain";
 import { POPULAR_MOVIES_API } from "../../constants/APIs";
 import { PagValueAction } from "../redux/pageValue";
-import Movie_TVShows from "../Header/Movie_TVShows";
+import Movie_TV_Shows from "../Header/Movie_TV_Shows";
 import CategoryFilms from "../Header/CategoryFilms";
 
 const useStyles = makeStyles(() => {
@@ -70,14 +70,9 @@ function MainPage() {
       })
     );
   }, [loadingURL, dispatch]);
-
-  // console.log("serchName " + searchedName);
-
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <Movie_TVShows />
-        <CategoryFilms />
       </div>
       <div>
         <CarouselFilms />
@@ -87,15 +82,15 @@ function MainPage() {
         <>
           <h2 className={classes.root}>Featured Movies</h2>
           <div className={classes.disFlex}>
-            <Movie_TVShows />
+            <Movie_TV_Shows />
             <CategoryFilms />
           </div>
         </>
       ) : (
         <>
-          <h2 className={classes.root}>Featured Tv Shows</h2>
+          <h2 className={classes.root}>Featured TV Shows</h2>
           <div className={classes.disFlex}>
-            <Movie_TVShows />
+            <Movie_TV_Shows />
             <CategoryFilms />
           </div>
         </>

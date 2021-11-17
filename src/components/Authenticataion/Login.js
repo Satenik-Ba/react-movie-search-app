@@ -3,16 +3,16 @@ import { REGISTER_ROUTE, HOME_ROUTE } from "../../constants/routes";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { makeStyles } from "@mui/styles";
+import { SIGNIN_ROUTE } from "../../constants/routes";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import FormGroup from "@mui/material/FormGroup";
 import Box from "@mui/material/Box";
-// import CloseIcon from '@mui/icons-material/Close';
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { makeStyles } from "@mui/styles";
-import { SIGNIN_ROUTE } from "../../constants/routes";
+
 
 const useStyles = makeStyles({
   root: {
@@ -74,14 +74,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const history = useHistory();
   const auth = getAuth();
-  // function login(email, password) {
-  //   signInWithEmailAndPassword(auth, email, password)
-  //     .then((userCredential) => {
-  //       const user = userCredential.user;
-  //     })
-  //     .catch((error) => {});
-  // }
-
+  
   async function handleSignIn(e) {
     e.preventDefault();
     setError("");
@@ -101,10 +94,10 @@ const Login = () => {
           return setError(
             "User not found. Please enter a valid email address."
           );
-        // break;
+        break;
         case "auth/wrong-password":
           return setError("Wrong Password or in email");
-        // break;
+        break;
         default:
           return setError(
             "Invalid email or password. Please enter a correct email and/or password"

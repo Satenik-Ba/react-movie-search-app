@@ -27,7 +27,7 @@ export default function PaginationMain() {
   };
 
   return (
-    // <div className={classes.root}>
+    
     <Stack sx={{ padding: "30px" }}>
       <Pagination
         page={pagValue}
@@ -42,6 +42,6 @@ export default function PaginationMain() {
         onChange={handleChange}
       />
     </Stack>
-    // </div>
+
   );
 }

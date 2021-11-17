@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => {
   };
 });
 
-function Movie_TVShows() {
+function Movie_TV_Shows() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -78,4 +78,4 @@ function Movie_TVShows() {
   );
 }
 
-export default Movie_TVShows;
+export default Movie_TV_Shows;
