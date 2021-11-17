@@ -78,7 +78,6 @@ export default function ComentsPage({ movie1 }) {
   };
   const handleClose = () => {
     setOpen(false);
-
   };
 
   async function onAddItem() {
@@ -104,7 +103,7 @@ export default function ComentsPage({ movie1 }) {
   }
 
   useEffect(() => {
-    const commentsRef = doc(firestore, `/comments/${movie1.id}`)
+    const commentsRef = doc(firestore, `/comments/${movie1.id}`);
     onSnapshot(commentsRef, (doc) => {
       if (doc.data().movieComments.length > 0) {
         setLoadingComentPage(doc.data().movieComments);
@@ -114,7 +113,6 @@ export default function ComentsPage({ movie1 }) {
   }, [movie1.id]);
 
   return (
-
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={0} md={1}></Grid>
@@ -184,7 +182,6 @@ export default function ComentsPage({ movie1 }) {
                       Favorites List.
                     </DialogContentText>
                     <Login />
-                    <Button onClick={handleClose}>Cancel</Button>
                   </DialogContent>
                 </Dialog>
               </div>
@@ -193,6 +190,5 @@ export default function ComentsPage({ movie1 }) {
         </Grid>
       </Grid>
     </Box>
-
   );
 }
