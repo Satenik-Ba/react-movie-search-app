@@ -89,16 +89,16 @@ const Register = () => {
           return setError(
             "The provided email is already in use by an existing user. Please enter a different email address."
           );
-        // break;
+        break;
         case "auth/invalid-email":
           emailRef.current.value = "";
           return setError("Invalid email. Please enter a valid email address.");
-        // break;
+        break;
         case "auth/weak-password":
           return setError(
             "Invalid password. Password must be six or more characters."
           );
-        // break;
+        break;
         default:
           return setError(
             "Invalid email or password. Please enter a valid email and/or password"

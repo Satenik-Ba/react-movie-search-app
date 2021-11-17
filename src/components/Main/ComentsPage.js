@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 import { doc, updateDoc, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import { arrayUnion } from "@firebase/firestore";
-// import firebase from "../../firebase";
 import Login from "../Authenticataion/Login";
 import { DialogContentText, DialogContent, Dialog } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -25,7 +24,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const useStyles = makeStyles({
   rootBtn: {
-    // marginBottom: "5% !important",
     color: "#C52D3D !important",
     fontSize: "18px !important",
   },
@@ -63,7 +61,6 @@ export default function ComentsPage({ movie1 }) {
   const [isEmpty, setIsEmpty] = useState(true);
   const timestamp = Date.now();
   const [open, setOpen] = useState(false);
-  // const [checked, setChecked] = useState(false);
   const newDataInComent = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "2-digit",
@@ -81,7 +78,7 @@ export default function ComentsPage({ movie1 }) {
   };
   const handleClose = () => {
     setOpen(false);
-    // setChecked(false);
+
   };
 
   async function onAddItem() {
@@ -107,8 +104,7 @@ export default function ComentsPage({ movie1 }) {
   }
 
   useEffect(() => {
-    const commentsRef = doc(firestore, `/comments/${movie1.id}`);
-    // const documentSnapshot =
+    const commentsRef = doc(firestore, `/comments/${movie1.id}`)
     onSnapshot(commentsRef, (doc) => {
       if (doc.data().movieComments.length > 0) {
         setLoadingComentPage(doc.data().movieComments);

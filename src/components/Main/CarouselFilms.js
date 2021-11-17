@@ -33,11 +33,11 @@ const images = [
     imgPath: "https://wallpapercave.com/wp/wp2763337.jpg",
   },
   {
-    label: "Pirates of the caribbean",
+    label: "Pirates Of The Caribbean",
     imgPath: "https://wallpapercave.com/wp/wp1978610.jpg",
   },
   {
-    label: "Harry Potter two",
+    label: "Harry Potter Two",
     imgPath:
       "https://i.pinimg.com/originals/2f/35/9a/2f359a14af5d4ef9417b0688286986e5.jpg",
   },
@@ -46,7 +46,7 @@ const images = [
     imgPath: "https://wallpapercave.com/wp/wp7922033.jpg",
   },
   {
-    label: "Game Of Thronse",
+    label: "Game Of Thrones",
     imgPath: "https://wallpaperaccess.com/full/3309220.jpg",
   },
 ];

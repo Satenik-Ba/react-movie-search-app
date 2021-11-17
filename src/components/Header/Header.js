@@ -2,16 +2,11 @@ import React from "react";
 import { AppBar } from "@mui/material";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
-
 import { useSelector } from "react-redux";
 import Toolbar from "@mui/material/Toolbar";
-// import Typography from '@mui/material/Typography';
-
 import Button from "@mui/material/Button";
-import AcordionCountryCategories from "./AcordionCountryCategories";
 import logo from "../images/filmLogo.png";
 import SearchFilms from "./SearchFilms";
-import CategoryFilms from "./CategoryFilms";
 import {
   SIGNIN_ROUTE,
   REGISTER_ROUTE,
@@ -19,19 +14,14 @@ import {
   USER_PAGE,
 } from "../../constants/routes";
 import { Link } from "react-router-dom";
-
-
 import UserAvatar from "./UserAvatar";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-
 import { styled, alpha } from "@mui/material/styles";
-
 import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -62,7 +52,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -71,12 +60,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-
-
-// import { useDispatch } from 'react-redux';
-// import { CatValueAction } from '../redux/categoryValue';
-
 
 const useStyles = makeStyles(() => {
   return {
@@ -187,8 +170,6 @@ function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
     </Menu>
   );
 
@@ -336,44 +317,6 @@ function Header() {
       {renderMobileMenu}
       {renderMenu}
     </Box>
-
-    // <Box sx={{ flexGrow: 1 }}>
-    //   <AppBar className={classes.filmsAppBar} position="fixed">
-    //     <Toolbar>
-    //       <Link
-    //         className={classes.logo}
-    //         onClick={() => document.location.assign(HOME_ROUTE)}
-    //       >
-    //         <img src={logo} alt="Logo" />
-    //         <p className={classes.logoP}>
-    //           <span className={classes.logoSpanOne}>A</span>
-    //           <span className={classes.logoSpanTwo}>R</span>
-    //           <span className={classes.logoSpanThree}>M</span>FLIX
-    //         </p>
-    //       </Link>
-    //       <AcordionCountryCategories />
-    //       <CategoryFilms />
-
-    //       <SearchFilms />
-    //       {isAuth && (
-    //         <Link to={USER_PAGE} className={classes.myList}>
-    //           Favorites
-    //         </Link>
-    //       )}
-    //       {!isAuth && (
-    //         <>
-    //           <Button component={Link} to={SIGNIN_ROUTE} color="inherit">
-    //             Log in
-    //           </Button>
-    //           <Button component={Link} to={REGISTER_ROUTE} color="inherit">
-    //             Register
-    //           </Button>
-    //         </>
-    //       )}
-    //       {isAuth && <UserAvatar />}
-    //     </Toolbar>
-    //   </AppBar>
-    // </Box>
   );
 }
 

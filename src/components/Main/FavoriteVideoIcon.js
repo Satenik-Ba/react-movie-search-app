@@ -6,7 +6,6 @@ import Favorite from "@mui/icons-material/Favorite";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
-
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import { makeStyles } from "@mui/styles";
@@ -42,16 +41,13 @@ const useStyles = makeStyles({
     right: "56px",
   },
 });
-
-// const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
 export default function FavoriteVideoIcon({ favMovie }) {
   const classes = useStyles();
   const currentUserId = useSelector((state) => state.userInfo.userId);
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  // const history = useHistory();
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -59,10 +55,6 @@ export default function FavoriteVideoIcon({ favMovie }) {
     setOpen(false);
     setChecked(false);
   };
-
-  // const handleLogin = () => {
-  //   history.push(SIGNIN_ROUTE);
-  // };
 
   async function handleFavoriteClick() {
     const userRef = doc(firestore, "users", currentUserId);

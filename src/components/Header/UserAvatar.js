@@ -9,7 +9,7 @@ import Logout from "../Authenticataion/Logout";
 import { makeStyles } from "@mui/styles";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { USER_PAGE } from "../../constants/routes";
+import { USER_PAGE, ACCOUNT_PAGE } from "../../constants/routes";
 
 const useStyles = makeStyles(() => {
   return {
@@ -36,6 +36,9 @@ function UserAvatar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleAccountClick = () => {
+    history.push(ACCOUNT_PAGE)
+  }
 
   return (
     <div className={classes.root}>
@@ -68,6 +71,7 @@ function UserAvatar() {
               onClose={handleClose}
             >
               <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
+              <MenuItem onClick={handleAccountClick}>Account</MenuItem>
 
               <MenuItem>
                 <Logout />
