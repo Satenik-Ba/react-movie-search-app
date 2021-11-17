@@ -13,16 +13,11 @@ import Box from "@mui/material/Box";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
-
 const useStyles = makeStyles({
   root: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
     position: "relative",
-    "margin-top": "auto",
-    "margin-bottom": "auto",
     "& a": {
       textDecoration: "none",
       color: "#171c2c",
@@ -55,11 +50,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "left",
   },
-  closeIcon: {
-    position: "absolute",
-    top: "15px",
-    right: "15px",
-  },
+
   span: {
     fontSize: "1.15rem",
     textDecoration: "none",
@@ -74,7 +65,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const history = useHistory();
   const auth = getAuth();
-  
+
   async function handleSignIn(e) {
     e.preventDefault();
     setError("");
@@ -94,10 +85,10 @@ const Login = () => {
           return setError(
             "User not found. Please enter a valid email address."
           );
-        break;
+          break;
         case "auth/wrong-password":
           return setError("Wrong Password or in email");
-        break;
+          break;
         default:
           return setError(
             "Invalid email or password. Please enter a correct email and/or password"
