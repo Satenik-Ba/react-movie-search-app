@@ -98,11 +98,11 @@ export default function FavoriteVideoIcon({ favMovie }) {
                 Favorites List.
               </DialogContentText>
               <Login />
-              <CloseIcon
+              {/* <CloseIcon
                 fontSize="large"
                 className={classes.closeIcon}
                 onClick={handleClose}
-              />
+              /> */}
             </DialogContent>
           </Dialog>
         </div>
