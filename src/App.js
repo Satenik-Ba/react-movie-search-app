@@ -23,6 +23,7 @@ import VideoMoviePage from './components/Main/VideoMoviePage';
 function App() {
   const dispatch = useDispatch();
   const auth = getAuth();
+  const isUserr = useSelector((state) => state.userInfo.isUser);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -31,14 +32,14 @@ function App() {
             userName: user.displayName,
             userEmail: user.email,
             userId: user.uid,
+            isUser: 'user',
           })
         );
-      }
-       else {
+      } else {
         console.log('NO USER IS SIGNED IN ');
       }
     });
-  }, [dispatch, auth]);
+  }, [dispatch, auth, isUserr]);
   const isAuthenticated = useSelector(
     (state) => state.userInfo.isAuthenticated
   );

@@ -5,6 +5,7 @@ const initialState = {
     userEmail: '',
     userId: '',
     isAuthenticated: false,
+    isUser: ''
 };
 
 const UserInfo = createSlice({
@@ -16,6 +17,7 @@ const UserInfo = createSlice({
       state.userName = action.payload.userName;
       state.userId = action.payload.userId;
       state.isAuthenticated = true;
+      state.isUser = action.payload;
     },
     setLogout(state) {
       state.userEmail = '';
