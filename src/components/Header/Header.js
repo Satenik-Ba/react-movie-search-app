@@ -1,62 +1,63 @@
-import React from "react";
-import { AppBar } from "@mui/material";
-import Box from "@mui/material/Box";
-import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
-import logo from "../images/filmLogo.png";
-import SearchFilms from "./SearchFilms";
+import React from 'react';
+import { AppBar } from '@mui/material';
+import Box from '@mui/material/Box';
+import { makeStyles } from '@mui/styles';
+import { useSelector } from 'react-redux';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import logo from '../images/filmLogo.svg';
+import SearchFilms from './SearchFilms';
 import {
   SIGNIN_ROUTE,
   REGISTER_ROUTE,
   HOME_ROUTE,
   USER_PAGE,
-} from "../../constants/routes";
-import { Link } from "react-router-dom";
-import UserAvatar from "./UserAvatar";
-import { styled, alpha } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import MoreIcon from "@mui/icons-material/MoreVert";
+} from '../../constants/routes';
+import { Link } from 'react-router-dom';
+import UserAvatar from './UserAvatar';
+import { styled, alpha } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import InputBase from '@mui/material/InputBase';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import Stack from '@mui/material/Stack';
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
+  '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
-    width: "auto",
+    width: 'auto',
   },
 }));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
+const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
+  color: 'inherit',
+  '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
     },
   },
 }));
@@ -64,67 +65,64 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const useStyles = makeStyles(() => {
   return {
     root: {
-      cursor: "pointer",
+      cursor: 'pointer',
     },
     filmsAppBar: {
-
-      backgroundColor: "#222222 !important",
-      color: "#d1d2d6 !important",
-      maxHeight: "69px !important",
+      backgroundColor: '#222222 !important',
+      color: '#d1d2d6 !important',
+      maxHeight: '69px !important',
+    },
+    filmLogo: {
+      width: '60px',
+      filter:
+        'invert(58%) sepia(96%) saturate(5147%) hue-rotate(3deg) brightness(94%) contrast(101%)',
     },
     logo: {
-      maxWidth: "250px",
+      maxWidth: '250px',
 
-      display: "flex",
-      textAlign: "center",
-      fontSize: "23px",
-      fontWeight: "bold",
+      display: 'flex',
+      textAlign: 'center',
+      fontSize: '23px',
+      fontWeight: 'bold',
+      textDecoration: 'none',
     },
     logoP: {
-      marginLeft: "25px",
-      color: "white",
-    },
-    logoSpanOne: {
-
-      color: "#C52D3D",
-    },
-    logoSpanTwo: {
-      color: "#006DBA",
+      marginLeft: '10px',
+      marginRight: '30px',
+      color: 'white',
     },
     logoSpanThree: {
-      color: "#E99800",
+      color: '#e95500',
     },
     btnCol: {
-      backgroundColor: "#C32D3D !important",
-      color: "#BCBDC0 !important",
-      marginRight: "5px !important",
-      borderRadius: "15px !important",
-      fontWeight: "bold !important",
-
+      backgroundColor: '#C32D3D !important',
+      color: '#BCBDC0 !important',
+      marginRight: '5px !important',
+      borderRadius: '15px !important',
+      fontWeight: 'bold !important',
     },
     registerBtn: {
-      backgroundColor: "blue !important",
-      fontWeight: "bold !important",
-      marginLeft: "2px !important",
+      backgroundColor: 'blue !important',
+      fontWeight: 'bold !important',
+      marginLeft: '2px !important',
     },
     loginBtn: {
-      backgroundColor: "#BF3B7C !important",
-      fontWeight: "bold !important",
+      backgroundColor: '#BF3B7C !important',
+      fontWeight: 'bold !important',
     },
     myList: {
-      "text-decoration": "none",
+      'text-decoration': 'none',
 
-      color: "#C52D3D",
-      backgroundColor: "#212121",
-      borderRadius: "8px",
-      "font-size": "1.15rem",
-      marginTop: "18px",
-      fontWeight: "bold",
-
+      color: '#C52D3D',
+      backgroundColor: '#212121',
+      borderRadius: '8px',
+      'font-size': '1.15rem',
+      marginTop: '18px',
+      fontWeight: 'bold',
     },
-    "& a": {
-      "&:hover": {
-        backgroundColor: "#7b84a4",
+    '& a': {
+      '&:hover': {
+        backgroundColor: '#7b84a4',
       },
     },
   };
@@ -153,39 +151,38 @@ function Header() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = "primary-search-account-menu";
+  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       id={menuId}
       keepMounted
       transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
-    >
-    </Menu>
+    ></Menu>
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
+  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
@@ -227,7 +224,7 @@ function Header() {
         </MenuItem>
       )}
       {isAuth && (
-        <>
+        <Stack>
           <MenuItem onClick={handleMobileMenuOpen}>
             <Link to={USER_PAGE} className={classes.myList}>
               Favorites
@@ -236,7 +233,7 @@ function Header() {
           <MenuItem onClick={handleMobileMenuOpen}>
             <UserAvatar />
           </MenuItem>
-        </>
+        </Stack>
       )}
     </Menu>
   );
@@ -252,15 +249,13 @@ function Header() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <img src={logo} alt="Logo" />
+            <img src={logo} alt="Logo" className={classes.filmLogo} />
             <Link
               className={classes.logo}
               onClick={() => document.location.assign(HOME_ROUTE)}
             >
               {/*  */}
               <p className={classes.logoP}>
-                <span className={classes.logoSpanOne}>A</span>
-                <span className={classes.logoSpanTwo}>R</span>
                 <span className={classes.logoSpanThree}>M</span>FLIX
               </p>
             </Link>
@@ -269,9 +264,9 @@ function Header() {
           <SearchFilms />
 
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {!isAuth && (
-              <>
+              <span>
                 <Button
                   className={classes.btnCol}
                   component={Link}
@@ -288,19 +283,19 @@ function Header() {
                 >
                   Register
                 </Button>
-              </>
+              </span>
             )}
 
             {isAuth && (
-              <>
+              <Stack direction="row" spacing={2}>
                 <Link to={USER_PAGE} className={classes.myList}>
                   My Favorites
                 </Link>
                 <UserAvatar />
-              </>
+              </Stack>
             )}
           </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="show more"

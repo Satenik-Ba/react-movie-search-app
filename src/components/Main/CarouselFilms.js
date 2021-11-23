@@ -1,26 +1,26 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import MobileStepper from "@mui/material/MobileStepper";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
-import { makeStyles } from "@mui/styles";
+import * as React from 'react';
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import MobileStepper from '@mui/material/MobileStepper';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#C52D3D !important",
-      color: "white !important",
+      backgroundColor: '#C52D3D !important',
+      color: 'white !important',
     },
     caruselFilmsParent: {
-      width: "60%",
-      margin: "auto",
-      paddingTop: "65px",
+      width: '60%',
+      margin: 'auto',
+      paddingTop: '65px',
     },
   };
 });
@@ -29,25 +29,25 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
-    label: "Harry Potter",
-    imgPath: "https://wallpapercave.com/wp/wp2763337.jpg",
+    label: 'Harry Potter',
+    imgPath: 'https://wallpapercave.com/wp/wp2763337.jpg',
   },
   {
-    label: "Pirates Of The Caribbean",
-    imgPath: "https://wallpapercave.com/wp/wp1978610.jpg",
+    label: 'Pirates Of The Caribbean',
+    imgPath: 'https://wallpapercave.com/wp/wp1978610.jpg',
   },
   {
-    label: "Harry Potter Two",
+    label: 'Harry Potter Two',
     imgPath:
-      "https://i.pinimg.com/originals/2f/35/9a/2f359a14af5d4ef9417b0688286986e5.jpg",
+      'https://i.pinimg.com/originals/2f/35/9a/2f359a14af5d4ef9417b0688286986e5.jpg',
   },
   {
-    label: "Vikings",
-    imgPath: "https://wallpapercave.com/wp/wp7922033.jpg",
+    label: 'Vikings',
+    imgPath: 'https://wallpapercave.com/wp/wp7922033.jpg',
   },
   {
-    label: "Game Of Thrones",
-    imgPath: "https://wallpaperaccess.com/full/3309220.jpg",
+    label: 'Game Of Thrones',
+    imgPath: 'https://wallpaperaccess.com/full/3309220.jpg',
   },
 ];
 
@@ -71,24 +71,24 @@ function CarouselFilms() {
 
   return (
     <div className={classes.caruselFilmsParent}>
-      <Box sx={{ maxWidth: "100%", flexGrow: 1 }}>
+      <Box sx={{ maxWidth: '100%', flexGrow: 1 }}>
         <Paper
           className={classes.root}
           square
           elevation={0}
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             height: 50,
             pl: 2,
-            bgcolor: "background.default",
+            bgcolor: 'background.default',
           }}
         >
           <Typography>{images[activeStep].label}</Typography>
         </Paper>
         <AutoPlaySwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
@@ -100,9 +100,9 @@ function CarouselFilms() {
                   component="img"
                   sx={{
                     maxHeight: 400,
-                    display: "block",
-                    overflow: "hidden",
-                    width: "100%",
+                    display: 'block',
+                    overflow: 'hidden',
+                    // width: "100%",
                   }}
                   src={step.imgPath}
                   alt={step.label}
@@ -124,7 +124,7 @@ function CarouselFilms() {
               disabled={activeStep === maxSteps - 1}
             >
               Next
-              {theme.direction === "rtl" ? (
+              {theme.direction === 'rtl' ? (
                 <KeyboardArrowLeft />
               ) : (
                 <KeyboardArrowRight />
@@ -138,7 +138,7 @@ function CarouselFilms() {
               onClick={handleBack}
               disabled={activeStep === 0}
             >
-              {theme.direction === "rtl" ? (
+              {theme.direction === 'rtl' ? (
                 <KeyboardArrowRight />
               ) : (
                 <KeyboardArrowLeft />

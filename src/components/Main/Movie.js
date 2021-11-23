@@ -36,7 +36,7 @@ const Movie = ({ movie, deleteIcon }) => {
   };
 
   return (
-    <>
+    <span>
       <ImageListItem
         sx={{
           width: "17vw",
@@ -68,7 +68,7 @@ const Movie = ({ movie, deleteIcon }) => {
           }
         />
       </ImageListItem>
-    </>
+    </span>
   );
 };
 export default Movie;

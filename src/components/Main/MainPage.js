@@ -1,24 +1,26 @@
-import React, { useEffect, useMemo, useState } from "react";
-import Movie from "./Movie";
-import CarouselFilms from "./CarouselFilms";
-import { makeStyles } from "@mui/styles";
-import { useDispatch, useSelector } from "react-redux";
-import PaginationMain from "./PaginationMain";
-import { POPULAR_MOVIES_API } from "../../constants/APIs";
-import { PagValueAction } from "../redux/pageValue";
-import Movie_TV_Shows from "../Header/Movie_TV_Shows";
-import CategoryFilms from "../Header/CategoryFilms";
+import React, { useEffect, useMemo, useState } from 'react';
+import Movie from './Movie';
+import CarouselFilms from './CarouselFilms';
+import { makeStyles } from '@mui/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import PaginationMain from './PaginationMain';
+import { POPULAR_MOVIES_API } from '../../constants/APIs';
+import { PagValueAction } from '../redux/pageValue';
+import Movie_TV_Shows from '../Header/Movie_TV_Shows';
+import CategoryFilms from '../Header/CategoryFilms';
 
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: "#1F1F1F",
-      color: "#D1D2D6",
-      paddingTop: "50px",
+      backgroundColor: '#1F1F1F',
+      color: '#D1D2D6',
+      paddingTop: '2rem',
+      paddingBottm: '0.5rem'
     },
     disFlex: {
-      display: "flex",
-      justifyContent: "center",
+      display: 'flex',
+      marginTop: '4rem',
+      justifyContent: 'center',
     },
   };
 });
@@ -72,28 +74,30 @@ function MainPage() {
   }, [loadingURL, dispatch]);
   return (
     <div className={classes.root}>
-      <div className={classes.header}>
-      </div>
-      <div>
+      <div className={classes.header}></div>
+      {/* <div>
         <CarouselFilms />
-      </div>
-
+      </div> */}
+      <span className={classes.disFlex}>
+        <Movie_TV_Shows />
+        <CategoryFilms />
+      </span>
       {loadingURL === POPULAR_MOVIES_API ? (
-        <>
+        <span>
           <h2 className={classes.root}>Featured Movies</h2>
           <div className={classes.disFlex}>
-            <Movie_TV_Shows />
-            <CategoryFilms />
+            {/* <Movie_TV_Shows />
+            <CategoryFilms /> */}
           </div>
-        </>
+        </span>
       ) : (
-        <>
+        <span>
           <h2 className={classes.root}>Featured TV Shows</h2>
           <div className={classes.disFlex}>
-            <Movie_TV_Shows />
-            <CategoryFilms />
+            {/* <Movie_TV_Shows />
+            <CategoryFilms /> */}
           </div>
-        </>
+        </span>
       )}
 
       {filmResult.map((movie) => (
