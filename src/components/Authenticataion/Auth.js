@@ -18,7 +18,7 @@ function Auth() {
       <Route path={ACCOUNT_PAGE}>
         <Account />
       </Route>
-      <Redirect to={SIGNIN_ROUTE} />
+      {/* <Redirect to={SIGNIN_ROUTE} /> */}
     </Switch>
   );
 }

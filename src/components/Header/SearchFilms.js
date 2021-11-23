@@ -47,6 +47,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function SearchFilms() {
   const dispatch = useDispatch();
   function onSearch(event) {
+
     return dispatch(
       SearchValueAction.changeValue({
         searchValue: event.target.value,

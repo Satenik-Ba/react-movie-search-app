@@ -1,24 +1,17 @@
 import React, { useState } from "react";
-import Checkbox from "@mui/material/Checkbox";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import Favorite from "@mui/icons-material/Favorite";
-
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import { makeStyles } from "@mui/styles";
 import { doc, updateDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import { arrayUnion } from "@firebase/firestore";
 import { useSelector } from "react-redux";
-
-import { SIGNIN_ROUTE } from "../../constants/routes";
-import { useHistory } from "react-router-dom";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
 import Login from "../Authenticataion/Login";
-import CloseIcon from "@mui/icons-material/Close";
-import SelectedMovie from "../redux/SelectedMovie";
+
 
 
 const useStyles = makeStyles({
@@ -98,11 +91,6 @@ export default function FavoriteVideoIcon({ favMovie }) {
                 Favorites List.
               </DialogContentText>
               <Login />
-              {/* <CloseIcon
-                fontSize="large"
-                className={classes.closeIcon}
-                onClick={handleClose}
-              /> */}
             </DialogContent>
           </Dialog>
         </div>
