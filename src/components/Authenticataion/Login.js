@@ -136,7 +136,7 @@ const Login = () => {
           </div>
 
           <div className={classes.span}>
-            New to ArmFlix?{" "}
+            New to MFlix?{" "}
             <span>
               <Link to={REGISTER_ROUTE}>Sign Up Now</Link>
             </span>

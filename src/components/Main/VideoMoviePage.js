@@ -1,9 +1,8 @@
-import Comments from './Comments';
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux';
 import YouTube from 'react-youtube';
-import { imgSrc } from '../../constants/constants';
+import Comments from './Comments';
+import { makeStyles } from '@mui/styles';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -29,7 +28,11 @@ const useStyles = makeStyles({
   },
   root: {
     backgroundColor: '#1F1F1F',
+    padding: '1rem'
   },
+  heading: {
+    color: '#D1D2D6',
+  }
 });
 const VideoMoviePage = () => {
   const classes = useStyles();
@@ -63,6 +66,7 @@ const VideoMoviePage = () => {
       })
       .catch((err) => console.log(err.name));
   }, [movie.id, movieOrTV]);
+  
   const acters = persons.filter(
     (person) => person.known_for_department === 'Acting'
   );
@@ -73,24 +77,19 @@ const VideoMoviePage = () => {
   return (
     <div className={classes.root}>
       <Box sx={{ flexGrow: 1, paddingTop: '90px' }}>
+      <h2 className={classes.heading}> {movie.title}</h2>
         <Grid container spacing={1}>
-          <Grid item md={3} xs={12}>
+          <Grid item md={6} xs={12}>
             <Item sx={{ backgroundColor: '#1F1F1F' }}>
-              <img
-                className={classes.imgWidth}
-                src={imgSrc + `${movie.poster_path}`}
-                alt="movie poster"
-                loading="lazy"
-              />
+              {movieKey && <YouTube videoId={movieKey.key} opts={opts} />}
             </Item>
           </Grid>
-          <Grid item md={9} xs={12}>
-            <Item sx={{ backgroundColor: '#1F1F1F', color: '#D1D2D6' }}>
-              <h2> {movie.title}</h2>
+          <Grid item md={6} xs={12}>
+          <Item sx={{ backgroundColor: '#1F1F1F', color: '#D1D2D6' }}>
               <h4>
                 Director:
                 {directors.map((director) => (
-                  <span> {director.name},</span>
+                  <span> {director.name}</span>
                 ))}
               </h4>
               <h5>Movie Overview: {movie.overview}</h5>
@@ -104,14 +103,8 @@ const VideoMoviePage = () => {
               </h5>
             </Item>
           </Grid>
-          <Grid item md={3} xs={0}></Grid>
-          <Grid item md={6} xs={12}>
-            <Item sx={{ backgroundColor: '#1F1F1F' }}>
-              {movieKey && <YouTube videoId={movieKey.key} opts={opts} />}
-            </Item>
-          </Grid>
-          <Grid item md={3} xs={0}></Grid>
         </Grid>
+        <h2 className={classes.heading}>User Comments</h2>
         <Comments movie1={movie} />
       </Box>
     </div>

@@ -7,11 +7,11 @@ import Movie from './Movie';
 import PaginationMain from './PaginationMain';
 import Movie_TV_Shows from '../Header/Movie_TV_Shows';
 import CategoryFilms from '../Header/CategoryFilms';
-
+import {primaryBackgroundColor} from '../../constants/constants';
 const useStyles = makeStyles(() => {
   return {
     root: {
-      backgroundColor: '#1F1F1F',
+      backgroundColor: primaryBackgroundColor,
       color: '#D1D2D6',
       paddingTop: '1rem',
     },
@@ -83,29 +83,6 @@ function MainPage() {
     );
   }, [loadingURL, dispatch]);
 
-  // const displaySearchedValue = () => {
-  //   if (searchedItem) {
-  //     return (
-  //       <h2 className={classes.disFlex}>Search Results for: {searchedName}</h2>
-  //     );
-  //   } else if (loadingURL === POPULAR_MOVIES_API) {
-  //     <div>
-  //       <h2 className={classes.disFlex}>Featured Movies</h2>
-  //       <span className={classes.disFlex}>
-  //         <Movie_TV_Shows />
-  //         <CategoryFilms />
-  //       </span>
-  //     </div>;
-  //   } else {
-  //     <div>
-  //       <h2>Featured TV Shows</h2>
-  //       <span className={classes.disFlex}>
-  //         <Movie_TV_Shows />
-  //         <CategoryFilms />
-  //       </span>
-  //     </div>
-  //   }
-  // };
   return (
     <div className={classes.root}>
       {searchedName ? (
@@ -119,11 +96,11 @@ function MainPage() {
 
       {loadingURL === POPULAR_MOVIES_API ? (
         <span>
-          <h2 >Featured Movies</h2>
+          <h2>Featured Movies</h2>
         </span>
       ) : (
         <span>
-          <h2 >Featured TV Shows</h2>
+          <h2>Featured TV Shows</h2>
         </span>
       )}
 

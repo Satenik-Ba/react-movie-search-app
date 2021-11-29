@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import { useHistory } from "react-router-dom";
 import { HOME_ROUTE } from "../../constants/routes";
+import {primaryBackgroundColor} from '../../constants/constants';
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -23,7 +24,7 @@ import TextField from "@mui/material/TextField";
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: "#1F1F1F",
+    backgroundColor: primaryBackgroundColor,
     height: "100vh",
     display: "flex",
     justifyContent: "center",
