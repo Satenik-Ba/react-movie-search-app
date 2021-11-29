@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     position: "relative",
+    height: '100vh',
     "& a": {
       textDecoration: "none",
       color: "#171c2c",
@@ -85,10 +86,8 @@ const Login = () => {
           return setError(
             "User not found. Please enter a valid email address."
           );
-          break;
         case "auth/wrong-password":
           return setError("Wrong Password or in email");
-          break;
         default:
           return setError(
             "Invalid email or password. Please enter a correct email and/or password"

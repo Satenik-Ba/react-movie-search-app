@@ -14,8 +14,6 @@ const useStyles = makeStyles({
 
 export default function PaginationMain() {
   const dispatch = useDispatch();
-  const classes = useStyles();
-
   const pagValue = useSelector((state) => state.pageValue.pagValue);
 
   const handleChange = (event, value) => {

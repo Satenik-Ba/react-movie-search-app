@@ -1,11 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Movie from './Movie';
-import CarouselFilms from './CarouselFilms';
 import { makeStyles } from '@mui/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import PaginationMain from './PaginationMain';
 import { POPULAR_MOVIES_API } from '../../constants/APIs';
 import { PagValueAction } from '../redux/pageValue';
+import Movie from './Movie';
+import PaginationMain from './PaginationMain';
 import Movie_TV_Shows from '../Header/Movie_TV_Shows';
 import CategoryFilms from '../Header/CategoryFilms';
 
@@ -14,8 +13,7 @@ const useStyles = makeStyles(() => {
     root: {
       backgroundColor: '#1F1F1F',
       color: '#D1D2D6',
-      paddingTop: '2rem',
-      paddingBottm: '0.5rem'
+      paddingTop: '1rem',
     },
     disFlex: {
       display: 'flex',
@@ -27,17 +25,15 @@ const useStyles = makeStyles(() => {
 
 function MainPage() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [featuredMovies, setFeaturedMovies] = useState([]);
+  const [filtredMovies, setFiltredMovies] = useState([]);
+  const [searchedItem, setSearchedItem] = useState();
+
   const loadingURL = useSelector((state) => state.loadingURL.loadingURL);
   const catVal = useSelector((state) => state.categoryValue.catValue);
   const pagValue = useSelector((state) => state.pageValue.pagValue);
-  const dispatch = useDispatch();
-
-  const searchedName = useSelector(
-    (state) => state.searchName.searchValue || ''
-  );
-
-  const [filtredMovies, setFiltredMovies] = useState([]);
+  const searchedName = useSelector((state) => state.searchName.searchValue);
 
   const filmResult = useMemo(() => {
     return catVal
@@ -46,6 +42,7 @@ function MainPage() {
         )
       : filtredMovies;
   }, [catVal, filtredMovies]);
+
   useEffect(() => {
     fetch(loadingURL + pagValue)
       .then((response) => response.json())
@@ -56,14 +53,27 @@ function MainPage() {
   }, [loadingURL, pagValue]);
 
   useEffect(() => {
+    if (searchedName) {
+      fetch(
+        'https://api.themoviedb.org/3/search/movie?api_key=6241e31f828487ad21497bc364be7041&language=en-US&query=' +
+          `${searchedName}` +
+          '&include_adult=false'
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          setSearchedItem(result.results);
+        })
+        .catch((err) => console.log(err.name));
+    }
+  }, [searchedName]);
+
+  useEffect(() => {
     setFiltredMovies(
       featuredMovies.filter((featuredMovie) =>
-        (featuredMovie.title || featuredMovie.name)
-          .toUpperCase()
-          .includes(searchedName.toUpperCase().trim())
+        (featuredMovie.title || featuredMovie.name).toUpperCase()
       )
     );
-  }, [searchedName, featuredMovies]);
+  }, [featuredMovies]);
 
   useEffect(() => {
     dispatch(
@@ -72,37 +82,70 @@ function MainPage() {
       })
     );
   }, [loadingURL, dispatch]);
+
+  // const displaySearchedValue = () => {
+  //   if (searchedItem) {
+  //     return (
+  //       <h2 className={classes.disFlex}>Search Results for: {searchedName}</h2>
+  //     );
+  //   } else if (loadingURL === POPULAR_MOVIES_API) {
+  //     <div>
+  //       <h2 className={classes.disFlex}>Featured Movies</h2>
+  //       <span className={classes.disFlex}>
+  //         <Movie_TV_Shows />
+  //         <CategoryFilms />
+  //       </span>
+  //     </div>;
+  //   } else {
+  //     <div>
+  //       <h2>Featured TV Shows</h2>
+  //       <span className={classes.disFlex}>
+  //         <Movie_TV_Shows />
+  //         <CategoryFilms />
+  //       </span>
+  //     </div>
+  //   }
+  // };
   return (
     <div className={classes.root}>
-      <div className={classes.header}></div>
-      {/* <div>
-        <CarouselFilms />
-      </div> */}
-      <span className={classes.disFlex}>
-        <Movie_TV_Shows />
-        <CategoryFilms />
-      </span>
-      {loadingURL === POPULAR_MOVIES_API ? (
-        <span>
-          <h2 className={classes.root}>Featured Movies</h2>
-          <div className={classes.disFlex}>
-            {/* <Movie_TV_Shows />
-            <CategoryFilms /> */}
-          </div>
-        </span>
+      {searchedName ? (
+        <h2 className={classes.disFlex}>Search Results for: {searchedName}</h2>
       ) : (
-        <span>
-          <h2 className={classes.root}>Featured TV Shows</h2>
-          <div className={classes.disFlex}>
-            {/* <Movie_TV_Shows />
-            <CategoryFilms /> */}
-          </div>
+        <span className={classes.disFlex}>
+          <Movie_TV_Shows />
+          <CategoryFilms />
         </span>
       )}
 
-      {filmResult.map((movie) => (
+      {loadingURL === POPULAR_MOVIES_API ? (
+        <span>
+          <h2 >Featured Movies</h2>
+        </span>
+      ) : (
+        <span>
+          <h2 >Featured TV Shows</h2>
+        </span>
+      )}
+
+      {searchedItem && searchedName
+        ? searchedItem.map((item) => (
+            <Movie
+              key={item.id}
+              movie={item}
+              defaultValue={item.vote_average}
+            />
+          ))
+        : filmResult.map((movie) => (
+            <Movie
+              key={movie.id}
+              movie={movie}
+              defaultValue={movie.vote_average}
+            />
+          ))}
+
+      {/* {filmResult.map((movie) => (
         <Movie key={movie.id} movie={movie} defaultValue={movie.vote_average} />
-      ))}
+      ))} */}
       <PaginationMain />
     </div>
   );

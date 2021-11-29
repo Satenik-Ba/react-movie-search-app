@@ -4,15 +4,13 @@ import { doc, updateDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import { arrayUnion } from "@firebase/firestore";
 import { useSelector } from "react-redux";
+import Login from "../Authenticataion/Login";
 import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import Login from "../Authenticataion/Login";
-
-
 
 const useStyles = makeStyles({
   root: {

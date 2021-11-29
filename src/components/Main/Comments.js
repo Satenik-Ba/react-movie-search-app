@@ -51,7 +51,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ComentsPage({ movie1 }) {
+export default function Comments({ movie1 }) {
   const classes = useStyles();
   const history = useHistory();
   const comentUserName = useSelector((state) => state.userInfo.userName);
