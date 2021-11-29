@@ -1,12 +1,6 @@
 import React from 'react';
-import { AppBar } from '@mui/material';
-import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import logo from '../images/filmLogo.svg';
-import SearchFilms from './SearchFilms';
 import {
   SIGNIN_ROUTE,
   REGISTER_ROUTE,
@@ -15,52 +9,17 @@ import {
 } from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import UserAvatar from './UserAvatar';
-import { styled, alpha } from '@mui/material/styles';
+import logo from '../images/filmLogo.svg';
+import SearchFilms from './SearchFilms';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Stack from '@mui/material/Stack';
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
 
 const useStyles = makeStyles(() => {
   return {
@@ -189,11 +148,7 @@ function Header() {
     >
       {!isAuth && (
         <MenuItem>
-          <IconButton
-            size="large"
-            aria-label="show 4 new mails"
-            color="inherit"
-          >
+          <IconButton size="large" color="inherit">
             <Button
               className={classes.btnCol}
               component={Link}
@@ -207,11 +162,7 @@ function Header() {
       )}
       {!isAuth && (
         <MenuItem>
-          <IconButton
-            size="large"
-            aria-label="show 17 new notifications"
-            color="inherit"
-          >
+          <IconButton size="large" color="inherit">
             <Button
               className={classes.btnCol}
               component={Link}

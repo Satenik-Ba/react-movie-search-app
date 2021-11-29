@@ -1,20 +1,19 @@
-import React from "react";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import IconButton from "@mui/material/IconButton";
-import { makeStyles } from "@mui/styles";
-import ReitingVideoStars from "./ReitingVideoStars";
-import { VIDEO_PAGE } from "../../constants/routes";
-import { useHistory } from "react-router-dom";
-import { doc, setDoc, getDoc } from "firebase/firestore";
-import { firestore } from "../../firebase";
-import { imgSrc } from "../../constants/constants";
-import ManageFavorites from "./ManageFavorites";
+import React from 'react';
+import { VIDEO_PAGE } from '../../constants/routes';
+import { useHistory } from 'react-router-dom';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { firestore } from '../../firebase';
+import { imgSrc } from '../../constants/constants';
+import { makeStyles } from '@mui/styles';
+import ManageFavorites from './ManageFavorites';
+import VideoRatingStars from './VideoRatingStars';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import IconButton from '@mui/material/IconButton';
 
 const useStyles = makeStyles({
-  
   cursor: {
-    cursor: "pointer",
+    cursor: 'pointer',
   },
 });
 
@@ -31,7 +30,7 @@ const Movie = ({ movie, deleteIcon }) => {
     }
   });
   const handleMovieClick = () => {
-    localStorage.setItem("movieStor", JSON.stringify(movie));
+    localStorage.setItem('movieStor', JSON.stringify(movie));
     history.push(VIDEO_PAGE);
   };
 
@@ -39,15 +38,13 @@ const Movie = ({ movie, deleteIcon }) => {
     <span>
       <ImageListItem
         sx={{
-          width: "17vw",
-          height: 100,
-          padding: "8px",
-          lineHeight: "1.3 !important",
+          width: '17%',
+          padding: '8px',
+          lineHeight: '1.3 !important',
         }}
         cols={8}
       >
-        <ReitingVideoStars defaultValue={movie.vote_average} />
-
+        <VideoRatingStars defaultValue={movie.vote_average} />
 
         <img
           className={classes.cursor}
@@ -60,7 +57,7 @@ const Movie = ({ movie, deleteIcon }) => {
         <ImageListItemBar
           actionIcon={
             <IconButton
-              sx={{ color: "rgba(255, 255, 255, 0.94)" }}
+              sx={{ color: 'rgba(255, 255, 255, 0.94)' }}
               aria-label={`info abou`}
             >
               <ManageFavorites favMovie={movie} deleteIcon={deleteIcon} />

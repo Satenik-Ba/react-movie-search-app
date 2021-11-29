@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState} from "react";
 import {
   getAuth,
   updateProfile,
@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import { useHistory } from "react-router-dom";
 import { HOME_ROUTE } from "../../constants/routes";
-import Logout from "./Logout";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -20,7 +19,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import Card from "@mui/material/Card";
 import TextField from "@mui/material/TextField";
 
 const useStyles = makeStyles({
