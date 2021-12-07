@@ -20,6 +20,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
+    backgroundColor: 'white !important',
     position: 'relative',
     'margin-top': 'auto',
     'margin-bottom': 'auto',
@@ -168,7 +169,6 @@ const Register = () => {
             variant="outlined"
             required
           />
-
           <button className={classes.button} disabled={loading} type="submit">
             Register
           </button>

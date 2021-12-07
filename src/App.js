@@ -47,20 +47,20 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path={SIGNIN_ROUTE}>
-          <Auth />
-        </Route>
-        <Route path={REGISTER_ROUTE}>
-          <Auth />
-        </Route>
-        <Route path={ACCOUNT_PAGE}>
-          <Auth />
-        </Route>
-        <Route path={HOME_ROUTE} exact>
-          <Header />
-          <MainPage />
-          <Footer />
-        </Route>
+          <Route path={SIGNIN_ROUTE}>
+            <Auth />
+          </Route>
+          <Route path={REGISTER_ROUTE}>
+            <Auth />
+          </Route>
+          <Route path={ACCOUNT_PAGE}>
+            <Auth />
+          </Route>
+          <Route path={HOME_ROUTE} exact>
+            <Header />
+            <MainPage />
+            <Footer />
+          </Route>
         {isAuthenticated && (
           <Route path={USER_PAGE}>
             <Header />

@@ -1,10 +1,10 @@
 .App {
   text-align: center;
+ 
 }
 .slick-dots {
   background-color: #212121;
 }
 .slick-next {
-  /* right: 0px !important; */
   display: none !important;
 }

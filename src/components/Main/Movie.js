@@ -30,7 +30,7 @@ const Movie = ({ movie, deleteIcon }) => {
     }
   });
   const handleMovieClick = () => {
-    localStorage.setItem('movieStor', JSON.stringify(movie));
+    localStorage.setItem('movieStore', JSON.stringify(movie));
     history.push(VIDEO_PAGE);
   };
 
@@ -53,7 +53,6 @@ const Movie = ({ movie, deleteIcon }) => {
           alt="movie poster"
           loading="lazy"
         />
-
         <ImageListItemBar
           actionIcon={
             <IconButton

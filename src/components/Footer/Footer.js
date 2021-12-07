@@ -72,7 +72,7 @@ function Footer() {
   const classes = useStyles();
 
   return (
-    <div style={{ backgroundColor: '#222222' }}>
+    <div>
       <Grid>
         <FacebookIcon className={classes.root} />
         <InstagramIcon className={classes.root} />

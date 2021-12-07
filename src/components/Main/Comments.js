@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { SIGNIN_ROUTE } from '../../constants/routes';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@mui/styles';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-import Button from '@mui/material/Button';
 import { useSelector } from 'react-redux';
-import { doc, updateDoc, onSnapshot } from 'firebase/firestore';
+import { doc, updateDoc, onSnapshot, arrayUnion } from 'firebase/firestore';
 import { firestore } from '../../firebase';
-import { arrayUnion } from '@firebase/firestore';
-import Login from '../Authenticataion/Login';
+import { makeStyles } from '@mui/styles';
 import { DialogContentText, DialogContent, Dialog } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+import Button from '@mui/material/Button';
+import Login from '../Authenticataion/Login';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -19,6 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
+  boxShadow: 'none',
   color: theme.palette.text.secondary,
 }));
 
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   rootBtn: {
     color: '#C52D3D !important',
     fontSize: '18px !important',
-    border: '1px solid #C52D3D !important'
+    border: '1px solid #C52D3D !important',
   },
   divComentUsers: {
     width: '80%',
@@ -66,9 +66,6 @@ export default function Comments({ movie1 }) {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
   }).format(timestamp);
 
   const onHandleChange = (event) => {
@@ -116,16 +113,16 @@ export default function Comments({ movie1 }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-      <Grid item md={6} xs={12}>
+        <Grid item md={6} xs={12}>
           <Item sx={{ backgroundColor: '#1F1F1F' }}>
             {!isEmpty && (
               <div className={classes.divComentUsers}>
                 {loadingComentPage.map((comment) => (
                   <div>
                     <div className={classes.comentValueUser}>
-                      <p style={{ color: 'black' }}>{comment.displayName}</p>
-                      <p style={{ lineHeight: '20px' }}> {comment.text} </p>
+                      <p style={{ lineHeight: '10px' }}>{comment.text}</p>
                       <span className={classes.spanTime}>
+                        {comment.displayName} {'  '}
                         {comment.timeCreatedAt}
                       </span>
                     </div>
@@ -135,13 +132,12 @@ export default function Comments({ movie1 }) {
             )}
           </Item>
         </Grid>
-
         <Grid item md={6} xs={12}>
           <Item sx={{ backgroundColor: '#1F1F1F' }}>
             <TextareaAutosize
               value={commentValue}
               onChange={onHandleChange}
-              maxRows={4}
+              maxRows={6}
               minRows={4}
               aria-label="maximum height"
               placeholder="Your Comment"
@@ -184,44 +180,6 @@ export default function Comments({ movie1 }) {
               </div>
             )}
           </Item>
-        </Grid>
-        <Grid item xs={1} md={1}>
-          {/* <Item sx={{ backgroundColor: '#1F1F1F' }}>
-            {comentUserName !== '' && (
-              <Button
-                onClick={onAddItem}
-                className={classes.rootBtn}
-                variant="text"
-              >
-                Send
-              </Button>
-            )}
-            {comentUserName === '' && (
-              <div>
-                <Button
-                  onClick={handleClickOpen}
-                  className={classes.rootBtn}
-                  variant="text"
-                >
-                  Send
-                </Button>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
-                >
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                      Please Login or Register to Add Movies/TV Shows to Your
-                      Favorites List.
-                    </DialogContentText>
-                    <Login />
-                  </DialogContent>
-                </Dialog>
-              </div>
-            )}
-          </Item> */}
         </Grid>
       </Grid>
     </Box>
