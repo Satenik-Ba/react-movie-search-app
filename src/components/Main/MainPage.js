@@ -7,7 +7,7 @@ import Movie from './Movie';
 import PaginationMain from './PaginationMain';
 import Movie_TV_Shows from '../Header/Movie_TV_Shows';
 import CategoryFilms from '../Header/CategoryFilms';
-import {primaryBackgroundColor} from '../../constants/constants';
+import { primaryBackgroundColor } from '../../constants/constants';
 const useStyles = makeStyles(() => {
   return {
     root: {

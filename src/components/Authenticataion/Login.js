@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     position: "relative",
     height: '100vh',
+    backgroundColor: 'white !important',
     "& a": {
       textDecoration: "none",
       color: "#171c2c",
