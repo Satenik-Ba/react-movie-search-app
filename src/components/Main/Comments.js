@@ -120,8 +120,8 @@ export default function Comments({ movie1 }) {
                 {loadingComentPage.map((comment) => (
                   <div>
                     <div className={classes.comentValueUser}>
-                      <p style={{ lineHeight: '10px' }}>{comment.text}</p>
-                      <span className={classes.spanTime}>
+                      <p style={{ lineHeight: '10px' }}>{comment.text} </p>
+                      <span className={classes.spanTime} key={movie1.id}>
                         {comment.displayName} {'  '}
                         {comment.timeCreatedAt}
                       </span>
