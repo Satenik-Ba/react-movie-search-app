@@ -9,7 +9,7 @@ import {
 } from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import UserAvatar from './UserAvatar';
-import logo from '../images/filmLogo.svg';
+import logo from '../../images/filmLogo.svg';
 import SearchFilms from './SearchFilms';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';

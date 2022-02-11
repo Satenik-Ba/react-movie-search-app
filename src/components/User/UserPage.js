@@ -8,7 +8,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ImageListItem from '@mui/material/ImageListItem';
-import noMovie from '../images/noMovie.jpg';
+import noMovie from '../../images/noMovie.jpg';
 import Movie from '../Main/Movie';
 
 const useStyles = makeStyles({
