@@ -5,7 +5,7 @@ import { POPULAR_MOVIES_API } from '../../constants/APIs';
 import { PagValueAction } from '../redux/pageValue';
 import Movie from './Movie';
 import PaginationMain from './PaginationMain';
-import Movie_TV_Shows from '../Header/Movie_TV_Shows';
+import MovieTVShows from '../Header/MovieTVShows';
 import CategoryFilms from '../Header/CategoryFilms';
 import { primaryBackgroundColor } from '../../constants/constants';
 const useStyles = makeStyles(() => {
@@ -89,7 +89,7 @@ function MainPage() {
         <h2 className={classes.disFlex}>Search Results for: {searchedName}</h2>
       ) : (
         <span className={classes.disFlex}>
-          <Movie_TV_Shows />
+          <MovieTVShows />
           <CategoryFilms />
         </span>
       )}
@@ -119,10 +119,6 @@ function MainPage() {
               defaultValue={movie.vote_average}
             />
           ))}
-
-      {/* {filmResult.map((movie) => (
-        <Movie key={movie.id} movie={movie} defaultValue={movie.vote_average} />
-      ))} */}
       <PaginationMain />
     </div>
   );

@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => {
     filmLogo: {
       width: '60px',
       filter:
-        'invert(58%) sepia(96%) saturate(5147%) hue-rotate(3deg) brightness(94%) contrast(101%)',
+        'invert(22%) sepia(74%) saturate(2715%) hue-rotate(337deg) brightness(87%) contrast(88%)',
     },
     logo: {
       maxWidth: '250px',
@@ -51,7 +51,7 @@ const useStyles = makeStyles(() => {
       color: 'white',
     },
     logoSpanThree: {
-      color: '#e95500',
+      color: '#C32D3D',
     },
     btnCol: {
       backgroundColor: '#C32D3D !important',
@@ -71,7 +71,6 @@ const useStyles = makeStyles(() => {
     },
     myList: {
       'text-decoration': 'none',
-
       color: '#C52D3D',
       backgroundColor: '#212121',
       borderRadius: '8px',

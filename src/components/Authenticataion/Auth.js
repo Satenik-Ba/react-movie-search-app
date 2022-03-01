@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Switch} from 'react-router-dom';
+
+import { Route, Switch } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
 import { SIGNIN_ROUTE, REGISTER_ROUTE, ACCOUNT_PAGE } from '../../constants/routes';
