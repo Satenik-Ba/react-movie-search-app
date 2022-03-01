@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "react-movie-app-ad8fc"
-  }
+    "default": "react-movie-app-ad8fc",
+    "deploy": "react-movie-app-ad8fc"
+  },
+  "targets": {}
 }
