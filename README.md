@@ -12,7 +12,7 @@ Features:
 - update username/password
 - delete account
 
-# TO Run the web app
+# T0 Run the web app
 
 - Make sure to have node and npm installed
 - Clone the repository
