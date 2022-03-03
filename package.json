@@ -1,5 +1,4 @@
 {
-  "homepage": "http://Satenik-Ba.github.io/react-movie-search-app",
   "name": "react-movie-search-app",
   "version": "0.1.0",
   "private": true,
@@ -20,7 +19,7 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^4.0.3",
     "react-slick": "^0.28.1",
     "react-swipeable-views": "^0.14.0",
     "react-youtube": "^7.13.1",
