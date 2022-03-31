@@ -1,6 +1,6 @@
 ## Movie Search App
 
-# Demo   https://movie-tvshow-search-app.netlify.app/
+Demo   https://movie-tvshow-search-app.netlify.app/
 
 Responsive CRUD app built in ReactJS using The Movie DB API, Firebase for user authentication and database, and Material UI for styles.
 
